@@ -2,7 +2,7 @@
 title: "Proposal title"
 subtitle: "Proposal"
 author: 
-  - name: "Datavista - Team member 1, Team member 2,..."
+  - name: "Datavista - Abhishek kumar, Akash ,..."
     affiliations:
       - name: "School of Information, University of Arizona"
 description: "Project description"
@@ -20,15 +20,16 @@ execute:
 
 # High Level Goal
 
-The goal of the project is to visualise
+The academic project seeks to investigate trends, impacts, and vulnerabilities related to data breaches through comprehensive data analysis and visualization techniques.
+
+## Data Description
 
 ```{r}
-#| label: load-pkgs
+#| label: load-dataset
 #| message: false
-library(tidyverse)
 ```
 
-## Dataset
+write Description here...
 
 ```{r}
 #| label: load-dataset
@@ -39,25 +40,80 @@ A brief description of your dataset including its provenance, dimensions, etc. a
 
 Make sure to load the data and use inline code for some of this information.
 
+## Reason for choosing this data
+
+-   **Relevance:** Data breaches are a pressing issue affecting organizations globally, necessitating thorough analysis for insights into cybersecurity landscapes.
+
+-   **Scope:** With coverage across diverse sectors and spanning nearly two decades, this dataset offers a comprehensive view of data breaches over time.
+
+-   **Variety of Variables:** The dataset encompasses multiple variables, facilitating multifaceted analysis of breach methods, sector vulnerabilities, and breach trends.
+
 ## Questions
 
-The two questions you want to answer.
+Q1) [General Assessment:]{style="color:blue;"} How have data breaches evolved over past decade(2013-2023), and what are the trends regarding their frequency, severity, and impact across different industries ?
+
+Q2) [Vulnerability Assessment:]{style="color:blue;"} Which sectors or types of data (e.g., personal, financial) are most vulnerable to specific methods of breach (e.g., hacking, insider job)? How can organizations prioritize their security efforts based on this analysis?
 
 ## Analysis plan
+
+### QUESTION 1:
+
+To solve this question we will use columns: [Method]{style="color:blue;"}, [Sector]{style="color:blue;"}, [Sensitivity]{style="color:blue;"}, [Records Lost]{style="color:blue;"}, [Year]{style="color:blue;"}
+
+The steps are:
+
+-   **Data Preprocessing:**
+
+    -   Clean and organize the provided data, ensuring accuracy and consistency.
+
+    -   Focus on relevant columns such as records lost, method, year, sector, data sensitivity, and displayed records. Ensure the dataset covers the entire timeframe from 2004 to 2023.
+
+-   **Exploratory Data Analysis (EDA):**
+
+    -   Calculate summary statistics for key variables like records lost to understand the overall scale of breaches.
+    -   Visualize trends in the frequency of breaches over time using a line plot or bar chart. - Identify any outliers or anomalies in the data that may warrant further investigation.
+
+-   **Trend Analysis:**
+
+    -   Analyze trends in breach severity by examining the distribution of records lost and displayed records over time.
+
+    -   Evaluate variations in breach frequency and severity across different sectors and regions.
+
+-   **Visualization and Interpretation:**
+
+    -   We will utilize [Shiny]{style="color:blue;"} , a robust R package, to construct an [interactive dashboard]{style="color:blue;"} for data visualization.
+
+    -   Design a user-friendly interface incorporating dropdown menus, sliders, and checkboxes for seamless data filtering and selection.
+
+    -   Utilize ggplot2 to create visually appealing representations of key metrics such as breach frequency over time, distribution of records lost by sector, and trends in breach severity.
+
+    -   Implement interactive elements like hover tooltips, clickable legends, and zoom functionality to enhance user engagement and enable detailed exploration of the data.
+
+    -   If [\*]{style="color:red;"} applicable-(Data breaches generally occur in companies that span multiple regions.) incorporate maps to visually display the geographical distribution of data breaches and their impacts across different regions. -Provide deeper insights by including textual descriptions, annotations, or pop-up messages highlighting significant findings and offering insights into the implications of data breaches for cybersecurity strategies.
+
+        [ \*]{style="color:red;"} (Data breaches generally occur in companies that span multiple regions.)
+
+    ### QUESTION 2:
+
+    To solve this question we will use columns: [Method]{style="color:blue;"}, [Sector]{style="color:blue;"}, [Sensitivity]{style="color:blue;"}, [Records Lost]{style="color:blue;"}, [Year]{style="color:blue;"}
+
+    The steps are:
+
+-   
 
 # Plan of Attack
 
 This document outlines the tasks for our project, including their status, assignees, due dates, priorities, and summaries.
 
 | Task Name                                               | Status                            | Assignee | Due        | Priority | Summary                                     |
-|------------|------------|------------|------------|------------|------------|
+|---------------------------------------------------------|-----------------------------------|----------|------------|----------|---------------------------------------------|
 | Dataset and question selection                          | Explored and finalize the dataset | Everyone | March 24th | HIGH     | Selected dataset and question to be solved. |
 | Brainstorming and working on data analysis and proposal | Completed the proposal            | Everyone | April 1st  | High     | Proposal ready for review.                  |
 |                                                         |                                   | Everyone | April 8th  | High     |                                             |
-|                                                         |                                   |          | April 15th |          |                                             |
-|                                                         |                                   |          | April 22nd |          |                                             |
-|                                                         |                                   |          | April 29th |          |                                             |
-|                                                         |                                   |          | May 6th    |          |                                             |
+|                                                         |                                   | Everyone | April 15th | Medium   |                                             |
+|                                                         |                                   | Everyone | April 22nd | medium   |                                             |
+|                                                         |                                   | Everyone | April 29th | High     |                                             |
+|                                                         |                                   | Everyone | May 6th    | High     |                                             |
 
 ```         
                                        |
@@ -87,5 +143,5 @@ The following folders comprise the project repository
 
 -   **index.qmd:** This serves as the main documentation page for our project. This Quarto Markdown file provides detailed descriptions of our project, including code examples and visualizations.
 
-```{}
+```         
 ```
