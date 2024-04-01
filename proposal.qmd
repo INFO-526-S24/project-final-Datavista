@@ -2,7 +2,7 @@
 title: "Proposal title"
 subtitle: "Proposal"
 author: 
-  - name: "Team Name - Team member 1, Team member 2,..."
+  - name: "Datavista - Team member 1, Team member 2,..."
     affiliations:
       - name: "School of Information, University of Arizona"
 description: "Project description"
@@ -17,6 +17,10 @@ code-annotations: hover
 execute:
   warning: false
 ---
+
+# High Level Goal
+
+The goal of the project is to visualise
 
 ```{r}
 #| label: load-pkgs
@@ -41,4 +45,47 @@ The two questions you want to answer.
 
 ## Analysis plan
 
--   A plan for answering each of the questions including the variables involved, variables to be created (if any), external data to be merged in (if any).
+# Plan of Attack
+
+This document outlines the tasks for our project, including their status, assignees, due dates, priorities, and summaries.
+
+| Task Name                                               | Status                            | Assignee | Due        | Priority | Summary                                     |
+|------------|------------|------------|------------|------------|------------|
+| Dataset and question selection                          | Explored and finalize the dataset | Everyone | March 24th | HIGH     | Selected dataset and question to be solved. |
+| Brainstorming and working on data analysis and proposal | Completed the proposal            | Everyone | April 1st  | High     | Proposal ready for review.                  |
+|                                                         |                                   | Everyone | April 8th  | High     |                                             |
+|                                                         |                                   |          | April 15th |          |                                             |
+|                                                         |                                   |          | April 22nd |          |                                             |
+|                                                         |                                   |          | April 29th |          |                                             |
+|                                                         |                                   |          | May 6th    |          |                                             |
+
+```         
+                                       |
+```
+
+# Repo Organization
+
+The following folders comprise the project repository
+
+-   **.github/:** This directory is designated for files associated with GitHub, encompassing workflows, actions, and templates tailored for issues.
+
+-   **\_extra/:** Reserved for miscellaneous files that don't neatly fit into other project categories, providing a catch-all space for various supplementary documents.
+
+-   **\_freeze/:** Within this directory lie frozen environment files containing comprehensive information regarding the project's environment configuration and dependencies.
+
+-   **data/:** Specifically allocated for storing indispensable data files crucial for the project's functionality, encompassing input files, datasets, and other essential data resources.
+
+-   **images/:** Serving as a repository for visual assets employed throughout the project, including diagrams, charts, and screenshots, this directory maintains visual elements integral to project documentation and presentation.
+
+-   **.gitignore:** This file functions to specify exclusions from version control, ensuring that designated files and directories remain untracked by Git, thus streamlining the versioning process.
+
+-   **README.md:** Serving as the primary hub of project information, this README document furnishes essential details encompassing project setup, usage instructions, and an overarching overview of project objectives and scope.
+
+-   **\_quarto.yml:** Acting as a pivotal configuration file for Quarto, this document encapsulates various settings and options governing the construction and rendering of Quarto documents, facilitating customization and control over document output.
+
+-   **about.qmd:** This Quarto Markdown file supplements project documentation by providing additional contextual information, elucidating project purpose, contributor insights, and other pertinent project details.
+
+-   **index.qmd:** This serves as the main documentation page for our project. This Quarto Markdown file provides detailed descriptions of our project, including code examples and visualizations.
+
+```{}
+```
