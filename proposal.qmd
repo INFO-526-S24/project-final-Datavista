@@ -29,7 +29,7 @@ The academic project seeks to investigate trends, impacts, and vulnerabilities r
 #| message: false
 ```
 
-write Description here...
+World's Biggest Data Breaches & Hacks, from the name itself the dataset is all about data breaches in various sector, The columns (year, date, sector, method, data sensivity) which opens a various ways to get insights from the dataset. The dataset covers various time period from 2003 to 2023. The sectors include academic, app, finance, gaming, government, health, legal, military, misc. On the other hand, Method include hacked, inside job, lost device, oops, poor security. And also this dataset includes Data Breaches information about top companies like Facebook, Microsoft, X etc.
 
 ```{r}
 #| label: load-dataset
@@ -106,7 +106,7 @@ The steps are:
 This document outlines the tasks for our project, including their status, assignees, due dates, priorities, and summaries.
 
 | Task Name                                               | Status                            | Assignee | Due        | Priority | Summary                                     |
-|---------------------------------------------------------|-----------------------------------|----------|------------|----------|---------------------------------------------|
+|-----------------|-----------|-----------|-----------|-----------|------------|
 | Dataset and question selection                          | Explored and finalize the dataset | Everyone | March 24th | HIGH     | Selected dataset and question to be solved. |
 | Brainstorming and working on data analysis and proposal | Completed the proposal            | Everyone | April 1st  | High     | Proposal ready for review.                  |
 |                                                         |                                   | Everyone | April 8th  | High     |                                             |
