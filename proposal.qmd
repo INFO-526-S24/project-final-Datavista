@@ -29,14 +29,16 @@ The academic project seeks to investigate trends, impacts, and vulnerabilities r
 #| message: false
 ```
 
-World's Biggest Data Breaches & Hacks, from the name itself the dataset is all about data breaches in various sector, The columns (year, date, sector, method, data sensivity) which opens a various ways to get insights from the dataset. The dataset covers various time period from 2003 to 2023. The sectors include academic, app, finance, gaming, government, health, legal, military, misc. On the other hand, Method include hacked, inside job, lost device, oops, poor security. And also this dataset includes Data Breaches information about top companies like Facebook, Microsoft, X etc.
+World's Biggest Data Breaches & Hacks, from the name itself the dataset is all about data breaches in various sector, The columns (year, date, sector, method, data sensivity) which opens a various ways to get insights from the dataset. The dataset covers various time period from 2003 to 2023.
 
 ```{r}
 #| label: load-dataset
 #| message: false
 ```
 
-A brief description of your dataset including its provenance, dimensions, etc. as well as the reason why you chose this dataset.
+The sectors include academic, app, finance, gaming, government, health, legal, military, misc. On the other hand, Method include hacked, inside job, lost device, oops, poor security. And also this dataset includes Data Breaches information about top companies like Facebook, Microsoft, X etc.
+
+Reason :
 
 Make sure to load the data and use inline code for some of this information.
 
