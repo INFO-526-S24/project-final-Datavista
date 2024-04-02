@@ -18,42 +18,71 @@ execute:
   warning: false
 ---
 
+<div style="background-color: #002366; color: white; line-height: .5; padding: 0 6px;">
 # High Level Goal
+</div>
+
+
 
 The academic project seeks to investigate trends, impacts, and vulnerabilities related to data breaches through comprehensive data analysis and visualization techniques.
+---
 
+<div style="background-color: #002366; color: white; line-height: normal; padding: 0 6px;">
+# Introduction:
+</div>
+
+
+In the ever-evolving realm of cybersecurity, the year 2023 marked a watershed moment, as revealed by <span style="color:blue">The Identity Theft Research Center's (ITRC)</span> Annual Data Breach Report. With a staggering 72% increase over the previous record set in 2021, the United States witnessed an unprecedented surge in data compromises, impacting over 353 million individuals. This alarming trend underscores the urgent need for heightened vigilance and robust security measures in safeguarding our digital assets. In our project, we will delve into the World's Biggest Data Breaches & Hacks to gain valuable insights into these incidents and explore strategies to mitigate future risks
+---
+
+
+<div style="background-color: #002366; color: white; line-height: normal; padding: 0 6px;">
 ## Data Description
+</div>
+
 
 ```{r}
-#| label: load-dataset
 #| message: false
-#| 
+df <- read.csv("data/Data_Breaches_LATEST.csv")
+
+# Print the first few rows of the data frame
+#head(df)
 ```
+The "World's Biggest Data Breaches & Hacks" dataset, sourced from [informationisbeautiful.net](https://informationisbeautiful.net/), focuses on cataloging data breaches across various sectors. Key columns such as year, date, sector, method, and data sensitivity provide avenues for in-depth analysis. Spanning from 2003 to 2023, the dataset offers a comprehensive view of breaches over time.
 
-World's Biggest Data Breaches & Hacks, from the name itself the dataset is all about data breaches in various sector, The columns (year, date, sector, method, data sensivity) which opens a various ways to get insights from the dataset. The dataset covers various time period from 2003 to 2023.
-
-
-The sectors include academic, app, finance, gaming, government, health, legal, military, misc. On the other hand, Method include hacked, inside job, lost device, oops, poor security. And also this dataset includes Data Breaches information about top companies like Facebook, Microsoft, X etc..
-
+Sectors covered include academic, app, finance, gaming, government, health, legal, military, and miscellaneous. Methods of breach encompass hacking, inside job, lost device, accidental exposure (oops), and poor security practices. Additionally, the dataset contains information on breaches affecting top companies like Facebook, Microsoft, and others.
+---
 
 
-Make sure to load the data and use inline code for some of this information.
 
+<div style="background-color: #002366; color: white; line-height: normal; padding: 0 6px;">
 ## Reason for choosing this data
+</div>
 
 -   **Relevance:** Data breaches are a pressing issue affecting organizations globally, necessitating thorough analysis for insights into cybersecurity landscapes.
 
 -   **Scope:** With coverage across diverse sectors and spanning nearly two decades, this dataset offers a comprehensive view of data breaches over time.
 
 -   **Variety of Variables:** The dataset encompasses multiple variables, facilitating multifaceted analysis of breach methods, sector vulnerabilities, and breach trends.
+---
 
+
+<div style="background-color: #002366; color: white; line-height: normal; padding: 0 6px;">
 ## Questions
+</div>
+
 
 Q1) [General Assessment:]{style="color:blue;"} How have data breaches evolved over past decade(2013-2023), and what are the trends regarding their frequency, severity, and impact across different industries ?
 
 Q2) [Vulnerability Assessment:]{style="color:blue;"} Which sectors or types of data (e.g., personal, financial) are most vulnerable to specific methods of breach (e.g., hacking, insider job)? How can organizations prioritize their security efforts based on this analysis?
+---
 
+
+
+
+<div style="background-color: #002366; color: white; line-height: normal; padding: 0 6px;">
 ## Analysis plan
+</div>
 
 ### QUESTION 1:
 
@@ -91,6 +120,8 @@ The steps are:
     -   If [\*]{style="color:red;"} applicable-(Data breaches generally occur in companies that span multiple regions.) incorporate maps to visually display the geographical distribution of data breaches and their impacts across different regions. -Provide deeper insights by including textual descriptions, annotations, or pop-up messages highlighting significant findings and offering insights into the implications of data breaches for cybersecurity strategies.
 
         [ \*]{style="color:red;"} (Data breaches generally occur in companies that span multiple regions.)
+---        
+        
 
 ### QUESTION 2:
 
@@ -117,26 +148,14 @@ To address this Vulnerability Assessment we will use columns: [Method]{style="co
         -   Investigate trends in breach occurrence over time using the "[year]{style="color:blue;"}" column.
 
         -   Identify patterns or anomalies in breach methods and affected sectors/types of data over time.
+---
 
-# Plan of Attack
 
-This document outlines the tasks for our project, including their status, assignees, due dates, priorities, and summaries.
 
-| Task Name                                               | Status                            | Assignee | Due        | Priority | Summary                                     |
-|------------|------------|------------|------------|------------|------------|
-| Dataset and question selection                          | Explored and finalize the dataset | Everyone | March 24th | HIGH     | Selected dataset and question to be solved. |
-| Brainstorming and working on data analysis and proposal | Completed the proposal            | Everyone | April 1st  | High     | Proposal ready for review.                  |
-|                                                         |                                   | Everyone | April 8th  | High     |                                             |
-|                                                         |                                   | Everyone | April 15th | Medium   |                                             |
-|                                                         |                                   | Everyone | April 22nd | medium   |                                             |
-|                                                         |                                   | Everyone | April 29th | High     |                                             |
-|                                                         |                                   | Everyone | May 6th    | High     |                                             |
+<div style="background-color: #002366; color: white; line-height: .5; padding: 0 6px;">
+# Repo organisation
+</div>
 
-```         
-                                       |
-```
-
-# Repo Organization
 
 The following folders comprise the project repository
 
@@ -159,6 +178,114 @@ The following folders comprise the project repository
 -   **about.qmd:** This Quarto Markdown file supplements project documentation by providing additional contextual information, elucidating project purpose, contributor insights, and other pertinent project details.
 
 -   **index.qmd:** This serves as the main documentation page for our project. This Quarto Markdown file provides detailed descriptions of our project, including code examples and visualizations.
+---
 
-```         
-```
+
+
+<div style="background-color: #002366; color: white; line-height: .5; padding: 0 6px;">
+# Plan of Attack
+</div>
+
+
+
+This document outlines the tasks for our project, including their status, assignees, due dates, priorities, and summaries.
+
+
+<style>
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+
+  th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #002366; /* Change background color of title to dark blue */
+    color: white; /* Set title text color to white */
+  }
+
+  tr:nth-child(odd) {
+    background-color: #f2f2f2;
+  }
+
+  tr:hover {
+    background-color: #ddd;
+  }
+
+  td:first-child, th:first-child {
+    padding-left: 20px;
+  }
+
+  td:last-child, th:last-child {
+    padding-right: 20px;
+  }
+</style>
+
+<table>
+  <thead>
+    <tr>
+      <th>Task Name</th>
+      <th>Status</th>
+      <th>Assignee</th>
+      <th>Due</th>
+      <th>Priority</th>
+      <th>Summary</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Dataset and question selection</td>
+      <td>Explored and finalize the dataset</td>
+      <td>Everyone</td>
+      <td>March 24th</td>
+      <td>HIGH</td>
+      <td>Selected dataset and question to be solved.</td>
+    </tr>
+    <tr>
+      <td>Brainstorming and working on data analysis and proposal</td>
+      <td>Completed the proposal</td>
+      <td>Everyone</td>
+      <td>April 1st</td>
+      <td>High</td>
+      <td>Proposal ready for review.</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Everyone</td>
+      <td>April 8th</td>
+      <td>High</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Everyone</td>
+      <td>April 15th</td>
+      <td>Medium</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Everyone</td>
+      <td>April 22nd</td>
+      <td>medium</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Everyone</td>
+      <td>April 29th</td>
+      <td>High</td>
+
+---
+
+
+
