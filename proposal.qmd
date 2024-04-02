@@ -47,31 +47,109 @@ The "World's Biggest Data Breaches & Hacks" dataset, sourced from [informationis
 
 Sectors covered include academic, app, finance, gaming, government, health, legal, military, and miscellaneous. Methods of breach encompass hacking, inside job, lost device, accidental exposure (oops), and poor security practices. Additionally, the dataset contains information on breaches affecting top companies like Facebook, Microsoft, and others.
 
-+-------------------+---------------+------------------------------------------------+
-| Column            | Data Type     | Description                                    |
-+===================+===============+================================================+
-| organisation      | object        | Name of the organisation that lost data.       |
-+-------------------+---------------+------------------------------------------------+
-| alternative name  | object        | Alternative name for the organisation.         |
-+-------------------+---------------+------------------------------------------------+
-| records lost      | int64         | Number of records lost in the data breach.     |
-+-------------------+---------------+------------------------------------------------+
-| year              | int64         | Year in which the data breach occurred.        |
-+-------------------+---------------+------------------------------------------------+
-| date              | object        | Date of the data breach.                       |
-+-------------------+---------------+------------------------------------------------+
-| story             | object        | Description of the data breach incident.       |
-+-------------------+---------------+------------------------------------------------+
-| sector            | object        | Sector affected by the data breach.            |
-+-------------------+---------------+------------------------------------------------+
-| method            | object        | Method through which the data breach occurred. |
-+-------------------+---------------+------------------------------------------------+
-| interesting story | object        | Interesting story related to the data breach.  |
-+-------------------+---------------+------------------------------------------------+
-| data sensitivity  | float64       | Level of data sensitivity (1,2,3,4,5).         |
-+-------------------+---------------+------------------------------------------------+
-| displayed records | object        | Displayed records in the data breach.          |
-+-------------------+---------------+------------------------------------------------+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Column Data Type Description</title>
+<style>
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+    transition: background-color 0.3s ease;
+  }
+
+  th {
+    background-color: #f2f2f2; /* Light gray */
+  }
+
+  tr:nth-child(even) {
+    background-color: #f9f9f9; /* Alternate row color */
+  }
+
+  tr:hover {
+    background-color: #ddd; /* Hover color */
+  }
+</style>
+</head>
+<body>
+
+<table>
+  <thead>
+    <tr>
+      <th>Column</th>
+      <th>Data Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>organisation</td>
+      <td>object</td>
+      <td>Name of the organisation that lost data.</td>
+    </tr>
+    <tr>
+      <td>alternative name</td>
+      <td>object</td>
+      <td>Alternative name for the organisation.</td>
+    </tr>
+    <tr>
+      <td>records lost</td>
+      <td>int64</td>
+      <td>Number of records lost in the data breach.</td>
+    </tr>
+    <tr>
+      <td>year</td>
+      <td>int64</td>
+      <td>Year in which the data breach occurred.</td>
+    </tr>
+    <tr>
+      <td>date</td>
+      <td>object</td>
+      <td>Date of the data breach.</td>
+    </tr>
+    <tr>
+      <td>story</td>
+      <td>object</td>
+      <td>Description of the data breach incident.</td>
+    </tr>
+    <tr>
+      <td>sector</td>
+      <td>object</td>
+      <td>Sector affected by the data breach.</td>
+    </tr>
+    <tr>
+      <td>method</td>
+      <td>object</td>
+      <td>Method through which the data breach occurred.</td>
+    </tr>
+    <tr>
+      <td>interesting story</td>
+      <td>object</td>
+      <td>Interesting story related to the data breach.</td>
+    </tr>
+    <tr>
+      <td>data sensitivity</td>
+      <td>float64</td>
+      <td>Level of data sensitivity (1,2,3,4,5).</td>
+    </tr>
+    <tr>
+      <td>displayed records</td>
+      <td>object</td>
+      <td>Displayed records in the data breach.</td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+</html>
+
 
 ::: {style="background-color: #002366; color: white; line-height: normal; padding: 0 6px;"}
 ## Reason for choosing this data
@@ -191,32 +269,135 @@ The following folders comprise the project repository
 ::: {style="background-color: #002366; color: white; line-height: .5; padding: 0 6px;"}
 # Plan of Attack
 :::
+           
 
-+------------------------------------------+-----------------------------------+----------+------------+----------+---------------------------------------------+
-| Task Name                                | Status                            | Assignee | Due        | Priority | Summary                                     |
-+==========================================+===================================+==========+============+==========+=============================================+
-| Dataset/question selection/Brainstorming | Explored and finalize the dataset | Everyone | March 24th | High     | Selected dataset and question to be solved. |
-+------------------------------------------+-----------------------------------+----------+------------+----------+---------------------------------------------+
-| Proposal Preparation                     | Completed the proposal            | Everyone | April 1st  | High     | Proposal ready for review.                  |
-+------------------------------------------+-----------------------------------+----------+------------+----------+---------------------------------------------+
-| peer Review                              |                                   | Everyone | April 8th  | Medium   |                                             |
-|                                          |                                   |          |            |          |                                             |
-| Shiny package learning/                  |                                   |          |            |          |                                             |
-|                                          |                                   |          |            |          |                                             |
-| Data Preprocessing                       |                                   |          |            |          |                                             |
-+------------------------------------------+-----------------------------------+----------+------------+----------+---------------------------------------------+
-| Shiny package learning/                  |                                   | Everyone | April 15th | High     |                                             |
-|                                          |                                   |          |            |          |                                             |
-| Dashboard Preparation'(Q1)               |                                   |          |            |          |                                             |
-+------------------------------------------+-----------------------------------+----------+------------+----------+---------------------------------------------+
-| Project/Dashboard Preparation'(Q2)       |                                   | Everyone | April 22nd | Medium   |                                             |
-+------------------------------------------+-----------------------------------+----------+------------+----------+---------------------------------------------+
-| Write-up/review code                     |                                   | Everyone | April 29nd | Medium   |                                             |
-+------------------------------------------+-----------------------------------+----------+------------+----------+---------------------------------------------+
-| PPT Preparation                          |                                   | Everyone | May 6th    | High     |                                             |
-+------------------------------------------+-----------------------------------+----------+------------+----------+---------------------------------------------+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Task Status Table</title>
+<style>
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
 
+  th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+    transition: background-color 0.3s ease;
+  }
 
-Reference:
+  th {
+    background-color: #f2f2f2; /* Light gray */
+  }
 
+  tr:nth-child(even) {
+    background-color: #f9f9f9; /* Alternate row color */
+  }
 
+  tr:hover {
+    background-color: #ddd; /* Hover color */
+  }
+</style>
+</head>
+<body>
+
+<table>
+  <thead>
+    <tr>
+      <th>Task Name</th>
+      <th>Status</th>
+      <th>Assignee</th>
+      <th>Due</th>
+      <th>Priority</th>
+      <th>Summary</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Dataset/question selection/Brainstorming</td>
+      <td>Explored and finalize the dataset</td>
+      <td>Everyone</td>
+      <td>March 24th</td>
+      <td>High</td>
+      <td>Selected dataset and question to be solved.</td>
+    </tr>
+    <tr>
+      <td>Proposal Preparation</td>
+      <td>Completed the proposal</td>
+      <td>Everyone</td>
+      <td>April 1st</td>
+      <td>High</td>
+      <td>Proposal ready for review.</td>
+    </tr>
+    <tr>
+      <td>peer Review</td>
+      <td></td>
+      <td>Everyone</td>
+      <td>April 8th</td>
+      <td>Medium</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Shiny package learning/</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Data Preprocessing</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Shiny package learning/</td>
+      <td></td>
+      <td>Everyone</td>
+      <td>April 15th</td>
+      <td>High</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Dashboard Preparation'(Q1)</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Project/Dashboard Preparation'(Q2)</td>
+      <td></td>
+      <td>Everyone</td>
+      <td>April 22nd</td>
+      <td>Medium</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Write-up/review code</td>
+      <td></td>
+      <td>Everyone</td>
+      <td>April 29nd</td>
+      <td>Medium</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>PPT Preparation</td>
+      <td></td>
+      <td>Everyone</td>
+      <td>May 6th</td>
+      <td>High</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+</html>
