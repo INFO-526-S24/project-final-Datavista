@@ -1,11 +1,11 @@
 ---
-title: "Proposal title"
+title: "Unveiling Trends in Cybersecurity Breaches and Data Hacks"
 subtitle: "Proposal"
 author: 
-  - name: "Datavista - Abhishek kumar, Akash ,..."
+  - name: "Datavista - Abhishek kumar, Srinivasan Akash, Gowtham Theeda,Divya Dhole, Lakshmi Neharika Anchula, Noureen Mithaigar"
     affiliations:
       - name: "School of Information, University of Arizona"
-description: "Project description"
+description: "Our project Data Insecurity aims to Uncovering Trends in cyber breaches analyses of cybersecurity attacks to reveal prevalent types over time and identify targeted industries, empowering proactive security measures."
 format:
   html:
     code-tools: true
@@ -18,28 +18,21 @@ execute:
   warning: false
 ---
 
-<div style="background-color: #002366; color: white; line-height: .5; padding: 0 6px;">
+::: {style="background-color: #002366; color: white; line-height: .5; padding: 0 6px;"}
 # High Level Goal
-</div>
+:::
 
+## The academic project seeks to investigate trends, impacts, and vulnerabilities related to data breaches through comprehensive data analysis and visualization techniques.
 
-
-The academic project seeks to investigate trends, impacts, and vulnerabilities related to data breaches through comprehensive data analysis and visualization techniques.
----
-
-<div style="background-color: #002366; color: white; line-height: normal; padding: 0 6px;">
+::: {style="background-color: #002366; color: white; line-height: normal; padding: 0 6px;"}
 # Introduction:
-</div>
+:::
 
+## In the ever-evolving realm of cybersecurity, the year 2023 marked a watershed moment, as revealed by [The Identity Theft Research Center's (ITRC)]{style="color:blue"} Annual Data Breach Report. With a staggering 72% increase over the previous record set in 2021, the United States witnessed an unprecedented surge in data compromises, impacting over 353 million individuals. This alarming trend underscores the urgent need for heightened vigilance and robust security measures in safeguarding our digital assets. In our project, we will delve into the World's Biggest Data Breaches & Hacks to gain valuable insights into these incidents and explore strategies to mitigate future risks
 
-In the ever-evolving realm of cybersecurity, the year 2023 marked a watershed moment, as revealed by <span style="color:blue">The Identity Theft Research Center's (ITRC)</span> Annual Data Breach Report. With a staggering 72% increase over the previous record set in 2021, the United States witnessed an unprecedented surge in data compromises, impacting over 353 million individuals. This alarming trend underscores the urgent need for heightened vigilance and robust security measures in safeguarding our digital assets. In our project, we will delve into the World's Biggest Data Breaches & Hacks to gain valuable insights into these incidents and explore strategies to mitigate future risks
----
-
-
-<div style="background-color: #002366; color: white; line-height: normal; padding: 0 6px;">
+::: {style="background-color: #002366; color: white; line-height: normal; padding: 0 6px;"}
 ## Data Description
-</div>
-
+:::
 
 ```{r}
 #| message: false
@@ -48,41 +41,34 @@ df <- read.csv("data/Data_Breaches_LATEST.csv")
 # Print the first few rows of the data frame
 #head(df)
 ```
+
 The "World's Biggest Data Breaches & Hacks" dataset, sourced from [informationisbeautiful.net](https://informationisbeautiful.net/), focuses on cataloging data breaches across various sectors. Key columns such as year, date, sector, method, and data sensitivity provide avenues for in-depth analysis. Spanning from 2003 to 2023, the dataset offers a comprehensive view of breaches over time.
 
-Sectors covered include academic, app, finance, gaming, government, health, legal, military, and miscellaneous. Methods of breach encompass hacking, inside job, lost device, accidental exposure (oops), and poor security practices. Additionally, the dataset contains information on breaches affecting top companies like Facebook, Microsoft, and others.
----
+## Sectors covered include academic, app, finance, gaming, government, health, legal, military, and miscellaneous. Methods of breach encompass hacking, inside job, lost device, accidental exposure (oops), and poor security practices. Additionally, the dataset contains information on breaches affecting top companies like Facebook, Microsoft, and others.
 
-
-
-<div style="background-color: #002366; color: white; line-height: normal; padding: 0 6px;">
+::: {style="background-color: #002366; color: white; line-height: normal; padding: 0 6px;"}
 ## Reason for choosing this data
-</div>
+:::
 
 -   **Relevance:** Data breaches are a pressing issue affecting organizations globally, necessitating thorough analysis for insights into cybersecurity landscapes.
 
 -   **Scope:** With coverage across diverse sectors and spanning nearly two decades, this dataset offers a comprehensive view of data breaches over time.
 
--   **Variety of Variables:** The dataset encompasses multiple variables, facilitating multifaceted analysis of breach methods, sector vulnerabilities, and breach trends.
----
+-   
 
+    ## **Variety of Variables:** The dataset encompasses multiple variables, facilitating multifaceted analysis of breach methods, sector vulnerabilities, and breach trends.
 
-<div style="background-color: #002366; color: white; line-height: normal; padding: 0 6px;">
+::: {style="background-color: #002366; color: white; line-height: normal; padding: 0 6px;"}
 ## Questions
-</div>
-
+:::
 
 Q1) [General Assessment:]{style="color:blue;"} How have data breaches evolved over past decade(2013-2023), and what are the trends regarding their frequency, severity, and impact across different industries ?
 
-Q2) [Vulnerability Assessment:]{style="color:blue;"} Which sectors or types of data (e.g., personal, financial) are most vulnerable to specific methods of breach (e.g., hacking, insider job)? How can organizations prioritize their security efforts based on this analysis?
----
+## Q2) [Vulnerability Assessment:]{style="color:blue;"} Which sectors or types of data (e.g., personal, financial) are most vulnerable to specific methods of breach (e.g., hacking, insider job)? How can organizations prioritize their security efforts based on this analysis?
 
-
-
-
-<div style="background-color: #002366; color: white; line-height: normal; padding: 0 6px;">
+::: {style="background-color: #002366; color: white; line-height: normal; padding: 0 6px;"}
 ## Analysis plan
-</div>
+:::
 
 ### QUESTION 1:
 
@@ -119,9 +105,7 @@ The steps are:
 
     -   If [\*]{style="color:red;"} applicable-(Data breaches generally occur in companies that span multiple regions.) incorporate maps to visually display the geographical distribution of data breaches and their impacts across different regions. -Provide deeper insights by including textual descriptions, annotations, or pop-up messages highlighting significant findings and offering insights into the implications of data breaches for cybersecurity strategies.
 
-        [ \*]{style="color:red;"} (Data breaches generally occur in companies that span multiple regions.)
----        
-        
+        ## [ \*]{style="color:red;"} (Data breaches generally occur in companies that span multiple regions.)
 
 ### QUESTION 2:
 
@@ -147,15 +131,13 @@ To address this Vulnerability Assessment we will use columns: [Method]{style="co
 
         -   Investigate trends in breach occurrence over time using the "[year]{style="color:blue;"}" column.
 
-        -   Identify patterns or anomalies in breach methods and affected sectors/types of data over time.
----
+        -   
 
+            ## Identify patterns or anomalies in breach methods and affected sectors/types of data over time.
 
-
-<div style="background-color: #002366; color: white; line-height: .5; padding: 0 6px;">
+::: {style="background-color: #002366; color: white; line-height: .5; padding: 0 6px;"}
 # Repo organisation
-</div>
-
+:::
 
 The following folders comprise the project repository
 
@@ -177,20 +159,17 @@ The following folders comprise the project repository
 
 -   **about.qmd:** This Quarto Markdown file supplements project documentation by providing additional contextual information, elucidating project purpose, contributor insights, and other pertinent project details.
 
--   **index.qmd:** This serves as the main documentation page for our project. This Quarto Markdown file provides detailed descriptions of our project, including code examples and visualizations.
----
+-   
 
+    ## **index.qmd:** This serves as the main documentation page for our project. This Quarto Markdown file provides detailed descriptions of our project, including code examples and visualizations.
 
-
-<div style="background-color: #002366; color: white; line-height: .5; padding: 0 6px;">
+::: {style="background-color: #002366; color: white; line-height: .5; padding: 0 6px;"}
 # Plan of Attack
-</div>
-
-
+:::
 
 This document outlines the tasks for our project, including their status, assignees, due dates, priorities, and summaries.
 
-
+```{=html}
 <style>
   table {
     width: 100%;
@@ -226,66 +205,139 @@ This document outlines the tasks for our project, including their status, assign
     padding-right: 20px;
   }
 </style>
-
+```
 <table>
-  <thead>
-    <tr>
-      <th>Task Name</th>
-      <th>Status</th>
-      <th>Assignee</th>
-      <th>Due</th>
-      <th>Priority</th>
-      <th>Summary</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Dataset and question selection</td>
-      <td>Explored and finalize the dataset</td>
-      <td>Everyone</td>
-      <td>March 24th</td>
-      <td>HIGH</td>
-      <td>Selected dataset and question to be solved.</td>
-    </tr>
-    <tr>
-      <td>Brainstorming and working on data analysis and proposal</td>
-      <td>Completed the proposal</td>
-      <td>Everyone</td>
-      <td>April 1st</td>
-      <td>High</td>
-      <td>Proposal ready for review.</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>Everyone</td>
-      <td>April 8th</td>
-      <td>High</td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>Everyone</td>
-      <td>April 15th</td>
-      <td>Medium</td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>Everyone</td>
-      <td>April 22nd</td>
-      <td>medium</td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>Everyone</td>
-      <td>April 29th</td>
-      <td>High</td>
 
----
+<thead>
 
+<tr>
 
+<th>Task Name</th>
 
+<th>Status</th>
+
+<th>Assignee</th>
+
+<th>Due</th>
+
+<th>Priority</th>
+
+<th>Summary</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Dataset and question selection</td>
+
+<td>Explored and finalize the dataset</td>
+
+<td>Everyone</td>
+
+<td>March 24th</td>
+
+<td>HIGH</td>
+
+<td>Selected dataset and question to be solved.</td>
+
+</tr>
+
+<tr>
+
+<td>Brainstorming and working on data analysis and proposal</td>
+
+<td>Completed the proposal</td>
+
+<td>Everyone</td>
+
+<td>April 1st</td>
+
+<td>High</td>
+
+<td>Proposal ready for review.</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+</td>
+
+<td>Everyone</td>
+
+<td>April 8th</td>
+
+<td>High</td>
+
+<td>
+
+</td>
+
+<td>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+</td>
+
+<td>Everyone</td>
+
+<td>April 15th</td>
+
+<td>Medium</td>
+
+<td>
+
+</td>
+
+<td>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+</td>
+
+<td>Everyone</td>
+
+<td>April 22nd</td>
+
+<td>medium</td>
+
+<td>
+
+</td>
+
+<td>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+</td>
+
+<td>Everyone</td>
+
+<td>April 29th</td>
+
+<td>High</td>
+
+------------------------------------------------------------------------
