@@ -6,7 +6,7 @@ author:
 
     affiliations:
       - name: "School of Information, University of Arizona"
-description: "Project description"
+description: "Our project aims to Uncovering Trends in cyber breaches analyses of cybersecurity attacks to reveal prevalent types over time and identify targeted industries, empowering proactive security measures."
 format:
   html:
     code-tools: true
