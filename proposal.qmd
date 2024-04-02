@@ -36,7 +36,7 @@ World's Biggest Data Breaches & Hacks, from the name itself the dataset is all a
 #| message: false
 ```
 
-The sectors include academic, app, finance, gaming, government, health, legal, military, misc. On the other hand, Method include hacked, inside job, lost device, oops, poor security. And also this dataset includes Data Breaches information about top companies like Facebook, Microsoft, X etc.
+The sectors include academic, app, finance, gaming, government, health, legal, military, misc. On the other hand, Method include hacked, inside job, lost device, oops, poor security. And also this dataset includes Data Breaches information about top companies like Facebook, Microsoft, X etc..
 
 Reason :
 
