@@ -27,18 +27,15 @@ The academic project seeks to investigate trends, impacts, and vulnerabilities r
 ```{r}
 #| label: load-dataset
 #| message: false
+#| 
 ```
 
 World's Biggest Data Breaches & Hacks, from the name itself the dataset is all about data breaches in various sector, The columns (year, date, sector, method, data sensivity) which opens a various ways to get insights from the dataset. The dataset covers various time period from 2003 to 2023.
 
-```{r}
-#| label: load-dataset
-#| message: false
-```
 
 The sectors include academic, app, finance, gaming, government, health, legal, military, misc. On the other hand, Method include hacked, inside job, lost device, oops, poor security. And also this dataset includes Data Breaches information about top companies like Facebook, Microsoft, X etc..
 
-Reason :
+
 
 Make sure to load the data and use inline code for some of this information.
 
@@ -95,20 +92,38 @@ The steps are:
 
         [ \*]{style="color:red;"} (Data breaches generally occur in companies that span multiple regions.)
 
-    ### QUESTION 2:
+### QUESTION 2:
 
-    To solve this question we will use columns: [Method]{style="color:blue;"}, [Sector]{style="color:blue;"}, [Sensitivity]{style="color:blue;"}, [Records Lost]{style="color:blue;"}, [Year]{style="color:blue;"}
+To address this Vulnerability Assessment we will use columns: [Method]{style="color:blue;"}, [Sector]{style="color:blue;"}, [Sensitivity]{style="color:blue;"}, [Records Lost]{style="color:blue;"}, [Year]{style="color:blue;"}
 
-    The steps are:
+-   we'll follow these steps:
 
--   
+    1.  **Data Preprocessing**:
+
+        -   Clean the data to remove any inconsistencies or missing values.
+
+        -   Ensure data types are appropriate for analysis.
+
+    2.  **Exploratory Data Analysis (EDA)**:
+
+        -   Analyze the relationships between breach [methods]{style="color:blue;"} and [sectors]{style="color:blue;"}/types of data using the "method" and "sector" columns.
+
+        -   Calculate frequency counts or percentages to identify vulnerabilities.
+
+        -   Explore distributions and correlations between variables such as "[data sensitivity]{style="color:blue;"}" and "[records lost]{style="color:blue;"}".
+
+    3.  **Trend Analysis**:
+
+        -   Investigate trends in breach occurrence over time using the "[year]{style="color:blue;"}" column.
+
+        -   Identify patterns or anomalies in breach methods and affected sectors/types of data over time.
 
 # Plan of Attack
 
 This document outlines the tasks for our project, including their status, assignees, due dates, priorities, and summaries.
 
 | Task Name                                               | Status                            | Assignee | Due        | Priority | Summary                                     |
-|-----------------|-----------|-----------|-----------|-----------|------------|
+|------------|------------|------------|------------|------------|------------|
 | Dataset and question selection                          | Explored and finalize the dataset | Everyone | March 24th | HIGH     | Selected dataset and question to be solved. |
 | Brainstorming and working on data analysis and proposal | Completed the proposal            | Everyone | April 1st  | High     | Proposal ready for review.                  |
 |                                                         |                                   | Everyone | April 8th  | High     |                                             |
