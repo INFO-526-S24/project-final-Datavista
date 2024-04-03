@@ -26,13 +26,13 @@ execute:
 The academic project seeks to investigate trends, impacts, and vulnerabilities related to data breaches through comprehensive data analysis and visualization techniques.
 
 ::: {style="background-color: #002366; color: white; line-height: normal; padding: 0 6px;"}
-# Introduction:
+# Introduction
 :::
 
 In the ever-evolving realm of cybersecurity, the year 2023 marked a watershed moment, as revealed by [The Identity Theft Research Center's (ITRC)]{style="color:blue"} Annual Data Breach Report. With a staggering 72% increase over the previous record set in 2021, the United States witnessed an unprecedented surge in data compromises, impacting over 353 million individuals. This alarming trend underscores the urgent need for heightened vigilance and robust security measures in safeguarding our digital assets. In our project, we will delve into the World's Biggest Data Breaches & Hacks to gain valuable insights into these incidents and explore strategies to mitigate future risks
 
 ::: {style="background-color: #002366; color: white; line-height: normal; padding: 0 6px;"}
-## Data Description
+# Data Description
 :::
 
 ```{r}
@@ -151,8 +151,9 @@ Sectors covered include academic, app, finance, gaming, government, health, lega
 </html>
 
 
+
 ::: {style="background-color: #002366; color: white; line-height: normal; padding: 0 6px;"}
-## Reason for choosing this data
+# Reason for choosing this data
 :::
 
 -   **Relevance:** Data breaches are a pressing issue affecting organizations globally, necessitating thorough analysis for insights into cybersecurity landscapes.
@@ -174,7 +175,7 @@ Q2) [Vulnerability Assessment:]{style="color:blue;"} Which sectors or types of d
 ------------------------------------------------------------------------
 
 ::: {style="background-color: #002366; color: white; line-height: normal; padding: 0 6px;"}
-## Analysis plan
+# Analysis plan
 :::
 
 ### QUESTION 1:
@@ -220,25 +221,25 @@ To address this Vulnerability Assessment we will use columns: [Method]{style="co
 
 we'll follow these steps:
 
--  **Data Preprocessing**:
+-   **Data Preprocessing**:
 
-   -Clean the data to remove any inconsistencies or missing values.
+    -Clean the data to remove any inconsistencies or missing values.
 
-   -Ensure data types are appropriate for analysis.
+    -Ensure data types are appropriate for analysis.
 
--  **Exploratory Data Analysis (EDA)**:
+-   **Exploratory Data Analysis (EDA)**:
 
-    - Analyze the relationships between breach [methods]{style="color:blue;"} and [sectors]{style="color:blue;"}/types of data using the "method" and "sector" columns.
+    -   Analyze the relationships between breach [methods]{style="color:blue;"} and [sectors]{style="color:blue;"}/types of data using the "method" and "sector" columns.
 
-     - Calculate frequency counts or percentages to identify vulnerabilities.
+    -   Calculate frequency counts or percentages to identify vulnerabilities.
 
-     - Explore distributions and correlations between variables such as "[data sensitivity]{style="color:blue;"}" and "[records lost]{style="color:blue;"}".
+    -   Explore distributions and correlations between variables such as "[data sensitivity]{style="color:blue;"}" and "[records lost]{style="color:blue;"}".
 
--  **Trend Analysis**:
+-   **Trend Analysis**:
 
-    - Investigate trends in breach occurrence over time using the "[year]{style="color:blue;"}" column.
+    -   Investigate trends in breach occurrence over time using the "[year]{style="color:blue;"}" column.
 
-     - Identify patterns or anomalies in breach methods and affected sectors/types of data over time.
+    -   Identify patterns or anomalies in breach methods and affected sectors/types of data over time.
 
 ::: {style="background-color: #002366; color: white; line-height: .5; padding: 0 6px;"}
 # Repo organisation
@@ -269,7 +270,6 @@ The following folders comprise the project repository
 ::: {style="background-color: #002366; color: white; line-height: .5; padding: 0 6px;"}
 # Plan of Attack
 :::
-           
 
 <html lang="en">
 <head>
@@ -401,3 +401,7 @@ The following folders comprise the project repository
 
 </body>
 </html>
+
+
+
+
