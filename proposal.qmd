@@ -9,6 +9,7 @@ author:
 description: "Our project aims to Uncovering Trends in cyber breaches analyses of cybersecurity attacks to reveal prevalent types over time and identify targeted industries, empowering proactive security measures."
 format:
   html:
+    code-fold: true
     code-tools: true
     code-overflow: wrap
     code-line-numbers: true
@@ -160,15 +161,6 @@ kable(head(df))
 
 
 
-
-
-
-
-
-
-
-
-
 ::: {style="background-color: #002366; color: white; line-height: normal; padding: 0 6px;"}
 # Reason for choosing this data
 :::
@@ -241,7 +233,9 @@ we'll follow these steps:
 -   **Data Preprocessing**:
 
     -   We will Clean the data by addressing any formatting anomalies or irrelevant details.
+
     -   Encode categorical variables and handle any missing data if present.
+
     -   Prepare the data for exploratory analysis.
 
 -   **Exploratory Data Analysis (EDA)**:
@@ -257,14 +251,19 @@ we'll follow these steps:
 -   **Trend Analysis**:
 
     -   Will find trends or patterns in breach incidents across successive [Year]{style="color:blue;"}.
+
     -   Identify [Sector]{style="color:blue;"} or data types that have displayed heightened vulnerability to breaches over time.
+
     -   Analyze shifts in [Method]{style="color:blue;"}s or their consequences across different [Year]{style="color:blue;"}
 
 -   **Visualization and Interpretation:**
 
     -   We will utilize Shiny, an R package designed for constructing interactive web applications, to craft dynamic dashboards aimed at visualizing and interpreting data.
+
     -   In our analysis, we will identify pertinent columns including "[Sector]{style="color:blue;"}," "[Method]{style="color:blue;"}," "[Year]{style="color:blue;"}," "[Type of Data Compromised]{style="color:blue;"}," and "[Impact]{style="color:blue;"}" for thorough examination.
+
     -   To enhance user interaction, we will create user-friendly interactive components such as dropdown menus, sliders, and checkboxes tailored to users' needs.
+
     -   Furthermore, we will incorporate functionalities such as tooltips, hover effects, and linked views to enrich user engagement and facilitate data exploration.
 
 ::: {style="background-color: #002366; color: white; line-height: .5; padding: 0 6px;"}
@@ -398,7 +397,7 @@ The following folders comprise the project repository
 <td>Working on index.qmd, write-up</td>
 </tr>
 <tr>
-<td>Working on PPT</td>
+<td>Working in PPT</td>
 <td>---</td>
 <td>Everyone</td>
 <td>May 05</td>
@@ -410,6 +409,3 @@ The following folders comprise the project repository
 
 </body>
 </html>
-
-
-
