@@ -10,10 +10,10 @@ description: "Our project aims to Uncovering Trends in cyber breaches analyses o
 format:
   html:
     code-fold: true
-    code-tools: true
+    #code-tools: true
     code-overflow: wrap
-    code-line-numbers: true
-    embed-resources: true
+    code-line-numbers: True
+    embed-resources: True
 editor: visual
 code-annotations: hover
 execute:
