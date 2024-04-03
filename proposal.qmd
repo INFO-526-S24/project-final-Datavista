@@ -25,12 +25,15 @@ execute:
 :::
 
 The academic project seeks to investigate trends, impacts, and vulnerabilities related to data breaches through comprehensive data analysis and visualization techniques.
+---
+
 
 ::: {style="background-color: #002366; color: white; line-height: normal; padding: 0 6px;"}
 # Introduction
 :::
 
 In the ever-evolving realm of cybersecurity, the year 2023 marked a watershed moment, as revealed by [The Identity Theft Research Center's (ITRC)]{style="color:blue"} Annual Data Breach Report. With a staggering 72% increase over the previous record set in 2021, the United States witnessed an unprecedented surge in data compromises, impacting over 353 million individuals. This alarming trend underscores the urgent need for heightened vigilance and robust security measures in safeguarding our digital assets. In our project, we will delve into the World's Biggest Data Breaches & Hacks to gain valuable insights into these incidents and explore strategies to mitigate future risks
+---
 
 ::: {style="background-color: #002366; color: white; line-height: normal; padding: 0 6px;"}
 # Data Description
@@ -39,6 +42,7 @@ In the ever-evolving realm of cybersecurity, the year 2023 marked a watershed mo
 The "World's Biggest Data Breaches & Hacks" dataset, sourced from [informationisbeautiful.net](https://informationisbeautiful.net/), focuses on cataloging data breaches across various sectors. Key columns such as year, date, sector, method, and data sensitivity provide avenues for in-depth analysis. Spanning from 2003 to 2023, the dataset offers a comprehensive view of breaches over time.
 
 Sectors covered include academic, app, finance, gaming, government, health, legal, military, and miscellaneous. Methods of breach encompass hacking, inside job, lost device, accidental exposure (oops), and poor security practices. Additionally, the dataset contains information on breaches affecting top companies like Facebook, Microsoft, and others.
+---
 
 ```{r}
 #| message: false
@@ -54,7 +58,7 @@ kable(head(df))
 
 
 ```
-
+---
 
 <html lang="en">
 <head>
@@ -160,7 +164,7 @@ kable(head(df))
 </html>
 
 
-
+---
 ::: {style="background-color: #002366; color: white; line-height: normal; padding: 0 6px;"}
 # Reason for choosing this data
 :::
@@ -170,8 +174,7 @@ kable(head(df))
 -   **Scope:** With coverage across diverse sectors and spanning nearly two decades, this dataset offers a comprehensive view of data breaches over time.
 
 -   **Variety of Variables:** The dataset encompasses multiple variables, facilitating multifaceted analysis of breach methods, sector vulnerabilities, and breach trends.
-
-------------------------------------------------------------------------
+---
 
 ::: {style="background-color: #002366; color: white; line-height: normal; padding: 0 6px;"}
 # Questions
@@ -222,7 +225,9 @@ The steps are:
 
     -   If [\*]{style="color:red;"} possible- incorporate maps to visually display the geographical distribution of data breaches and their impacts across different regions. -Provide deeper insights by including textual descriptions, annotations, or pop-up messages highlighting significant findings and offering insights into the implications of data breaches for cybersecurity strategies.
 
-[ \*]{style="color:red;"} (Data breaches generally occur in companies that span multiple regions so will do analysis whether map is a good choose or not(database prespective)).
+    -   [ \*]{style="color:red;"} (Data breaches generally occur in companies that span multiple regions so will do analysis whether map is a good choose or not(database prespective)).
+---
+
 
 ### QUESTION 2:
 
@@ -265,6 +270,8 @@ we'll follow these steps:
     -   To enhance user interaction, we will create user-friendly interactive components such as dropdown menus, sliders, and checkboxes tailored to users' needs.
 
     -   Furthermore, we will incorporate functionalities such as tooltips, hover effects, and linked views to enrich user engagement and facilitate data exploration.
+---
+    
 
 ::: {style="background-color: #002366; color: white; line-height: .5; padding: 0 6px;"}
 # Repo organisation
@@ -291,6 +298,9 @@ The following folders comprise the project repository
 -   **about.qmd:** This Quarto Markdown file supplements project documentation by providing additional contextual information, elucidating project purpose, contributor insights, and other pertinent project details.
 
 -   **index.qmd:** This serves as the main documentation page for our project. This Quarto Markdown file provides detailed descriptions of our project, including code examples and visualizations.
+---
+
+
 
 ::: {style="background-color: #002366; color: white; line-height: .5; padding: 0 6px;"}
 # Plan of Attack
