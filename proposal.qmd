@@ -271,7 +271,61 @@ we'll follow these steps:
 
     -   Furthermore, we will incorporate functionalities such as tooltips, hover effects, and linked views to enrich user engagement and facilitate data exploration.
 ---
-    
+
+::: {style="background-color: #002366; color: white; line-height: normal; padding: 0 6px;"}
+# Plot and UI Description of Dashboard
+:::
+
+**Plot 1: Breach Methods by Sector/Type of Data (Stacked Bar Chart with Gradient Colors)**
+
+- **Plot Explanation:**
+  This stacked bar chart visualizes the relationship between different sectors/types of data and various breach methods. Each bar represents the count of breaches for a specific sector/type of data, and gradient colors are used to enhance visual appeal.
+
+- **UI Design:**
+    - **Hover Tooltips:**
+      When users hover over a bar in the plot, a tooltip appears, providing detailed information about the count of breaches for that sector/type of data and breach method.
+    - **Clickable Legends:**
+      Users can click on the legend to toggle the visibility of different breach methods, allowing them to focus on specific methods for analysis.
+
+**Plot 2: Breach Severity by Sector/Type of Data (Diverging Stacked Bar Chart)**
+
+- **Plot Explanation:**
+  This diverging stacked bar chart shows the severity of breaches (e.g., measured by data sensitivity levels) for different sectors/types of data. It helps identify which sectors/types of data are most affected by severe breaches, with contrasting colors for positive and negative values.
+
+- **UI Design:**
+    - **Hover Tooltips:**
+      When users hover over a bar in the plot, a tooltip appears, providing detailed information about the severity of breaches for that sector/type of data.
+    - **Clickable Legends:**
+      Users can click on the legend to toggle the visibility of different severity levels, allowing them to focus on specific levels for analysis.
+
+**Plot 3: Records Lost by Sector/Type of Data (Stacked Bar Chart with 3D Effect)**
+
+- **Plot Explanation:**
+  This stacked bar chart displays the distribution of records lost across different sectors/types of data. It helps identify which sectors/types of data experience the highest number of records lost in breaches, with a visually appealing 3D effect.
+
+- **UI Design:**
+    - **Hover Tooltips:**
+      When users hover over a section in the plot, a tooltip appears, providing detailed information about the number of records lost for that sector/type of data.
+    - **Clickable Legends:**
+      Users can click on the legend to toggle the visibility of different sectors/types of data, allowing them to focus on specific sectors/types for analysis.
+
+**Plot 4: Breach Frequency Over Time (Smoothed Line Plot with Animated Transitions)**
+
+- **Plot Explanation:**
+  This smoothed line plot visualizes the frequency of breaches over time with animated transitions between data points. It helps users easily track trends and patterns in breach occurrences across different time periods.
+
+- **UI Design:**
+    - **Hover Tooltips:**
+      When users hover over a point on the line plot, a tooltip appears, providing detailed information about the number of breaches in that specific time period.
+    - **Zoom Functionality:**
+      Users can zoom in and out of the plot to explore trends more closely.
+    - **Clickable Legends:**
+      Users can click on the legend to toggle the visibility of different breach methods, allowing them to focus on specific methods for analysis.
+
+
+
+
+
 
 ::: {style="background-color: #002366; color: white; line-height: .5; padding: 0 6px;"}
 # Repo organisation
