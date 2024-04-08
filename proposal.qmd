@@ -322,10 +322,7 @@ we'll follow these steps:
     - **Clickable Legends:**
       Users can click on the legend to toggle the visibility of different breach methods, allowing them to focus on specific methods for analysis.
 
-
-
-
-
+---
 
 ::: {style="background-color: #002366; color: white; line-height: .5; padding: 0 6px;"}
 # Repo organisation
