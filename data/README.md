@@ -5,8 +5,6 @@
 
 ## Variable Names and Descriptions:
 
-Based on the provided column descriptions, here's a template for a README.md file explaining the dataset:
-
 **Overview:**
 Welcome to the data folder of [Your Dataset Name]! This folder contains a dataset detailing data breaches, including information about the organizations affected, the number of records lost, the date of the breach, the sector affected, and more.
 
