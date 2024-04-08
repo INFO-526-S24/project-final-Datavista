@@ -1,5 +1,5 @@
 # Data
--   **[Dataset]**: Description of the dataset 
+-   **[Dataset]**:The “World’s Biggest Data Breaches & Hacks” dataset, sourced from informationisbeautiful.net, focuses on cataloging data breaches across various sectors. Key columns such as year, date, sector, method, and data sensitivity provide avenues for in-depth analysis. Spanning from 2003 to 2023, the dataset offers a comprehensive view of breaches over time.
 
 # Codebook for [chosen] Dataset
 
@@ -7,11 +7,10 @@
 
 Based on the provided column descriptions, here's a template for a README.md file explaining the dataset:
 
-Data README
-Overview
+**Overview:**
 Welcome to the data folder of [Your Dataset Name]! This folder contains a dataset detailing data breaches, including information about the organizations affected, the number of records lost, the date of the breach, the sector affected, and more.
 
-Dataset Details
+**Dataset Details:**
 - organisation: Name of the organization that lost data.
 - alternative name: Alternative name for the organization.
 - records lost: Number of records lost in the data breach (int64).
