@@ -39,7 +39,7 @@ In the ever-evolving realm of cybersecurity, the year 2023 marked a watershed mo
 # Data Description
 :::
 
-The "World's Biggest Data Breaches & Hacks" dataset, sourced from [informationisbeautiful.net](https://informationisbeautiful.net/), focuses on cataloging data breaches across various sectors. Key columns such as year, date, sector, method, and data sensitivity provide avenues for in-depth analysis. Spanning from 2003 to 2023, the dataset offers a comprehensive view of breaches over time.
+The "World's Biggest Data Breaches & Hacks" dataset, sourced from [informationisbeautiful.net](https://informationisbeautiful.net/visualizations/worlds-biggest-data-breaches-hacks/),  focuses on cataloging data breaches across various sectors. Key columns such as year, date, sector, method, and data sensitivity provide avenues for in-depth analysis. Spanning from 2003 to 2023, the dataset offers a comprehensive view of breaches over time.
 
 Sectors covered include academic, app, finance, gaming, government, health, legal, military, and miscellaneous. Methods of breach encompass hacking, inside job, lost device, accidental exposure (oops), and poor security practices. Additionally, the dataset contains information on breaches affecting top companies like Facebook, Microsoft, and others.
 ---
