@@ -62,7 +62,7 @@ dim(data)
 
 ```
 
-**Data preprocessing**
+## **Data** Preprocessing
 
 ```{r}
 #| message: false
