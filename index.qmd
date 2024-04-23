@@ -1,11 +1,11 @@
 ---
-title: "Project Title"
+title: "Unveiling Trends in Data Breaches and Data Hacks"
 subtitle: "INFO 526 - Project Final"
 author: 
-  - name: "Team name - Team member 1, Team member 2,..."
+  - name: "Team member - Akash Srinivasan, Abhishek Kumar, Divya Dhole, Noureen Mithaigar, Gowtham Theeda, Lakshmi Neharika Anchula"
     affiliations:
       - name: "School of Information, University of Arizona"
-description: "Project description"
+description: "This project analyzes cyberattacks from 2003 to present day to uncover evolving trends. By pinpointing the most prevalent attack methods and targeted industries, we hope to empower proactive security measures and stay a step ahead of cybercriminals, ultimately creating a safer digital landscape."
 format:
    html:
     code-tools: true
@@ -19,4 +19,197 @@ execute:
 
 ## Abstract
 
-Add project abstract here.
+In today's digital world, data breaches are becoming frighteningly common. Understanding how these attacks work and how they've changed over time is crucial to protecting ourselves. This project is like shining a flashlight into the dark corners of data breaches. We'll be using real-world data on hacks from 2003 to 2023 to answer two key questions.
+
+First, we want to see how data breaches have become more sophisticated (or sneakier!) in the past ten years. We'll look at how often they happen, how bad they are, and how they affect different businesses. Second, we'll pinpoint weaknesses - which industries and types of data are easiest for attackers to exploit, and what the consequences are for everyone involved.
+
+To do this, we'll be cleaning up the data and using some clever R programming tricks. We'll use ggplot2 to create charts and graphs that make the information clear and easy to understand. Finally, we'll build interactive dashboards with Shiny, an R package. These dashboards will be like treasure maps, helping cybersecurity professionals and organizations see trends over time, find vulnerable areas, and understand the big picture of data breaches.
+
+By uncovering these insights, we hope to empower cybersecurity professionals to build better defenses against future attacks. The ultimate goal? Keeping your data safe and sound.
+
+## **Introduction**
+
+Imagine a world where your personal information – from credit card details to medical records – is up for grabs on the dark web. Unfortunately, this isn't science fiction; it's the harsh reality of data breaches. These digital heists, where sensitive information is stolen or leaked, are becoming frighteningly common. Just in 2023, data breaches skyrocketed by a whopping 72% compared to the year before. It's clear: we need to understand these attacks better to fight back.
+
+This project is like shining a flashlight into the dark corners of data breaches. We'll be using a treasure trove of real-world data on hacks and breaches from 2003 to 2023. By analyzing trends, impacts, and weaknesses, we aim to uncover how these incidents unfold across different industries and through various methods. Our ultimate mission? To empower cybersecurity professionals and organizations with the knowledge they need to build stronger defenses against future attacks.
+
+Here's where things get interesting. We'll be asking two key questions. First, we want to see how data breaches have become more cunning (or sneakier!) in the past ten years. We'll be looking at how often they happen, how bad they are, and how they affect different businesses. Second, we'll pinpoint weaknesses – which industries and types of data are easiest for attackers to exploit, and what the consequences are for everyone involved.
+
+To achieve this, we'll be using some clever data cleaning tricks and the power of R programming, a special tool that helps us analyze information. We'll also create clear and informative visuals using ggplot2, so you can see the trends for yourself. Finally, we'll build interactive dashboards with Shiny, an R package. Think of these dashboards as treasure maps, helping cybersecurity professionals see trends over time, find vulnerable areas, and understand the big picture of data breaches.
+
+By uncovering these insights, we hope to empower cybersecurity professionals to build better defenses against future attacks. The ultimate goal? Keeping your data safe and sound, so you can browse the internet with peace of mind.
+
+## **Visualizations:** 
+
+## **Question** 1) General Assessment: How have information breaches advanced over past decade(2013-2023), and what are the patterns with respect to their recurrence, seriousness, and affect over distinctive businesses?
+
+## Apporach :
+
+## Analysis :
+
+```{r}
+#| message: false
+library(tidyverse)
+library(ggplot2)
+# load the data set
+df <- read.csv("data/Data_Breaches_LATEST.csv")
+
+# Print the first few rows of the data
+head(data)
+print(data)
+str(data)
+dim(data)
+
+```
+
+**Data preprocessing**
+
+```{r}
+#| message: false
+# Load required libraries
+library(tidyverse)
+
+# Standardize column names
+data <- data %>%
+  rename_all(~tolower(.x))  # Converts all column names to lowercase
+
+# Check for missing values
+summary(data)
+
+# Handle missing values (replace with NA for now)
+data_clean <- data %>%
+  mutate_all(list(~ replace(., is.na(.), NA)))
+
+# Select relevant columns (assuming some additional info is needed)
+data_clean <- data_clean %>%
+  select(organisation, alternative.name, records.lost, year, sector, method, data.sensitivity)
+
+# Summarize numerical columns
+summary(data_clean$records.lost)
+summary(data_clean$year)
+
+# Describe categorical columns 
+table(data_clean$sector)  # Count occurrences in each sector
+
+# Explore data types (optional)
+str(data_clean)  
+
+# Handle outliers in "records.lost" 
+#  Winsorization 
+winsor_threshold <- quantile(data_clean$records.lost, c(0.01, 0.99))
+data_clean$records.lost <- pmin(pmax(data_clean$records.lost, winsor_threshold[1]), winsor_threshold[2])
+
+```
+
+```{r}
+#| message: false
+colnames(data)
+```
+
+```{r}
+
+#| message: false
+# Load required packages
+library(dplyr)
+library(lubridate)
+
+# Handle missing values
+data <- data %>%
+  # Replace missing values in numeric columns with 0
+  mutate_if(is.numeric, ~replace_na(., 0)) %>%
+  # Replace missing values in character columns with "Unknown"
+  mutate_if(is.character, ~replace_na(., "Unknown"))
+
+# Convert data types
+data <- data %>%
+  mutate(
+    records.lost = as.numeric(records.lost),
+    year = year(mdy(date)),
+    data.sensitivity = as.numeric(data.sensitivity)
+  )
+
+# Assuming date format is M/D/Y
+data <- data %>%
+  mutate(
+    records.lost = as.numeric(records.lost),
+    year = year(mdy(date)),  # Assuming M/D/Y format
+    data.sensitivity = as.numeric(data.sensitivity)
+  )
+
+# Create new columns or features
+data <- data %>%
+  mutate(
+    breach_severity = case_when(
+      records.lost < 1000000 ~ "Low",
+      records.lost >= 1000000 & records.lost < 10000000 ~ "Medium",
+      records.lost >= 10000000 ~ "High"
+    ),
+    breach_year_month = make_date(year, 1, 1)
+  )
+
+```
+
+```{r}
+# Load required packages
+library(ggplot2)
+library(dplyr)
+
+
+
+# Handle missing dates before year conversion
+data <- data %>%
+  filter(!is.na(date))  
+
+# Convert data types
+data <- data %>%
+  mutate(
+    records.lost = as.numeric(records.lost),
+    year = year(mdy(date)),  # Assuming M/D/Y format, adjust parsing function if needed
+    data.sensitivity = as.numeric(data.sensitivity)
+  )
+
+
+# Create the histogram
+ggplot(data, aes(x = year)) +
+  geom_histogram(binwidth = 1, fill = "steelblue", color = "black") +
+  labs(title = "Breach Frequency Over Time",
+       x = "Year",
+       y = "Number of Breaches") +
+  theme_minimal() +  
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),  # Rotate x-axis labels for readability
+    plot.title = element_text(hjust = 0.5),  # Center title
+    panel.grid.major.x = element_line(color = "lightgray", linetype = "dashed")  # Add subtle gridlines
+  )
+
+
+# Visualization: Sector-wise breach count
+ggplot(data, aes(x = sector, fill = sector)) +
+  geom_bar() +
+  labs(title = "Breach Count by Sector",
+       x = "Sector",
+       y = "Count") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+# Correlation analysis
+cor_matrix <- cor(data[, c("records.lost", "data.sensitivity")])
+cor_matrix
+```
+
+```{r}
+
+library(plotly)
+# Your ggplot code
+exports_barplot <- ggplot(data, aes(x = records.lost)) +
+  geom_histogram(bins = 30, fill = "lightgreen", color = "black") +
+  scale_x_log10() +
+  labs(title = "Distribution of Records Lost",
+       x = "Records Lost (log scale)",
+       y = "Count")
+
+# Convert ggplot to plotly
+exports_plotly <- ggplotly(exports_barplot, tooltip = "text")
+
+# Display the interactive plot
+exports_plotly
+```
