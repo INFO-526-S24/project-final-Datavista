@@ -1,0 +1,30 @@
+title: "data breach"
+author: "Cobblepot Analytics"
+format: 
+  dashboard:
+    logo: images/penguins.png
+    nav-buttons: [linkedin, twitter, github]
+
+-----
+
+# Palmer Penguins Dashboard
+
+## Introduction
+
+Welcome to the Palmer Penguins dashboard, created by Cobblepot Analytics. This dashboard provides visualizations and insights into the Palmer Penguins dataset.
+
+## Row 1
+
+::: {.cell}
+This is the content for Row 1.
+:::
+
+## Row 2 {.tabset}
+
+::: {.cell title='Chart 1'}
+This is Chart 1.
+:::
+
+::: {.cell title='Chart 2'}
+This is Chart 2.
+:::
