@@ -43,40 +43,16 @@ By uncovering these insights, we hope to empower cybersecurity professionals to 
 
 ## **Question** 1) General Assessment: How have information breaches advanced over past decade(2013-2023), and what are the patterns with respect to their recurrence, seriousness, and affect over distinctive businesses?
 
-## Apporach :
+## Approach :
 
 ## Analysis
-```{r}
-
-# Set CRAN mirror
-
-
-
-
-
-```
-
 
 
 ```{r}
-# Load the CSV data
-data <- read.csv("data/Data_Breaches_LATEST.csv")
-
-# Rename the column with extra spaces
-names(data)[names(data) == 'year   '] <- 'year'
-
-# Filter data for the past decade (2013-2023)
-df_decade <- data[data$`year` >= 2013 & data$`year` <= 2023, ]
-
-# Clean column names using janitor::clean_names()
-df_decade <- janitor::clean_names(df_decade)
-
-# Aggregate data by year, sector, and method
-agg_data <- aggregate(records_lost ~ year + sector + method, data = df_decade, FUN = sum)
-
-# Load necessary libraries
+# Load required libraries
 library(plotly)
 library(janitor)
+library(magrittr)  # Load magrittr for pipe operator
 
 # Load the CSV data
 data <- read.csv("data/Data_Breaches_LATEST.csv")
@@ -101,26 +77,11 @@ plot_ly(agg_data, x = ~year, y = ~sector, z = ~records_lost, color = ~method,
                       yaxis = list(title = "Sector"),
                       zaxis = list(title = "Records Lost")))
 
-
-print(plot)
-
 ```
 
-```{r}
-library(plotly)
-# Filter data for the past decade (2013-2023)
-#df_decade <- df[df$year >= 2013 & df$year <= 2023, ]
-
-#
-
-
-```
-
-```{r}
 
 
 
-```
 
 ```{r}
 #| message: false
@@ -271,20 +232,34 @@ cor_matrix <- cor(data[, c("records.lost", "data.sensitivity")])
 cor_matrix
 ```
 
-```{r}
 
-library(plotly)
-# Your ggplot code
-exports_barplot <- ggplot(data, aes(x = records.lost)) +
-  geom_histogram(bins = 30, fill = "lightgreen", color = "black") +
-  scale_x_log10() +
-  labs(title = "Distribution of Records Lost",
-       x = "Records Lost (log scale)",
-       y = "Count")
 
-# Convert ggplot to plotly
-exports_plotly <- ggplotly(exports_barplot, tooltip = "text")
 
-# Display the interactive plot
-exports_plotly
-```
+
+
+Q2) [Vulnerability Assessment:]{style="color:blue;"} Which sectors or types of data (e.g., personal, financial) are particularly susceptible to different breach methods like hacking or insider jobs, and what are the consequential impacts on both businesses and individuals?
+
+
+## Approach :
+ :
+
+## Analysis
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
