@@ -6,14 +6,8 @@ editor: visual
 
 This project was developed by **\[Datavista\]** For [INFO 526 - Data Analysis and Visualization](https://datavizaz.org/) at the University of Arizona, taught by Dr. Greg Chism. The team is comprised of the following team members.
 
--   Akash Srinivasan: First-year graduate student, Data Science
+-   Akash Srinivasan: First year graduate student, Data Science
 
--   Abhishek Kumar: 1st Year, MS Data Science, Researcher, VIP project: Road Safety  
+-   Abhishek Kumar: 1st Year, MS Data Science, Researcher, VIP project:RoadSafety
 
--   Noureen Mithaigar: 1st year MS student in Data Science.
 
--   Gowtham Theeda: 1st year MS  graduate student in Data Science.
-
--   Divya Dhole: 1st year MS student in Data Science.
-  
--   Lakshmi Neharika Anchula: 1st year MS  graduate student in Data Science.

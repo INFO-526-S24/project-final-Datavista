@@ -48,6 +48,10 @@ By uncovering these insights, we hope to empower cybersecurity professionals to 
 ## Analysis
 
 
+
+
+## **Data** Preprocessing
+
 ```{r}
 # Load required libraries
 library(plotly)
@@ -83,154 +87,10 @@ plot_ly(agg_data, x = ~year, y = ~sector, z = ~records_lost, color = ~method,
 
 
 
-```{r}
-#| message: false
-library(tidyverse)
-library(ggplot2)
-# load the data set
-df <- read.csv("data/Data_Breaches_LATEST.csv")
-
-# Print the first few rows of the data
-head(data)
-print(data)
-str(data)
-dim(data)
-
-```
-
-## **Data** Preprocessing
-
-```{r}
-#| message: false
-# Load required libraries
-library(tidyverse)
-
-# Standardize column names
-data <- data %>%
-  rename_all(~tolower(.x))  # Converts all column names to lowercase
-
-# Check for missing values
-summary(data)
-
-# Handle missing values (replace with NA for now)
-data_clean <- data %>%
-  mutate_all(list(~ replace(., is.na(.), NA)))
-
-# Select relevant columns (assuming some additional info is needed)
-data_clean <- data_clean %>%
-  select(organisation, alternative.name, records.lost, year, sector, method, data.sensitivity)
-
-# Summarize numerical columns
-summary(data_clean$records.lost)
-summary(data_clean$year)
-
-# Describe categorical columns 
-table(data_clean$sector)  # Count occurrences in each sector
-
-# Explore data types (optional)
-str(data_clean)  
-
-# Handle outliers in "records.lost" 
-#  Winsorization 
-winsor_threshold <- quantile(data_clean$records.lost, c(0.01, 0.99))
-data_clean$records.lost <- pmin(pmax(data_clean$records.lost, winsor_threshold[1]), winsor_threshold[2])
-
-```
-
-```{r}
-#| message: false
-colnames(data)
-```
-
-```{r}
-
-#| message: false
-# Load required packages
-library(dplyr)
-library(lubridate)
-
-# Handle missing values
-data <- data %>%
-  # Replace missing values in numeric columns with 0
-  mutate_if(is.numeric, ~replace_na(., 0)) %>%
-  # Replace missing values in character columns with "Unknown"
-  mutate_if(is.character, ~replace_na(., "Unknown"))
-
-# Convert data types
-data <- data %>%
-  mutate(
-    records.lost = as.numeric(records.lost),
-    year = year(mdy(date)),
-    data.sensitivity = as.numeric(data.sensitivity)
-  )
-
-# Assuming date format is M/D/Y
-data <- data %>%
-  mutate(
-    records.lost = as.numeric(records.lost),
-    year = year(mdy(date)),  # Assuming M/D/Y format
-    data.sensitivity = as.numeric(data.sensitivity)
-  )
-
-# Create new columns or features
-data <- data %>%
-  mutate(
-    breach_severity = case_when(
-      records.lost < 1000000 ~ "Low",
-      records.lost >= 1000000 & records.lost < 10000000 ~ "Medium",
-      records.lost >= 10000000 ~ "High"
-    ),
-    breach_year_month = make_date(year, 1, 1)
-  )
-
-```
-
-```{r}
-# Load required packages
-library(ggplot2)
-library(dplyr)
 
 
 
-# Handle missing dates before year conversion
-data <- data %>%
-  filter(!is.na(date))  
 
-# Convert data types
-data <- data %>%
-  mutate(
-    records.lost = as.numeric(records.lost),
-    year = year(mdy(date)),  # Assuming M/D/Y format, adjust parsing function if needed
-    data.sensitivity = as.numeric(data.sensitivity)
-  )
-
-
-# Create the histogram
-ggplot(data, aes(x = year)) +
-  geom_histogram(binwidth = 1, fill = "steelblue", color = "black") +
-  labs(title = "Breach Frequency Over Time",
-       x = "Year",
-       y = "Number of Breaches") +
-  theme_minimal() +  
-  theme(
-    axis.text.x = element_text(angle = 45, hjust = 1),  # Rotate x-axis labels for readability
-    plot.title = element_text(hjust = 0.5),  # Center title
-    panel.grid.major.x = element_line(color = "lightgray", linetype = "dashed")  # Add subtle gridlines
-  )
-
-
-# Visualization: Sector-wise breach count
-ggplot(data, aes(x = sector, fill = sector)) +
-  geom_bar() +
-  labs(title = "Breach Count by Sector",
-       x = "Sector",
-       y = "Count") +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))
-
-# Correlation analysis
-cor_matrix <- cor(data[, c("records.lost", "data.sensitivity")])
-cor_matrix
-```
 
 
 
