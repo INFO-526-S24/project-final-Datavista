@@ -7,7 +7,7 @@ format:
 
 -----
 
-# Palmer Penguins Dashboard
+#  Dashboard
 
 ## Introduction
 
