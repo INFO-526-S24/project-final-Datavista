@@ -47,9 +47,6 @@ By uncovering these insights, we hope to empower cybersecurity professionals to 
 
 ## Analysis
 
-
-
-
 ## **Data** Preprocessing
 
 ```{r}
@@ -87,39 +84,45 @@ plot_ly(agg_data, x = ~year, y = ~sector, z = ~records_lost, color = ~method,
 
 
 
+```{r}
+library(plotly)
+library(dplyr)
 
+agg_data_sector <- agg_data %>%
+  group_by(sector) %>%
+  summarise(records_lost = sum(records_lost)) %>%
+  ungroup() %>%
+  arrange(desc(records_lost))
 
+# Now we are  aggregate small sectors into 'Other'
+cutoff <- 0.01  # Threshold for smallest percentage to show separately
+total_records <- sum(agg_data_sector$records_lost)
+agg_data_sector <- agg_data_sector %>%
+  mutate(percentage = records_lost / total_records) %>%
+  mutate(sector = ifelse(percentage < cutoff, "Other", as.character(sector)))
 
+# Combining all 'Other' categories into one
+agg_data_sector <- agg_data_sector %>%
+  group_by(sector) %>%
+  summarise(records_lost = sum(records_lost)) %>%
+  ungroup()
 
+plot <- plot_ly(agg_data_sector, labels = ~sector, values = ~records_lost, type = 'pie',
+                textinfo = 'label+percent', insidetextorientation = 'radial') %>%
+  layout(title = 'Total Records Lost by Sector', showlegend = TRUE)
 
+# Print the plot
+plot
+```
+```{r}
 
-
-
+```
 
 
 # Q2) [Vulnerability Assessment:]{style="color:blue;"} Which sectors or types of data (e.g., personal, financial) are particularly susceptible to different breach methods like hacking or insider jobs, and what are the consequential impacts on both businesses and individuals?
 
-
 ## Approach :
- :
+
+:
 
 ## Analysis
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
