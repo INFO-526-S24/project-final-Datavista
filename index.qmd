@@ -83,6 +83,10 @@ plot_ly(agg_data, x = ~year, y = ~sector, z = ~records_lost, color = ~method,
 ```{r}
 library(plotly)
 library(dplyr)
+if (!require(broom)) {
+    install.packages("broom", dependencies = TRUE)
+}
+library(broom)
 
 agg_data_sector <- agg_data %>%
   group_by(sector) %>%
@@ -122,6 +126,39 @@ plot
 :
 
 ## Analysis
+```{r}
+if (!require(broom)) {
+    install.packages("broom", dependencies = TRUE)
+}
+library(broom)
+
+library(plotly)
+library(dplyr)
+
+# Assuming agg_data is your data frame with the columns: sector, method, records_lost, year
+
+# Summarise data
+agg_data_sum <- agg_data %>%
+  group_by(sector, method) %>%
+  summarise(records_lost = sum(records_lost), .groups = 'drop')
+
+# Create a stacked bar chart with plotly
+fig <- plot_ly(data = agg_data_sum, x = ~sector, y = ~records_lost, type = 'bar', name = ~method,
+               hoverinfo = 'text', text = ~paste('Method:', method, '<br>Records Lost:', records_lost)) %>%
+  layout(
+    barmode = 'stack',
+    title = 'Breach Methods by Sector/Type of Data',
+    xaxis = list(title = 'Sector/Type'),
+    yaxis = list(title = 'Records Lost')
+  )
+
+# Render the plot
+fig
+```
+
+
+
+
 ```{r}
 library(plotly)
 library(dplyr)
