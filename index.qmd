@@ -80,10 +80,6 @@ plot_ly(agg_data, x = ~year, y = ~sector, z = ~records_lost, color = ~method,
 
 ```
 
-
-
-
-
 ```{r}
 library(plotly)
 library(dplyr)
@@ -114,10 +110,10 @@ plot <- plot_ly(agg_data_sector, labels = ~sector, values = ~records_lost, type 
 # Print the plot
 plot
 ```
+
 ```{r}
 
 ```
-
 
 # Q2) [Vulnerability Assessment:]{style="color:blue;"} Which sectors or types of data (e.g., personal, financial) are particularly susceptible to different breach methods like hacking or insider jobs, and what are the consequential impacts on both businesses and individuals?
 
@@ -126,3 +122,60 @@ plot
 :
 
 ## Analysis
+```{r}
+library(plotly)
+library(dplyr)
+
+# Assuming agg_data is your data frame with the columns: sector, method, records_lost, year
+
+# Summarise data
+agg_data_sum <- agg_data %>%
+  group_by(sector, method) %>%
+  summarise(records_lost = sum(records_lost), .groups = 'drop')
+
+# Create a stacked bar chart with plotly
+fig <- plot_ly(data = agg_data_sum, x = ~sector, y = ~records_lost, type = 'bar', name = ~method,
+               hoverinfo = 'text', text = ~paste('Method:', method, '<br>Records Lost:', records_lost)) %>%
+  layout(
+    barmode = 'stack',
+    title = 'Breach Methods by Sector/Type of Data',
+    xaxis = list(title = 'Sector/Type'),
+    yaxis = list(title = 'Records Lost'),
+    margin = list(b = 150), # Adjust bottom margin to make space for the slider
+    showlegend = TRUE
+  ) %>%
+  config(displayModeBar = TRUE) # Enable the display mode bar for zoom and other tools
+
+# Add custom style for the bars to make them more attractive
+fig <- fig %>% layout(
+  barmode = 'stack',
+  paper_bgcolor = 'rgba(245, 246, 249, 1)', # light grey background
+  plot_bgcolor = 'rgba(245, 246, 249, 1)',
+  yaxis = list(
+    automargin = TRUE,
+    tickfont = list(size = 10),
+    titlefont = list(size = 15)
+  ),
+  xaxis = list(
+    automargin = TRUE,
+    tickangle = -45, # Angle the sector names for better readability
+    tickfont = list(size = 10),
+    titlefont = list(size = 15)
+  )
+)
+
+# Add zoom slider
+fig <- fig %>% layout(
+  xaxis = list(
+    rangeslider = list(
+      visible = TRUE
+    ),
+    type = "category"
+  )
+)
+
+# Render the plot
+fig
+
+```
+
