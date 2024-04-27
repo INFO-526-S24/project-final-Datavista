@@ -126,8 +126,6 @@ plot
 library(plotly)
 library(dplyr)
 
-# Assuming agg_data is your data frame with the columns: sector, method, records_lost, year
-
 # Summarise data
 agg_data_sum <- agg_data %>%
   group_by(sector, method) %>%
@@ -144,7 +142,7 @@ fig <- plot_ly(data = agg_data_sum, x = ~sector, y = ~records_lost, type = 'bar'
     margin = list(b = 150), # Adjust bottom margin to make space for the slider
     showlegend = TRUE
   ) %>%
-  config(displayModeBar = TRUE) # Enable the display mode bar for zoom and other tools
+  config(displayModeBar = TRUE)
 
 # Add custom style for the bars to make them more attractive
 fig <- fig %>% layout(
@@ -172,6 +170,59 @@ fig <- fig %>% layout(
     ),
     type = "category"
   )
+)
+
+# Render the plot
+fig
+
+```
+
+```{r}
+library(plotly)
+library(dplyr)
+
+
+# Summarise data
+agg_data_sum <- agg_data %>%
+  group_by(sector, method, year) %>%
+  summarise(records_lost = sum(records_lost), .groups = 'drop')
+
+# Create a stacked bar chart with plotly
+fig <- plot_ly()
+
+# Add traces for each year
+years <- unique(agg_data_sum$year)
+for (year in years) {
+  year_data <- agg_data_sum[agg_data_sum$year == year,]
+  fig <- fig %>% add_trace(
+    data = year_data,
+    x = ~sector, y = ~records_lost, type = 'bar', name = ~method,
+    hoverinfo = 'text', text = ~paste('Year:', year, '<br>Method:', method, '<br>Records Lost:', records_lost),
+    visible = ifelse(year == years[1], TRUE, FALSE) # Only the first year is visible initially
+  )
+}
+
+# Add layout and style
+fig <- fig %>% layout(
+  barmode = 'stack',
+  title = 'Breach Methods by Sector/Type of Data',
+  xaxis = list(title = 'Sector/Type', tickangle = -45),
+  yaxis = list(title = 'Records Lost'),
+  updatemenus = list(
+    list(
+      y = 0.8,
+      buttons = lapply(years, function(year) {
+        list(
+          method = "update",
+          args = list(list(visible = lapply(agg_data_sum$year, function(y) y == year)),
+                      list(title = paste("Breach Methods by Sector/Type of Data - Year", year))),
+          label = as.character(year)
+        )
+      })
+    )
+  ),
+  showlegend = TRUE,
+  legend = list(title = list(text = 'Method'), orientation = 'h')
 )
 
 # Render the plot
