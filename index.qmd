@@ -529,7 +529,8 @@ fig <- fig %>% layout(
   updatemenus = list(
     list(
       y = 0.8,
-      buttons = lapply(years, function(year) {
+      buttons = lapply(years,
+                       function(year) {
         list(
           method = "update",
           args = list(list(visible = lapply(agg_data_sum$year,
@@ -541,7 +542,10 @@ fig <- fig %>% layout(
     )
   ),
   showlegend = TRUE,
-  legend = list(title = list(text = 'Method'), orientation = 'v', x = 1, y = 0.5)
+  legend = list(title = list(text = 'Method'),
+                orientation = 'v',
+                x = 1, 
+                y = 0.5)
 )
 
 fig
@@ -553,16 +557,20 @@ fig
 library(plotly)
 library(dplyr)
 
-# Assuming agg_data is your data frame with the columns: year, sector, method, records_lost
-
-# Summarise data
 agg_data_sum <- agg_data %>%
   group_by(sector, method) %>%
   summarise(records_lost = sum(records_lost), .groups = 'drop')
 
-# Create a diverging stacked bar chart with plotly
-fig <- plot_ly(data = agg_data_sum, x = ~sector, y = ~records_lost, type = 'bar', name = ~method,
-               hoverinfo = 'text', text = ~paste('Method:', method, '<br>Records Lost:', records_lost)) %>%
+fig <- plot_ly(data = agg_data_sum,
+               x = ~sector,
+               y = ~records_lost,
+               type = 'bar',
+               name = ~method,
+               hoverinfo = 'text', 
+               text = ~paste('Method:',
+                             method,
+                             '<br>Records Lost:',
+                             records_lost)) %>%
   layout(
     barmode = 'relative',
     title = 'Breach Severity by Sector/Type of Data',
