@@ -496,6 +496,29 @@ fig
 ```
 
 ```{r}
+agg_data_sum <- agg_data %>%
+  group_by(sector, method, year) %>%
+  summarise(records_lost = sum(records_lost), .groups = 'drop')
+
+fig <- plot_ly()
+
+years <- unique(agg_data_sum$year)
+for (year in years) {
+  year_data <- agg_data_sum[agg_data_sum$year == year,]
+  fig <- fig %>% add_trace(
+    data = year_data,
+    x = ~sector, y = ~records_lost,
+    type = 'bar', name = ~method,
+    hoverinfo = 'text', 
+    text = ~paste('Year:',
+                  year,
+                  '<br>Method:',
+                  method, 
+                  '<br>Records Lost:',
+                  records_lost),
+    visible = ifelse(year == years[1], TRUE, FALSE))
+}
+
 fig <- fig %>% layout(
   barmode = 'stack',
   title = 'Breach Methods by Sector/Type of Data',
