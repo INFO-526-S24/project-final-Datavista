@@ -570,16 +570,19 @@ fig <- plot_ly(data = agg_data_sum,
                text = ~paste('Method:',
                              method,
                              '<br>Records Lost:',
-                             records_lost)) %>%
+                             format(records_lost, big.mark = ","))) %>%
   layout(
     barmode = 'relative',
     title = 'Breach Severity by Sector/Type of Data',
-    xaxis = list(title = 'Sector/Type'),
+    xaxis = list(title = 'Sector/Type',
+                 tickangle = -45,
+                 automargin = TRUE), 
     yaxis = list(title = 'Records Lost'),
     showlegend = TRUE
   )
 
 fig
+
 ```
 
 ```{r}
