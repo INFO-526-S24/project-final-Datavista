@@ -403,39 +403,7 @@ By combining these multifaceted visualizations, interactive elements, and insigh
 
 ### **Visualizations :**
 
-```{r}
-if (!require(broom)) {
-    install.packages("broom", dependencies = TRUE)
-}
-library(broom)
-library(plotly)
-library(dplyr)
 
-
-agg_data_sum <- agg_data %>%
-  group_by(sector, method) %>%
-  summarise(records_lost = sum(records_lost), .groups = 'drop')
-
-
-fig <- plot_ly(data = agg_data_sum, 
-               x = ~sector, 
-               y = ~records_lost,
-               type = 'bar',
-               name = ~method,
-               hoverinfo = 'text',
-               text = ~paste('Method:',
-                             method, 
-                             '<br>Records Lost:',
-                             records_lost)) %>%
-  layout(
-    barmode = 'stack',
-    title = 'Breach Methods by Sector/Type of Data',
-    xaxis = list(title = 'Sector/Type'),
-    yaxis = list(title = 'Records Lost')
-  )
-
-fig
-```
 
 ```{r}
 library(plotly)
@@ -496,6 +464,9 @@ fig
 ```
 
 ```{r}
+library(plotly)
+library(dplyr)
+
 agg_data_sum <- agg_data %>%
   group_by(sector, method, year) %>%
   summarise(records_lost = sum(records_lost), .groups = 'drop')
@@ -522,15 +493,17 @@ for (year in years) {
 fig <- fig %>% layout(
   barmode = 'stack',
   title = 'Breach Methods by Sector/Type of Data',
-  xaxis = list(title = 'Sector/Type',
-               tickangle = -45,
-               automargin = TRUE),
+  xaxis = list(
+    title = 'Sector/Type',
+    tickangle = -45,
+    automargin = TRUE,
+    rangeslider = list(type = "date")  
+  ),
   yaxis = list(title = 'Records Lost'),
   updatemenus = list(
     list(
       y = 0.8,
-      buttons = lapply(years,
-                       function(year) {
+      buttons = lapply(years, function(year) {
         list(
           method = "update",
           args = list(list(visible = lapply(agg_data_sum$year,
@@ -542,13 +515,16 @@ fig <- fig %>% layout(
     )
   ),
   showlegend = TRUE,
-  legend = list(title = list(text = 'Method'),
-                orientation = 'v',
-                x = 1, 
-                y = 0.5)
+  legend = list(
+    title = list(text = 'Method'),
+    orientation = 'v',
+    x = 1, 
+    y = 0.5
+  )
 )
 
 fig
+
 
 ```
 
@@ -596,7 +572,7 @@ agg_data_sum <- agg_data %>%
 fig <- plot_ly(data = agg_data_sum,
                x = ~sector,
                y = ~records_lost,
-               z = ~method, type = 'bar', 
+               type = 'bar', 
                name = ~method,
                hoverinfo = 'text',
                text = ~paste('Sector:',
@@ -606,22 +582,17 @@ fig <- plot_ly(data = agg_data_sum,
                              '<br>Records Lost:',
                              records_lost)) %>%
   layout(
-    scene = list(
-      xaxis = list(title = 'Sector'),
-      yaxis = list(title = 'Records Lost'),
-      zaxis = list(title = 'Method'),
-      camera = list(
-        eye = list(x = 1.87,
-                   y = 0.88,
-                   z = -0.64)
-      )
-    ),
     barmode = 'stack',
-    title = 'Records Lost by Sector/Method (Stacked Bar Chart with 3D Effect)',
+    title = 'Records Lost by Sector/Method',
+    xaxis = list(title = 'Sector',
+                 tickangle = -45,
+                 automargin = TRUE),
+    yaxis = list(title = 'Records Lost'),
     showlegend = TRUE
   )
 
 fig
+
 
 ```
 
