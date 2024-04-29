@@ -136,11 +136,6 @@ sector_group_plot <- ggplot(total_by_sector_group, aes(x = year, y = total_breac
 # Combine plots
 grid.arrange(total_plot, sector_group_plot, ncol = 1, heights = c(2, 3))
 
-
-
-
-
-
 ```
 
 ```{r}
@@ -311,20 +306,25 @@ if (!require(broom)) {
     install.packages("broom", dependencies = TRUE)
 }
 library(broom)
-
 library(plotly)
 library(dplyr)
 
-# Assuming agg_data is your data frame with the columns: sector, method, records_lost, year
 
-# Summarise data
 agg_data_sum <- agg_data %>%
   group_by(sector, method) %>%
   summarise(records_lost = sum(records_lost), .groups = 'drop')
 
-# Create a stacked bar chart with plotly
-fig <- plot_ly(data = agg_data_sum, x = ~sector, y = ~records_lost, type = 'bar', name = ~method,
-               hoverinfo = 'text', text = ~paste('Method:', method, '<br>Records Lost:', records_lost)) %>%
+
+fig <- plot_ly(data = agg_data_sum, 
+               x = ~sector, 
+               y = ~records_lost,
+               type = 'bar',
+               name = ~method,
+               hoverinfo = 'text',
+               text = ~paste('Method:',
+                             method, 
+                             '<br>Records Lost:',
+                             records_lost)) %>%
   layout(
     barmode = 'stack',
     title = 'Breach Methods by Sector/Type of Data',
@@ -332,7 +332,6 @@ fig <- plot_ly(data = agg_data_sum, x = ~sector, y = ~records_lost, type = 'bar'
     yaxis = list(title = 'Records Lost')
   )
 
-# Render the plot
 fig
 ```
 
@@ -340,12 +339,10 @@ fig
 library(plotly)
 library(dplyr)
 
-# Summarise data
 agg_data_sum <- agg_data %>%
   group_by(sector, method) %>%
   summarise(records_lost = sum(records_lost), .groups = 'drop')
 
-# Create a stacked bar chart with plotly
 fig <- plot_ly(data = agg_data_sum, x = ~sector, y = ~records_lost, type = 'bar', name = ~method,
                hoverinfo = 'text', text = ~paste('Method:', method, '<br>Records Lost:', records_lost)) %>%
   layout(
