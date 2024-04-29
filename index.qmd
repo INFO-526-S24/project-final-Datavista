@@ -130,7 +130,6 @@ library(dplyr)
 library(gridExtra)
 
 
-# Assuming your DataFrame is named 'data'
 
 # Clean 'health ' to 'health'
 data$sector <- gsub("health ", "health", data$sector)
@@ -188,7 +187,6 @@ library(ggplot2)
 library(dplyr)
 library(gganimate)
 
-# Assuming your DataFrame is named 'data'
 
 # Clean 'health ' to 'health'
 data$sector <- gsub("health ", "health", data$sector)
@@ -264,9 +262,6 @@ animation::saveGIF({
   print(sector_group_animation)
 }, movie.name = "combined_animation.gif", interval = 0.5)
 
-
-
-
 ```
 
 ```{r}
@@ -276,8 +271,8 @@ library(dplyr)
 library(gganimate)
 
 # Assuming your DataFrame is named 'data'
-
 # Clean 'health ' to 'health'
+
 data$sector <- gsub("health ", "health", data$sector)
 
 # Function to categorize sectors
