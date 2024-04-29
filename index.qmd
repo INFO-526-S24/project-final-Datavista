@@ -343,22 +343,29 @@ agg_data_sum <- agg_data %>%
   group_by(sector, method) %>%
   summarise(records_lost = sum(records_lost), .groups = 'drop')
 
-fig <- plot_ly(data = agg_data_sum, x = ~sector, y = ~records_lost, type = 'bar', name = ~method,
-               hoverinfo = 'text', text = ~paste('Method:', method, '<br>Records Lost:', records_lost)) %>%
+fig <- plot_ly(data = agg_data_sum,
+               x = ~sector, 
+               y = ~records_lost,
+               type = 'bar',
+               name = ~method,
+               hoverinfo = 'text',
+               text = ~paste('Method:',
+                             method,
+                             '<br>Records Lost:',
+                             records_lost)) %>%
   layout(
     barmode = 'stack',
     title = 'Breach Methods by Sector/Type of Data',
     xaxis = list(title = 'Sector/Type'),
     yaxis = list(title = 'Records Lost'),
-    margin = list(b = 150), # Adjust bottom margin to make space for the slider
+    margin = list(b = 150),
     showlegend = TRUE
   ) %>%
   config(displayModeBar = TRUE)
 
-# Add custom style for the bars to make them more attractive
 fig <- fig %>% layout(
   barmode = 'stack',
-  paper_bgcolor = 'rgba(245, 246, 249, 1)', # light grey background
+  paper_bgcolor = 'rgba(245, 246, 249, 1)', 
   plot_bgcolor = 'rgba(245, 246, 249, 1)',
   yaxis = list(
     automargin = TRUE,
@@ -367,13 +374,12 @@ fig <- fig %>% layout(
   ),
   xaxis = list(
     automargin = TRUE,
-    tickangle = -45, # Angle the sector names for better readability
+    tickangle = -45, 
     tickfont = list(size = 10),
     titlefont = list(size = 15)
   )
 )
 
-# Add zoom slider
 fig <- fig %>% layout(
   xaxis = list(
     rangeslider = list(
@@ -383,7 +389,6 @@ fig <- fig %>% layout(
   )
 )
 
-# Render the plot
 fig
 
 ```
