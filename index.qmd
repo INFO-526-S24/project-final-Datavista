@@ -507,14 +507,14 @@ fig
 library(plotly)
 library(dplyr)
 
-# Assuming agg_data is your data frame with the columns: year, method
+# Assume agg_data is your data frame with the columns: year, method
 
-# Summarize data
+# Summarizing data
 agg_data_sum <- agg_data %>%
   group_by(year, method) %>%
   summarise(breach_count = n(), .groups = 'drop')
 
-# Create smoothed line plot with animated transitions using plotly
+# Creating smoothed line plot with animated transitions using plotly
 fig <- plot_ly(data = agg_data_sum, x = ~year, y = ~breach_count, color = ~method, mode = "lines", 
                line = list(smoothing = 0.6), hoverinfo = "text",
                text = ~paste("Year: ", year, "<br>Breach Method: ", method, "<br>Breach Count: ", breach_count)) %>%
@@ -522,9 +522,9 @@ fig <- plot_ly(data = agg_data_sum, x = ~year, y = ~breach_count, color = ~metho
          xaxis = list(title = "Year"),
          yaxis = list(title = "Breach Count"),
          showlegend = TRUE) %>%
-  animation_opts(frame = 100, redraw = TRUE)
+  animation_opts(frame = 100, redraw =  TRUE)
 
-# Render the plot
+# Render plots
 fig
 
 ```
