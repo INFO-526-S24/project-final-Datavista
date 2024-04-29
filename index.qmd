@@ -17,8 +17,7 @@ execute:
   echo: false
 ---
 
-```{r load_packages, message=FALSE, include=FALSE}
-# GETTING THE LIBRARIES
+```{# GETTING THE LIBRARIES}
 if (!require(pacman))
   install.packages(pacman)
 
@@ -36,6 +35,8 @@ pacman::p_load(tidyverse,
                animation)
 
 pacman::p_load_gh("BlakeRMills/MoMAColors")
+  message = FALSE
+
 ```
 
 ```{r ggplot_setup, message=FALSE, include=FALSE}
@@ -51,8 +52,8 @@ knitr::opts_chunk$set(
   fig.asp = 0.618,      # the golden ratio
   fig.retina = 1,       # dpi multiplier for displaying HTML output on retina
   fig.align = "center", # center align figures
-  dpi = 200,            # higher dpi, sharper image
-  message = FALSE
+  dpi = 200,            # higher dpi, sharper image{r load_packages, message=FALSE, include=FALSE}
+
 )
 ```
 
@@ -85,6 +86,8 @@ By uncovering these insights, we hope to empower cybersecurity professionals to 
 ## **Visualizations**
 
 ### **Question 1: General Assessment: How have information breaches advanced over past decade(2013-2023), and what are the patterns with respect to their recurrence, seriousness, and affect over distinctive businesses?**
+
+------------------------------------------------------------------------
 
 ## **Approach :**
 
@@ -375,13 +378,6 @@ grid.arrange(total_plot,
 
 ```
 
-
-
-
-
-
-
-
 ### **Discussion :**
 
 Imagine you have three powerful tools at your disposal:
@@ -414,11 +410,13 @@ Having this knowledge is like having a superhero's insight into cybersecurity. I
 
 ### **Which sectors or types of data (e.g., personal, financial) are particularly susceptible to different breach methods like hacking or insider jobs, and what are the consequential impacts on both businesses and individuals?**
 
+------------------------------------------------------------------------
+
 ### **Approach :**
 
 ### **Unveiling Sector Vulnerabilities: A Multidimensional Exploration of Cybersecurity Breaches**
 
-### **1. Understanding the Landscape:**
+#### **1. Understanding the Landscape:**
 
 Our investigation delves into the ever-evolving landscape of cybersecurity breaches. We begin by gathering comprehensive data on these incidents, meticulously sorting them based on the impacted sectors or data types and the methods employed by attackers. This meticulous approach allows us to pinpoint which areas are most susceptible to various attack vectors.
 
@@ -443,6 +441,32 @@ By combining these multifaceted visualizations, interactive elements, and insigh
 ------------------------------------------------------------------------
 
 ### **Analysis :**
+
+1.  **Breach Methods by Sector/Type of Data (Stacked Bar Chart)**: This chart breaks down breaches by sector or type of data and shows which methods attackers use most. By hovering over each section, you can see details like the method used and how many records were lost. This helps us see which sectors or types of data are most at risk from specific attack methods.
+
+2.  **Breach Methods by Sector/Type of Data (Animated Stacked Bar Chart)**: This one's like a moving version of the first chart. It shows how breach patterns change over time within each sector or type of data. By watching the animation year by year, we can spot trends and see if certain attack methods are becoming more common in specific sectors.
+
+3.  **Breach Severity by Sector/Type of Data (Relative Stacked Bar Chart)**: This chart compares the severity of breaches across different sectors or types of data. It focuses on the proportion of data lost within each category rather than the total number of breaches. This helps us understand which sectors or types of data face the biggest potential losses.
+
+4.  **Records Lost by Sector/Method (Stacked Bar Chart)**: Here, we see the total number of records lost in breaches, grouped by sector and breach method. It complements the first chart by highlighting which sectors suffer the most significant data losses due to specific breach methods.
+
+5.  **Breach Frequency Over Time (Line Chart)**: This animated chart shows how often breaches occur over the years, categorized by the methods used. It helps us track changes in cybercrime activity over time and spot any new trends or emerging threats.
+
+By putting all these insights together, we can:
+
+-   **Identify vulnerable sectors and data types**: Knowing which areas are most at risk allows businesses to focus their efforts where they're needed most.
+
+-   **Understand the severity of breaches**: By comparing data losses across different sectors, we can prioritize security measures and allocate resources accordingly.
+
+-   **Stay ahead of evolving threats**: Tracking temporal trends helps us anticipate changes in attacker tactics and adjust our defenses proactively.
+
+Ultimately, this knowledge helps businesses:
+
+-   **Focus on the most critical vulnerabilities**: By targeting specific sectors, data types, and breach methods, they can strengthen their defenses where it matters most.
+
+-   **Implement tailored security measures**: Armed with insights into the most prevalent threats, businesses can deploy security controls that address their unique risks.
+
+-   **Regularly assess and improve their defenses**: By staying vigilant and adapting to changing threats, businesses can minimize the impact of cyberattacks and protect their data and stakeholders effectively.
 
 ------------------------------------------------------------------------
 
@@ -669,3 +693,31 @@ fig <- plot_ly(data = agg_data_sum,
 fig
 
 ```
+
+### **Discussion :**
+
+Exploring Cybersecurity Risks Across Industries:
+
+When we dive into the world of cybersecurity breaches using visualizations, it paints a vivid, albeit concerning, picture. Let's unpack the key takeaways from our analysis:
+
+#### Understanding Vulnerabilities Across Different Sectors:
+
+Our visualizations highlight which industries or types of data are most at risk from various hacking methods. Consistently, we see sectors like healthcare, finance, and personal data facing significant vulnerabilities. This emphasizes the urgent need for robust security measures within these sectors to protect sensitive information.
+
+#### Prioritizing Severity of Breaches:
+
+By examining the extent of data loss, we can pinpoint sectors where breaches pose the greatest threat. Whether it's the sheer volume of data stored, as seen in healthcare, or the critical nature of compromised information in financial institutions, it's clear where the most substantial risks lie. This underscores the importance of prioritizing security efforts where they're most needed.
+
+#### Balancing Business Demands with Privacy Concerns:
+
+Our visualizations shed light on the dual impact of breaches: businesses suffer financial losses, while individuals face identity theft and privacy violations. It's crucial for businesses to invest in cybersecurity while ensuring they don't overly restrict legitimate data access. Finding this balance is key to maintaining both security and operational efficiency.
+
+#### Adapting to an Ever-Changing Threat Landscape:
+
+Animated visualizations reveal the dynamic nature of breach patterns and tactics over time. As new attack vectors emerge and attackers shift focus, previously less-targeted sectors become vulnerable. This highlights the need for businesses to continuously evolve their security strategies to outpace evolving threats.
+
+#### Embracing Proactive Measures:
+
+Our analysis underscores the value of proactive vulnerability assessments. By identifying weaknesses in their defenses before attackers exploit them, businesses can mitigate the risk of breaches and their detrimental consequences. This proactive approach is essential for maintaining robust cybersecurity posture in an increasingly digital world.
+
+------------------------------------------------------------------------
