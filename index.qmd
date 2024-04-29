@@ -394,35 +394,12 @@ fig
 ```
 
 ```{r}
-library(plotly)
-library(dplyr)
-
-
-# Summarise data
-agg_data_sum <- agg_data %>%
-  group_by(sector, method, year) %>%
-  summarise(records_lost = sum(records_lost), .groups = 'drop')
-
-# Create a stacked bar chart with plotly
-fig <- plot_ly()
-
-# Add traces for each year
-years <- unique(agg_data_sum$year)
-for (year in years) {
-  year_data <- agg_data_sum[agg_data_sum$year == year,]
-  fig <- fig %>% add_trace(
-    data = year_data,
-    x = ~sector, y = ~records_lost, type = 'bar', name = ~method,
-    hoverinfo = 'text', text = ~paste('Year:', year, '<br>Method:', method, '<br>Records Lost:', records_lost),
-    visible = ifelse(year == years[1], TRUE, FALSE) # Only the first year is visible initially
-  )
-}
-
-# Add layout and style
 fig <- fig %>% layout(
   barmode = 'stack',
   title = 'Breach Methods by Sector/Type of Data',
-  xaxis = list(title = 'Sector/Type', tickangle = -45),
+  xaxis = list(title = 'Sector/Type',
+               tickangle = -45,
+               automargin = TRUE),
   yaxis = list(title = 'Records Lost'),
   updatemenus = list(
     list(
@@ -430,7 +407,8 @@ fig <- fig %>% layout(
       buttons = lapply(years, function(year) {
         list(
           method = "update",
-          args = list(list(visible = lapply(agg_data_sum$year, function(y) y == year)),
+          args = list(list(visible = lapply(agg_data_sum$year,
+                                            function(y) y == year)),
                       list(title = paste("Breach Methods by Sector/Type of Data - Year", year))),
           label = as.character(year)
         )
@@ -438,13 +416,13 @@ fig <- fig %>% layout(
     )
   ),
   showlegend = TRUE,
-  legend = list(title = list(text = 'Method'), orientation = 'h')
+  legend = list(title = list(text = 'Method'), orientation = 'v', x = 1, y = 0.5)
 )
 
-# Render the plot
 fig
 
 ```
+
 
 ```{r}
 library(plotly)
