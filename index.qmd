@@ -579,7 +579,6 @@ fig <- plot_ly(data = agg_data_sum,
     showlegend = TRUE
   )
 
-# Render the plot
 fig
 ```
 
@@ -587,23 +586,31 @@ fig
 library(plotly)
 library(dplyr)
 
-# Assuming agg_data is your data frame with the columns: year, sector, method, records_lost
-
-# Summarise data
 agg_data_sum <- agg_data %>%
   group_by(sector, method) %>%
   summarise(records_lost = sum(records_lost), .groups = 'drop')
 
-# Create a stacked bar chart with 3D effect using plotly
-fig <- plot_ly(data = agg_data_sum, x = ~sector, y = ~records_lost, z = ~method, type = 'bar', name = ~method,
-               hoverinfo = 'text', text = ~paste('Sector:', sector, '<br>Method:', method, '<br>Records Lost:', records_lost)) %>%
+fig <- plot_ly(data = agg_data_sum,
+               x = ~sector,
+               y = ~records_lost,
+               z = ~method, type = 'bar', 
+               name = ~method,
+               hoverinfo = 'text',
+               text = ~paste('Sector:',
+                             sector,
+                             '<br>Method:',
+                             method, 
+                             '<br>Records Lost:',
+                             records_lost)) %>%
   layout(
     scene = list(
       xaxis = list(title = 'Sector'),
       yaxis = list(title = 'Records Lost'),
       zaxis = list(title = 'Method'),
       camera = list(
-        eye = list(x = 1.87, y = 0.88, z = -0.64)
+        eye = list(x = 1.87,
+                   y = 0.88,
+                   z = -0.64)
       )
     ),
     barmode = 'stack',
@@ -611,7 +618,6 @@ fig <- plot_ly(data = agg_data_sum, x = ~sector, y = ~records_lost, z = ~method,
     showlegend = TRUE
   )
 
-# Render the plot
 fig
 
 ```
