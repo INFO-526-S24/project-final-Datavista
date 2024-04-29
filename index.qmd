@@ -132,17 +132,40 @@ library(gridExtra)
 
 
 # Clean 'health ' to 'health'
-data$sector <- gsub("health ", "health", data$sector)
+data$sector <- gsub("health ",
+                    "health",
+                    data$sector)
 
 # Function to categorize sectors
 categorize_sector <- function(sector) {
-  if (sector %in% c("government", "government, health", "government, military")) {
+  if (sector %in% c("government",
+                    "government, 
+                    health", 
+                    "government,
+                    military")) {
     return("government")
-  } else if (sector %in% c("health", "tech, health", "misc, health", "military, health")) {
+  } else if (sector %in% c("health",
+                           "tech, 
+                           health",
+                           "misc,health",
+                           "military, health")) {
     return("healthcare")
-  } else if (sector %in% c("tech", "telecoms", "web", "retail", "web ", "NGO", "misc", 
-                            "legal", "app", "tech, app", "academic", "tech, web", 
-                            "web, tech", "tech, retail", "web, military", "military", 
+  } else if (sector %in% c("tech", 
+                           "telecoms",
+                           "web", 
+                           "retail",
+                           "web ",
+                           "NGO",
+                           "misc", 
+                           "legal",
+                           "app",
+                           "tech, app",
+                           "academic",
+                           "tech, web", 
+                            "web, tech", 
+                           "tech, retail", 
+                           "web, military",
+                           "military", 
                             "web, gaming")) {
     return("technology")
   } else {
@@ -151,7 +174,8 @@ categorize_sector <- function(sector) {
 }
 
 # Apply categorize_sector function to create a new column 'sector_group'
-data$sector_group <- sapply(data$sector, categorize_sector)
+data$sector_group <- sapply(data$sector,
+                            categorize_sector)
 
 # Aggregate total breaches by year
 total_by_year <- data %>%
@@ -160,24 +184,38 @@ total_by_year <- data %>%
 
 # Aggregate total breaches by sector group
 total_by_sector_group <- data %>%
-  group_by(year, sector_group) %>%
+  group_by(year, 
+           sector_group) %>%
   summarise(total_breaches = n())
 
 # Plot total breaches over the years
-total_plot <- ggplot(total_by_year, aes(x = year, y = total_breaches)) +
+total_plot <- ggplot(total_by_year,
+                     aes(x = year,
+                         y = total_breaches)) +
   geom_line(color = "black") +
-  labs(x = "Year", y = "Total Breaches", title = "Total Breaches Over Time") +
+  labs(x = "Year",
+       y = "Total Breaches",
+       title = "Total Breaches Over Time") +
   theme_minimal()
 
 # Plot breaches by sector group
-sector_group_plot <- ggplot(total_by_sector_group, aes(x = year, y = total_breaches, color = sector_group)) +
+sector_group_plot <- ggplot(total_by_sector_group,
+                            aes(x = year, 
+                                y = total_breaches,
+                                color = sector_group)) +
   geom_line() +
-  labs(x = "Year", y = "Total Breaches", title = "Breaches Over Time by Sector Group") +
+  labs(x = "Year",
+       y = "Total Breaches", 
+       title = "Breaches Over Time by Sector Group") +
   theme_minimal() +
-  facet_wrap(~ sector_group, scales = "free_y")
+  facet_wrap(~ sector_group,
+             scales = "free_y")
 
 # Combine plots
-grid.arrange(total_plot, sector_group_plot, ncol = 1, heights = c(2, 3))
+grid.arrange(total_plot, 
+             sector_group_plot,
+             ncol = 1, 
+             heights = c(2, 3))
 
 ```
 
@@ -189,17 +227,38 @@ library(gganimate)
 
 
 # Clean 'health ' to 'health'
-data$sector <- gsub("health ", "health", data$sector)
+data$sector <- gsub("health ",
+                    "health",
+                    data$sector)
 
 # Function to categorize sectors
 categorize_sector <- function(sector) {
-  if (sector %in% c("government", "government, health", "government, military")) {
+  if (sector %in% c("government",
+                    "government,
+                    health",
+                    "government,
+                    military")) {
     return("Government")
-  } else if (sector %in% c("health", "tech, health", "misc, health", "military, health")) {
+  } else if (sector %in% c("health",
+                           "tech, health", 
+                           "misc, health",
+                           "military, health")) {
     return("Healthcare")
-  } else if (sector %in% c("tech", "telecoms", "web", "retail", "web ", "NGO", "misc", 
-                            "legal", "app", "tech, app", "academic", "tech, web", 
-                            "web, tech", "tech, retail", "web, military", "military", 
+  } else if (sector %in% c("tech", 
+                           "telecoms", 
+                           "web",
+                           "retail",
+                           "web ",
+                           "NGO",
+                           "misc", 
+                            "legal", 
+                           "app", "tech, app",
+                           "academic",
+                           "tech, web", 
+                            "web, tech", 
+                           "tech, retail", 
+                           "web, military", 
+                           "military", 
                             "web, gaming")) {
     return("Technology")
   } else {
@@ -208,7 +267,8 @@ categorize_sector <- function(sector) {
 }
 
 # Apply categorize_sector function to create a new column 'sector_group'
-data$sector_group <- sapply(data$sector, categorize_sector)
+data$sector_group <- sapply(data$sector,
+                            categorize_sector)
 
 # Aggregate total breaches by year
 total_by_year <- data %>%
@@ -217,14 +277,20 @@ total_by_year <- data %>%
 
 # Aggregate total breaches by sector group
 total_by_sector_group <- data %>%
-  group_by(year, sector_group) %>%
+  group_by(year, 
+           sector_group) %>%
   summarise(total_breaches = n())
 
 # Plot total breaches over the years
-total_plot <- ggplot(total_by_year, aes(x = year, y = total_breaches, group = 1)) +
+total_plot <- ggplot(total_by_year,
+                     aes(x = year, 
+                         y = total_breaches,
+                         group = 1)) +
   geom_point(color = "black", size = 3) +
   geom_line(color = "black", size = 1) +
-  labs(x = "Year", y = "Total Breaches", title = "Total Breaches Over Time") +
+  labs(x = "Year", 
+       y = "Total Breaches", 
+       title = "Total Breaches Over Time") +
   theme_minimal() +
   theme(
     panel.grid.major = element_blank(),
@@ -237,10 +303,16 @@ total_plot <- ggplot(total_by_year, aes(x = year, y = total_breaches, group = 1)
   transition_reveal(year)
 
 # Plot breaches by sector group
-sector_group_plot <- ggplot(total_by_sector_group, aes(x = year, y = total_breaches, color = sector_group, group = sector_group)) +
+sector_group_plot <- ggplot(total_by_sector_group,
+                            aes(x = year, 
+                                y = total_breaches,
+                                color = sector_group, 
+                                group = sector_group)) +
   geom_point(size = 3) +
   geom_line(size = 1) +
-  labs(x = "Year", y = "Total Breaches", title = "Breaches Over Time by Sector Group") +
+  labs(x = "Year",
+       y = "Total Breaches",
+       title = "Breaches Over Time by Sector Group") +
   theme_minimal() +
   theme(
     panel.grid.major = element_blank(),
@@ -270,20 +342,40 @@ library(ggplot2)
 library(dplyr)
 library(gganimate)
 
-# Assuming your DataFrame is named 'data'
+
 # Clean 'health ' to 'health'
 
-data$sector <- gsub("health ", "health", data$sector)
+data$sector <- gsub("health ",
+                    "health",
+                    data$sector)
 
 # Function to categorize sectors
 categorize_sector <- function(sector) {
-  if (sector %in% c("government", "government, health", "government, military")) {
+  if (sector %in% c("government",
+                    "government, health", 
+                    "government, military")) {
     return("government")
-  } else if (sector %in% c("health", "tech, health", "misc, health", "military, health")) {
+  } else if (sector %in% c("health", 
+                           "tech, health",
+                           "misc, health",
+                           "military, health")) {
     return("healthcare")
-  } else if (sector %in% c("tech", "telecoms", "web", "retail", "web ", "NGO", "misc", 
-                            "legal", "app", "tech, app", "academic", "tech, web", 
-                            "web, tech", "tech, retail", "web, military", "military", 
+  } else if (sector %in% c("tech",
+                           "telecoms", 
+                           "web",
+                           "retail", 
+                           "web ",
+                           "NGO",
+                           "misc", 
+                            "legal", 
+                           "app",
+                           "tech, app",
+                           "academic", 
+                           "tech, web", 
+                            "web, tech",
+                           "tech, retail",
+                           "web, military",
+                           "military", 
                             "web, gaming")) {
     return("technology")
   } else {
@@ -292,7 +384,8 @@ categorize_sector <- function(sector) {
 }
 
 # Apply categorize_sector function to create a new column 'sector_group'
-data$sector_group <- sapply(data$sector, categorize_sector)
+data$sector_group <- sapply(data$sector,
+                            categorize_sector)
 
 # Aggregate total breaches by year
 total_by_year <- data %>%
@@ -305,16 +398,25 @@ total_by_sector_group <- data %>%
   summarise(total_breaches = n())
 
 # Plot total breaches over the years
-total_plot <- ggplot(total_by_year, aes(x = year, y = total_breaches)) +
+total_plot <- ggplot(total_by_year,
+                     aes(x = year, 
+                         y = total_breaches)) +
   geom_point(color = "black") +
-  labs(x = "Year", y = "Total Breaches", title = "Total Breaches Over Time") +
+  labs(x = "Year", 
+       y = "Total Breaches",
+       title = "Total Breaches Over Time") +
   theme_minimal() +
   transition_reveal(year)
 
 # Plot breaches by sector group
-sector_group_plot <- ggplot(total_by_sector_group, aes(x = year, y = total_breaches, color = sector_group)) +
+sector_group_plot <- ggplot(total_by_sector_group, 
+                            aes(x = year,
+                                y = total_breaches,
+                                color = sector_group)) +
   geom_point() +
-  labs(x = "Year", y = "Total Breaches", title = "Breaches Over Time by Sector Group") +
+  labs(x = "Year",
+       y = "Total Breaches", 
+       title = "Breaches Over Time by Sector Group") +
   theme_minimal() +
   transition_reveal(year)
 
@@ -600,9 +702,19 @@ agg_data_sum <- agg_data %>%
   group_by(year, method) %>%
   summarise(breach_count = n(), .groups = 'drop')
 
-fig <- plot_ly(data = agg_data_sum, x = ~year, y = ~breach_count, color = ~method, mode = "lines", 
-               line = list(smoothing = 0.6), hoverinfo = "text",
-               text = ~paste("Year: ", year, "<br>Breach Method: ", method, "<br>Breach Count: ", breach_count)) %>%
+fig <- plot_ly(data = agg_data_sum,
+               x = ~year,
+               y = ~breach_count,
+               color = ~method,
+               mode = "lines", 
+               line = list(smoothing = 0.6),
+               hoverinfo = "text",
+               text = ~paste("Year: ", 
+                             year, 
+                             "<br>Breach Method: ",
+                             method,
+                             "<br>Breach Count: ",
+                             breach_count)) %>%
   layout(title = "Breach Frequency Over Time",
          xaxis = list(title = "Year"),
          yaxis = list(title = "Breach Count"),
