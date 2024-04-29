@@ -80,11 +80,6 @@ plot_ly(agg_data, x = ~year, y = ~sector, z = ~records_lost, color = ~method,
 
 ```
 
-
-
-
-
-
 ```{r}
 library(ggplot2)
 library(dplyr)
@@ -147,7 +142,6 @@ grid.arrange(total_plot, sector_group_plot, ncol = 1, heights = c(2, 3))
 
 
 ```
-
 
 ```{r}
 
@@ -236,11 +230,6 @@ animation::saveGIF({
 
 ```
 
-
-
-
-
-
 ```{r}
 
 library(ggplot2)
@@ -309,14 +298,6 @@ animation::saveGIF({
 
 ```
 
-
-
-
-
-
-
-
-
 # Q2) [Vulnerability Assessment:]{style="color:blue;"} Which sectors or types of data (e.g., personal, financial) are particularly susceptible to different breach methods like hacking or insider jobs, and what are the consequential impacts on both businesses and individuals?
 
 ## Approach :
@@ -324,6 +305,7 @@ animation::saveGIF({
 :
 
 ## Analysis
+
 ```{r}
 if (!require(broom)) {
     install.packages("broom", dependencies = TRUE)
@@ -353,9 +335,6 @@ fig <- plot_ly(data = agg_data_sum, x = ~sector, y = ~records_lost, type = 'bar'
 # Render the plot
 fig
 ```
-
-
-
 
 ```{r}
 library(plotly)
@@ -465,3 +444,87 @@ fig
 
 ```
 
+```{r}
+library(plotly)
+library(dplyr)
+
+# Assuming agg_data is your data frame with the columns: year, sector, method, records_lost
+
+# Summarise data
+agg_data_sum <- agg_data %>%
+  group_by(sector, method) %>%
+  summarise(records_lost = sum(records_lost), .groups = 'drop')
+
+# Create a diverging stacked bar chart with plotly
+fig <- plot_ly(data = agg_data_sum, x = ~sector, y = ~records_lost, type = 'bar', name = ~method,
+               hoverinfo = 'text', text = ~paste('Method:', method, '<br>Records Lost:', records_lost)) %>%
+  layout(
+    barmode = 'relative',
+    title = 'Breach Severity by Sector/Type of Data',
+    xaxis = list(title = 'Sector/Type'),
+    yaxis = list(title = 'Records Lost'),
+    showlegend = TRUE
+  )
+
+# Render the plot
+fig
+```
+
+```{r}
+library(plotly)
+library(dplyr)
+
+# Assuming agg_data is your data frame with the columns: year, sector, method, records_lost
+
+# Summarise data
+agg_data_sum <- agg_data %>%
+  group_by(sector, method) %>%
+  summarise(records_lost = sum(records_lost), .groups = 'drop')
+
+# Create a stacked bar chart with 3D effect using plotly
+fig <- plot_ly(data = agg_data_sum, x = ~sector, y = ~records_lost, z = ~method, type = 'bar', name = ~method,
+               hoverinfo = 'text', text = ~paste('Sector:', sector, '<br>Method:', method, '<br>Records Lost:', records_lost)) %>%
+  layout(
+    scene = list(
+      xaxis = list(title = 'Sector'),
+      yaxis = list(title = 'Records Lost'),
+      zaxis = list(title = 'Method'),
+      camera = list(
+        eye = list(x = 1.87, y = 0.88, z = -0.64)
+      )
+    ),
+    barmode = 'stack',
+    title = 'Records Lost by Sector/Method (Stacked Bar Chart with 3D Effect)',
+    showlegend = TRUE
+  )
+
+# Render the plot
+fig
+
+```
+
+```{r}
+library(plotly)
+library(dplyr)
+
+# Assuming agg_data is your data frame with the columns: year, method
+
+# Summarize data
+agg_data_sum <- agg_data %>%
+  group_by(year, method) %>%
+  summarise(breach_count = n(), .groups = 'drop')
+
+# Create smoothed line plot with animated transitions using plotly
+fig <- plot_ly(data = agg_data_sum, x = ~year, y = ~breach_count, color = ~method, mode = "lines", 
+               line = list(smoothing = 0.6), hoverinfo = "text",
+               text = ~paste("Year: ", year, "<br>Breach Method: ", method, "<br>Breach Count: ", breach_count)) %>%
+  layout(title = "Breach Frequency Over Time",
+         xaxis = list(title = "Year"),
+         yaxis = list(title = "Breach Count"),
+         showlegend = TRUE) %>%
+  animation_opts(frame = 100, redraw = TRUE)
+
+# Render the plot
+fig
+
+```
