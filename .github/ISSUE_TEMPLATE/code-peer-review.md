@@ -1,17 +1,9 @@
----
-name: Code peer review
-about: Peer review of project dode
-title: Code peer review
-labels: ''
-assignees: ''
----
+### Code Peer Review: [Feature/Branch Name]
 
-The following is the peer review of the project code by [name of team completing peer review]. The team members that participated in this review are 
+**Reviewer:** [Your Name]
 
-- [Full names of team member 1] - @[githubname]
-- [Full names of team member 2] - @[githubname]
-- [Full names of team member 3] - @[githubname]
-- ...
+**Review Date:** [Insert Date]
+
 ---
 
 #### 1. Purpose of Code
@@ -29,14 +21,30 @@ The following is the peer review of the project code by [name of team completing
 
 ---
 
-#### 3. Documentation
+#### 3. Functionality
 
-- [ ] Code documentation (e.g., comments) is sufficient
+- [ ] Code functions as intended and produces the expected outcome
+- [ ] Edge cases have been considered and handled
+- [ ] No obvious bugs or issues found
+
+---
+
+#### 4. Testing
+
+- [ ] Adequate unit tests covering key functionality
+- [ ] Tests are clear and can be easily understood
+- [ ] All tests pass successfully
+
+---
+
+#### 5. Documentation
+
+- [ ] Code documentation (e.g., docstrings, comments) is sufficient
 - [ ] Readme or other documentation updated if necessary
 
 ---
 
-#### 4. Best Practices
+#### 6. Best Practices
 
 - [ ] No hardcoded values; constants used appropriately
 - [ ] Security and privacy concerns addressed (e.g., no sensitive data exposed)
@@ -44,13 +52,13 @@ The following is the peer review of the project code by [name of team completing
 
 ---
 
-#### 5. Additional Comments
+#### 7. Additional Comments
 
 - Please provide feedback, areas of improvement, or other observations.
 
 ---
 
-#### 6. Recommendation
+#### 8. Recommendation
 
 - [ ] Approved - ready to be merged
 - [ ] Approved with minor issues - can be addressed later
