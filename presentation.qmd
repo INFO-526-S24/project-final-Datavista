@@ -58,13 +58,7 @@ knitr::opts_chunk$set(
 ```
 
 ```{r}
-#| label: load-data
-#| include: false
-# Load data here
-data(mtcars)
-mtcars$speed <- mtcars$hp / mtcars$wt
 
-data("penguins")
 ```
 
 ## Introduction {.smaller}
