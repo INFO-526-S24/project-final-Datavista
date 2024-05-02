@@ -1,28 +1,43 @@
 ---
-title: "Project title"
-subtitle: "INFO 526 - Fall 2023 - Project Final"
-author: "Author names"
+  title: "Unveiling Trends in Data Breaches and Data Hacks"
+subtitle: "INFO 526 - Project Final"
+author: "**Datavista**: <br> Akash Srinivasan, Abhishek Kumar, Divya Dhole, Noureen Mithaigar, Gowtham Theeda, Lakshmi Neharika Anchula" 
 title-slide-attributes:
-  data-background-image: images/watercolour_sys02_img34_teacup-ocean.jpg
+  data-background-image: images/dataGettyImages.jpeg
   data-background-size: stretch
   data-background-opacity: "0.7"
   data-slide-number: none
-format:
+  format:
   revealjs:
-    theme:  ['data/customtheming.scss']
+    theme: league
+    transition: slide
+    background-transition: fade
   
 editor: visual
 execute:
   echo: false
 ---
 
-```{r}
-#| label: load-packages
-#| include: false
+```{r, GETTING THE LIBRARIES}
+if (!require(pacman))
+  install.packages(pacman)
 
-# Load packages here
-pacman::p_load(tidymodels,
-               tidyverse)
+
+pacman::p_load(tidyverse,
+               dplyr,
+               janitor,
+               here,
+               plotly,
+               gganimate,
+               scales,
+               gifski,
+               ggimage,
+               ggtext,magick,
+               animation)
+
+pacman::p_load_gh("BlakeRMills/MoMAColors")
+  message = FALSE
+
 
 ```
 
@@ -52,114 +67,45 @@ mtcars$speed <- mtcars$hp / mtcars$wt
 data("penguins")
 ```
 
-# Using Quarto for presentations
+## Introduction {.smaller}
 
-## Quarto
+::: incremental
+-   Introduction to Data Breaches Definition: A data breach refers to the unauthorized access, disclosure, or acquisition of sensitive or confidential information. It occurs when cybercriminals gain access to a system or network and extract valuable data without authorization.
 
--   The presentation is created using the Quarto CLI
-
--   `##` sets the start of a new slide
-
-## Layouts
-
-You can use plain text
-
-::: columns
-::: {.column width="40%"}
--   or bullet points[^1]
+-   Impact: Data breaches lead to financial losses, reputational damage, legal issues, and privacy breaches for individuals, businesses, and organizations. They also erode trust among stakeholders, leading to long-term consequences.
 :::
 
-::: {.column width="60%"}
-or in two columns
-:::
-:::
+## Data set
 
-[^1]: And add footnotes
-
--   like
-
--   this
-
-## Code
-
-```{r, echo=FALSE}
-model <- lm(mpg ~ speed, data = mtcars) 
-
-model |> tidy()
-
-model |> glance()
-
-```
-
-## Plots
-
-```{r}
-penguins |>
-  mutate(species = ifelse(species == "Adelie", "Adelie", "Other")) |>
-  ggplot(aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
-  geom_point()
-```
-
-## Plot and text
-
-::: columns
-::: {.column width="50%"}
--   Some text
-
--   goes here
+::: incremental
+-   Data_Breaches_LATEST.CSV The "World's Biggest Data Breaches & Hacks" dataset from informationisbeautiful.net spans from 2003 to 2023, providing key details such as year, date, sector, method, and data sensitivity for analyzing breach trends and impacts across sectors.
+-   Examples of key variables in this data set are: -Organisation -Records Lost. -Year -Date -Sector -Method -Data Sensitivity
 :::
 
-::: {.column width="50%"}
-```{r, warning=FALSE, fig.width=5.5}
-penguins |>
-  ggplot(aes(x = bill_length_mm, y = species, color = species)) +
-  geom_boxplot(linewidth = 0.75,
-               outlier.size = 2.5) +
-  theme_minimal(base_size = 15) +
-  theme(legend.key.size = unit(0.8, "cm"))
-```
+## Project Approach
+
+::: incremental
+-Data Collection: Obtain "World's Biggest Data Breaches & Hacks" dataset from informationisbeautiful.net (2003-2023) with variables: organization, records lost, year, date, sector, method, and data sensitivity.
+
+-Data Cleaning: Ensure integrity by handling missing values, standardizing formats, and removing duplicates.
+
+-Exploratory Data Analysis (EDA): Uncover breach patterns and trends using statistical methods and visualizations.
+
+-Model Development: Create ML models (classification/regression) to predict breaches or assess severity with key data features.
 :::
+
+## Question 1
+
+::: incremental
+Visualizing Information Breaches: A Multifaceted Approach (2013-2023)
+
+-Utilizing diverse visualizations: Employing 3D scatter plots, time series analysis, and animations.
+
+-3D Scatter Plot: Detailed visualization using Plotly.
+
+-Time Series Analysis: Utilizing ggplot2 for temporal trends.
 :::
 
-# A new section...
+## Information Breaches Over the Past Decade (3D visulazation)
 
-## Tables
-
-If you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,
-
-```{r}
-penguins |> 
-  head() |>
-  kableExtra::kable() |>
-  kableExtra::kable_styling()
-```
-
-## Images
-
-![Image credit: Danielle Navarro, Percolate.](images/watercolour_sys02_img34_teacup-ocean.png){fig-align="center" width="500"}
-
-## Math Expressions {.smaller}
-
-You can write LaTeX math expressions inside a pair of dollar signs, e.g. \$\\alpha+\\beta\$ renders $\alpha + \beta$. You can use the display style with double dollar signs:
-
-```         
-$$\bar{X}=\frac{1}{n}\sum_{i=1}^nX_i$$
-```
-
-$$
-\bar{X}=\frac{1}{n}\sum_{i=1}^nX_i
-$$
-
-Limitations:
-
-1.  The source code of a LaTeX math expression must be in one line, unless it is inside a pair of double dollar signs, in which case the starting `$$` must appear in the very beginning of a line, followed immediately by a non-space character, and the ending `$$` must be at the end of a line, led by a non-space character;
-
-2.  There should not be spaces after the opening `$` or before the closing `$`.
-
-# Wrap up
-
-## Feeling adventurous?
-
--   You are welcomed to use the default styling of the slides. In fact, that's what I expect majority of you will do. You will differentiate yourself with the content of your presentation.
-
--   But some of you might want to play around with slide styling. Some solutions for this can be found at https://quarto.org/docs/presentations/revealjs.
+## 
