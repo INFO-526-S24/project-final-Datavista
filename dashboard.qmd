@@ -24,49 +24,36 @@ data$sector <- ifelse(data$sector %in% c("academic", "finance", "government", "h
 data$method <- ifelse(data$method %in% c("hacked", "inside job", "lost device", "poor security"), data$method, "other")
 ```
 
+## Row {height=70%}
+```{r}
 
-### Time Trend Analysis {#time-trend}
+### Plot 1: Line chart for Number of Breaches Over Time by Sector
+### Load necessary libraries
+library(dplyr)
+library(plotly)
 
+### Plot 1: Line chart for Number of Breaches Over Time by Sector
+data_agg1 <- data %>%
+  group_by(year, sector) %>%
+  summarise(count = n()) %>%
+  arrange(year, sector) %>%
+  ungroup()
 
-```{r time-trend1, fig.width=10, fig.height=6}
-
-
-```
-
-```{r time-trend2, fig.width=10, fig.height=6}
-
-```
-
-
-```{r time-trend3, fig.width=10, fig.height=6}
-
-
-
-```
-
-```{r time-trend4, fig.width=10, fig.height=6}
-# Stacked area chart for Records Lost Over Time
-
-
-```
-
-```{r time-trend5, fig.width=10, fig.height=6}
-# Smoothed line chart for Smoothed Trend of Records Lost Over Time
-
-
-
-```
-
-
-```{r time-trend6, fig.width=10, fig.height=6}
-# Plot 6 for Time Trend Analysis
-
-### Plot 6: Total Records Lost Distribution by Year (Card Component)
-
-
-
-
-
+line_chart <- plot_ly(
+  data_agg1,
+  x = ~year,
+  y = ~count,
+  color = ~sector,
+  type = 'scatter',
+  mode = 'lines+markers',
+  colors = rainbow(length(unique(data_agg1$sector))),
+  title = "Number of Breaches Over Time by Sector",
+  xaxis = list(title = "Year"),
+  yaxis = list(title = "Count"),
+  legend = list(orientation = "h", x = 0.3, y = 1.1),
+  margin = list(l = 50, r = 50, b = 100, t = 100)
+)
+line_chart
 
 
 
@@ -74,102 +61,27 @@ data$method <- ifelse(data$method %in% c("hacked", "inside job", "lost device", 
 
 
 
-### Pattern Analysis {#pattern}
 
-```{r pattern Analysis1, fig.width=10, fig.height=6}
+```{r}
+#| title: Chart 3
+#| 
 
 
 ```
 
 
-```{r pattern Analysis2, fig.width=10, fig.height=6}
+### Column
+```{r}
 
-# Plot 2 for Sector and Data Sensitivity Analysis
+### Plot 4: Your third time analysis plot
+# Your code here
+
+
+
 
 ```
 
 
-
-```{r pattern Analysis3, fig.width=10, fig.height=6}
-
-# Plot 3 for Sector and Data Sensitivity Analysis
-
-```
-
-
-```{r pattern Analysis4, fig.width=10, fig.height=6}
-
-# Plot 4 for Sector and Data Sensitivity Analysis
-
-```
-
-
-```{r pattern Analysis5, fig.width=10, fig.height=6}
-
-# Plot 5 for Sector and Data Sensitivity Analysis
-
-```
-
-
-
-
-```{r pattern Analysis6, fig.width=10, fig.height=6}
-
-# Plot 6 for Sector and Data Sensitivity Analysis
-
-```
-
-
-
-
-
-### Sector and Data Sensitivity Analysis {#sector-sensitivity}
-
-
-
-```{r Sector and Data Sensitivity Analysis1, fig.width=10, fig.height=6}
-
-# Plot 1 for Sector and Data Sensitivity Analysis
-
-```
-
-
-```{r Sector and Data Sensitivity Analysis2, fig.width=10, fig.height=6}
-
-# Plot 2 for Sector and Data Sensitivity Analysis
-
-```
-
-
-```{r Sector and Data Sensitivity Analysis3, fig.width=10, fig.height=6}
-
-# Plot 3 for Sector and Data Sensitivity Analysis
-
-```
-
-
-
-
-```{r Sector and Data Sensitivity Analysis4, fig.width=10, fig.height=6}
-
-# Plot 4 for Sector and Data Sensitivity Analysis
-
-```
-
-
-
-```{r Sector and Data Sensitivity Analysis5, fig.width=10, fig.height=6}
-
-# Plot 5 for Sector and Data Sensitivity Analysis
-
-```
-
-
-```{r Sector and Data Sensitivity Analysis6, fig.width=10, fig.height=6}
-
-# Plot 6 for Sector and Data Sensitivity Analysis
-
-```
 
 
 
