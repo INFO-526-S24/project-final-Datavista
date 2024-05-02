@@ -1,29 +1,175 @@
 ---
-title: "Datavista"
 format: dashboard
+editor_options: 
+  chunk_output_type: console
+execute:
+  echo: false
 ---
-    
-## Row {height=70%}
 
-```{r}
+```{r setup}
+options(repos = "https://cran.r-project.org/")  # Set CRAN mirror
+
+# Load necessary libraries
+library(dplyr)
+library(ggplot2)
+
+# Load the data
+data <- read.csv("data/Data_Breaches_LATEST.csv")
+
+# Aggregate sector categories
+data$sector <- ifelse(data$sector %in% c("academic", "finance", "government", "health", "military", "tech"), data$sector, "other")
+
+
+# Aggregate method categories
+data$method <- ifelse(data$method %in% c("hacked", "inside job", "lost device", "poor security"), data$method, "other")
+```
+
+
+### Time Trend Analysis {#time-trend}
+
+
+```{r time-trend1, fig.width=10, fig.height=6}
+
 
 ```
 
-## Row {height=30%}
+```{r time-trend2, fig.width=10, fig.height=6}
 
-### Column {.tabset}
-
-```{r}
-#| title: Chart 2
 ```
 
-```{r}
-#| title: Chart 3
-```
 
-### Column
+```{r time-trend3, fig.width=10, fig.height=6}
 
-```{r}
 
 
 ```
+
+```{r time-trend4, fig.width=10, fig.height=6}
+# Stacked area chart for Records Lost Over Time
+
+
+```
+
+```{r time-trend5, fig.width=10, fig.height=6}
+# Smoothed line chart for Smoothed Trend of Records Lost Over Time
+
+
+
+```
+
+
+```{r time-trend6, fig.width=10, fig.height=6}
+# Plot 6 for Time Trend Analysis
+
+### Plot 6: Total Records Lost Distribution by Year (Card Component)
+
+
+
+
+
+
+
+
+```
+
+
+
+### Pattern Analysis {#pattern}
+
+```{r pattern Analysis1, fig.width=10, fig.height=6}
+
+
+```
+
+
+```{r pattern Analysis2, fig.width=10, fig.height=6}
+
+# Plot 2 for Sector and Data Sensitivity Analysis
+
+```
+
+
+
+```{r pattern Analysis3, fig.width=10, fig.height=6}
+
+# Plot 3 for Sector and Data Sensitivity Analysis
+
+```
+
+
+```{r pattern Analysis4, fig.width=10, fig.height=6}
+
+# Plot 4 for Sector and Data Sensitivity Analysis
+
+```
+
+
+```{r pattern Analysis5, fig.width=10, fig.height=6}
+
+# Plot 5 for Sector and Data Sensitivity Analysis
+
+```
+
+
+
+
+```{r pattern Analysis6, fig.width=10, fig.height=6}
+
+# Plot 6 for Sector and Data Sensitivity Analysis
+
+```
+
+
+
+
+
+### Sector and Data Sensitivity Analysis {#sector-sensitivity}
+
+
+
+```{r Sector and Data Sensitivity Analysis1, fig.width=10, fig.height=6}
+
+# Plot 1 for Sector and Data Sensitivity Analysis
+
+```
+
+
+```{r Sector and Data Sensitivity Analysis2, fig.width=10, fig.height=6}
+
+# Plot 2 for Sector and Data Sensitivity Analysis
+
+```
+
+
+```{r Sector and Data Sensitivity Analysis3, fig.width=10, fig.height=6}
+
+# Plot 3 for Sector and Data Sensitivity Analysis
+
+```
+
+
+
+
+```{r Sector and Data Sensitivity Analysis4, fig.width=10, fig.height=6}
+
+# Plot 4 for Sector and Data Sensitivity Analysis
+
+```
+
+
+
+```{r Sector and Data Sensitivity Analysis5, fig.width=10, fig.height=6}
+
+# Plot 5 for Sector and Data Sensitivity Analysis
+
+```
+
+
+```{r Sector and Data Sensitivity Analysis6, fig.width=10, fig.height=6}
+
+# Plot 6 for Sector and Data Sensitivity Analysis
+
+```
+
+
+
