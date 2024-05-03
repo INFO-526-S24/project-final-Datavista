@@ -727,3 +727,49 @@ animate(p)
 anim_save("images/Top_10_sectors_record_lost.gif", animate(p) )
 
 ```
+
+```{R}
+
+names(agg_data)[names(agg_data) == 'year   '] <- 'year'
+
+
+df_decade <- agg_data %>%
+  filter(year >= 2013 & year <= 2023)
+
+# Clean column names using janitor::clean_names()
+df_decade <- janitor::clean_names(df_decade)
+
+# Aggregate data
+agg_data_sum <- df_decade %>%
+  group_by(year, method) %>%
+  summarise(breach_count = n(), .groups = 'drop')
+
+# Assign colors to different breach types
+color_palette <- c("#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf")
+breach_types <- unique(agg_data_sum$method)
+breach_colors <- setNames(color_palette[1:length(breach_types)], breach_types)
+
+# Create plotly figure
+fig <- plot_ly(data = agg_data_sum,
+               x = ~year,
+               y = ~breach_count,
+               color = ~method,
+               colors = breach_colors,
+               mode = "lines", 
+               line = list(smoothing = 0.6),
+               hoverinfo = "text",
+               text = ~paste("Year: ", 
+                             year, 
+                             "<br>Breach Method: ",
+                             method,
+                             "<br>Breach Count: ",
+                             breach_count)) %>%
+  layout(title = "Breach Frequency Over Time",
+         xaxis = list(title = "Year"),
+         yaxis = list(title = "Breach Count"),
+         showlegend = TRUE) %>%
+  animation_opts(frame = 100, redraw = TRUE)
+
+# Display the plot
+fig
+```  
