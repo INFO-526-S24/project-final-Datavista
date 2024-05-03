@@ -1,7 +1,7 @@
 ---
 title: "Unveiling Trends in Data Breaches and Data Hacks"
 subtitle: "INFO 526 - Project Final"
-author: "**Datavista**: <br> Akash Srinicheckingvasan, Abhishek Kumar, Divya Dhole, Noureen Mithaigar, Gowtham Theeda, Lakshmi Neharika Anchula" 
+author: "**Datavista**"
 title-slide-attributes:
   data-background-image: images/dataGettyImages.jpeg
   data-background-size: stretch
@@ -9,7 +9,7 @@ title-slide-attributes:
   data-slide-number: none
 format:
   revealjs:
-    theme: league
+    theme: sky
     transition: slide
     background-transition: fade
 editor: visual
@@ -56,10 +56,6 @@ knitr::opts_chunk$set(
   )
 ```
 
-```{r}
-
-```
-
 ## Introduction {.smaller}
 
 ::: incremental
@@ -101,4 +97,262 @@ Visualizing Information Breaches: A Multifaceted Approach (2013-2023)
 
 ## Information Breaches Over the Past Decade (3D visulazation)
 
+```{r}
+
+suppressWarnings({
+# Load required libraries
+library(plotly)
+library(janitor)
+library(magrittr)  # Load magrittr for pipe operator
+
+# Load the CSV data
+data <- read.csv("data/Data_Breaches_LATEST.csv")
+
+# Rename the column with extra spaces
+names(data)[names(data) == 'year   '] <- 'year'
+
+# Filter data for the past decade (2013-2023)
+df_decade <- data[data$year >= 2013 & data$year <= 2023, ]
+
+# Clean column names using janitor::clean_names()
+df_decade <- janitor::clean_names(df_decade)
+
+# Aggregate data by year, sector, and method
+agg_data <- aggregate(records_lost ~ year + sector + method, data = df_decade, FUN = sum)
+
+# Create a 3D plot
+plot_ly(agg_data, x = ~year, y = ~sector, z = ~records_lost, color = ~method,
+        type = "scatter3d", mode = "markers", sizes = 10) %>%
+  layout(title = "Information Breaches Over the Past Decade",
+         scene = list(xaxis = list(title = "Year"),
+                      yaxis = list(title = "Sector"),
+                      zaxis = list(title = "Records Lost")))
+
+
+})
+
+```
+
+## Total Breaches Over Time plot
+
+::: {style="display: flex; flex-direction: row;"}
+::: {style="flex: 1; margin-right: 10px;"}
+```         
+![](images/total_plot.gif)
+```
+:::
+
+::: {style="flex: 1;"}
+```         
+![](images/sector_group_plot.gif)
+```
+:::
+:::
+
+## Question 2
+
+::: incremental
+
+-Vulnerability Assessment
+
+```{r}
+library(plotly)
+library(dplyr)
+
+agg_data_sum <- agg_data %>%
+  group_by(sector, method) %>%
+  summarise(records_lost = sum(records_lost), .groups = 'drop')
+
+fig <- plot_ly(data = agg_data_sum,
+               x = ~sector, 
+               y = ~records_lost,
+               type = 'bar',
+               name = ~method,
+               hoverinfo = 'text',
+               text = ~paste('Method:',
+                             method,
+                             '<br>Records Lost:',
+                             records_lost)) %>%
+  layout(
+    barmode = 'stack',
+    title = 'Breach Methods by Sector/Type of Data',
+    xaxis = list(title = 'Sector/Type'),
+    yaxis = list(title = 'Records Lost'),
+    margin = list(b = 150),
+    showlegend = TRUE
+  ) %>%
+  config(displayModeBar = TRUE)
+
+fig <- fig %>% layout(
+  barmode = 'stack',
+  paper_bgcolor = 'rgba(245, 246, 249, 1)', 
+  plot_bgcolor = 'rgba(245, 246, 249, 1)',
+  yaxis = list(
+    automargin = TRUE,
+    tickfont = list(size = 10),
+    titlefont = list(size = 15)
+  ),
+  xaxis = list(
+    automargin = TRUE,
+    tickangle = -45, 
+    tickfont = list(size = 10),
+    titlefont = list(size = 15)
+  )
+)
+
+fig <- fig %>% layout(
+  xaxis = list(
+    rangeslider = list(
+      visible = TRUE
+    ),
+    type = "category"
+  )
+)
+
+fig
+```
+
 ## 
+
+```{r}
+library(plotly)
+library(dplyr)
+
+agg_data_sum <- agg_data %>%
+  group_by(sector, method, year) %>%
+  summarise(records_lost = sum(records_lost), .groups = 'drop')
+
+fig <- plot_ly()
+
+years <- unique(agg_data_sum$year)
+for (year in years) {
+  year_data <- agg_data_sum[agg_data_sum$year == year,]
+  fig <- fig %>% add_trace(
+    data = year_data,
+    x = ~sector, y = ~records_lost,
+    type = 'bar', name = ~method,
+    hoverinfo = 'text', 
+    text = ~paste('Year:',
+                  year,
+                  '<br>Method:',
+                  method, 
+                  '<br>Records Lost:',
+                  records_lost),
+    visible = ifelse(year == years[1], TRUE, FALSE))
+}
+
+fig <- fig %>% layout(
+  barmode = 'stack',
+  title = 'Breach Methods by Sector/Type of Data',
+  xaxis = list(
+    title = 'Sector/Type',
+    tickangle = -45,
+    automargin = TRUE,
+    rangeslider = list(type = "date")  
+  ),
+  yaxis = list(title = 'Records Lost'),
+  updatemenus = list(
+    list(
+      y = 0.8,
+      buttons = lapply(years, function(year) {
+        list(
+          method = "update",
+          args = list(list(visible = lapply(agg_data_sum$year,
+                                            function(y) y == year)),
+                      list(title = paste("Breach Methods by Sector/Type of Data - Year", year))),
+          label = as.character(year)
+        )
+      })
+    )
+  ),
+  showlegend = TRUE,
+  legend = list(
+    title = list(text = 'Method'),
+    orientation = 'v',
+    x = 1, 
+    y = 0.5
+  )
+)
+
+fig
+
+```
+
+#### Plot C
+
+```{r}
+library(plotly)
+library(dplyr)
+
+agg_data_sum <- agg_data %>%
+  group_by(sector, method) %>%
+  summarise(records_lost = sum(records_lost), .groups = 'drop')
+
+fig <- plot_ly(data = agg_data_sum,
+               x = ~sector,
+               y = ~records_lost,
+               type = 'bar',
+               name = ~method,
+               hoverinfo = 'text', 
+               text = ~paste('Method:',
+                             method,
+                             '<br>Records Lost:',
+                             format(records_lost, big.mark = ","))) %>%
+  layout(
+    barmode = 'relative',
+    title = 'Breach Severity by Sector/Type of Data',
+    xaxis = list(title = 'Sector/Type',
+                 tickangle = -45,
+                 automargin = TRUE), 
+    yaxis = list(title = 'Records Lost'),
+    showlegend = TRUE
+  )
+
+fig
+
+```
+
+#### Plot D
+
+```{r}
+library(plotly)
+library(dplyr)
+
+
+agg_data_sum <- agg_data %>%
+  group_by(year, method) %>%
+  summarise(breach_count = n(), .groups = 'drop')
+
+fig <- plot_ly(data = agg_data_sum,
+               x = ~year,
+               y = ~breach_count,
+               color = ~method,
+               mode = "lines", 
+               line = list(smoothing = 0.6),
+               hoverinfo = "text",
+               text = ~paste("Year: ", 
+                             year, 
+                             "<br>Breach Method: ",
+                             method,
+                             "<br>Breach Count: ",
+                             breach_count)) %>%
+  layout(title = "Breach Frequency Over Time",
+         xaxis = list(title = "Year"),
+         yaxis = list(title = "Breach Count"),
+         showlegend = TRUE) %>%
+  animation_opts(frame = 100, redraw =  TRUE)
+
+fig
+```
+
+## Conclusion
+
+::: incremental
+
+-Identifying Sector Weaknesses: We pinpointed industries most vulnerable to cyberattacks, like healthcare and finance. These sectors require immediate security upgrades.
+
+-Prioritizing Breach Severity: We distinguished between minor leaks and data floods. Focusing on breaches with the most sensitive or critical data is crucial.
+
+-Balancing Security & Privacy: We explored the delicate balance between robust security and customer access. Businesses must find the sweet spot to avoid hindering operations.
+
+-Adapting to Evolving Threats: We visualized how hacker tactics change. Businesses need to continuously refine their defenses to stay ahead of cybercriminals.
