@@ -1,6 +1,5 @@
 ---
- 
-  title: "Unveiling Trends in Data Breaches and Data Hacks"
+title: "Unveiling Trends in Data Breaches and Data Hacks"
 subtitle: "INFO 526 - Project Final"
 author: "**Datavista**: <br> Akash Srinivasan, Abhishek Kumar, Divya Dhole, Noureen Mithaigar, Gowtham Theeda, Lakshmi Neharika Anchula" 
 title-slide-attributes:
@@ -8,14 +7,19 @@ title-slide-attributes:
   data-background-size: stretch
   data-background-opacity: "0.7"
   data-slide-number: none
-  format:
-    revealjs:
-      theme: league
-      transition: slide
-      background-transition: fade
-header-includes:
-  - |
-    ```{css}
+format:
+  revealjs:
+    theme: league
+    transition: slide
+    background-transition: fade
+    header-includes: |
+      <style>
+        /* any custom styles go here */
+      </style>
+---
+
+
+```{css}
     .plot-container {
       width: 800px; /* Adjust width as needed */
       height: 600px; /* Adjust height as needed */
