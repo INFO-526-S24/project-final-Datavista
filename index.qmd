@@ -155,11 +155,6 @@ plot_ly(agg_data, x = ~year, y = ~sector, z = ~records_lost, color = ~method,
 
 ```
 
-
-
-
-
-
 ```{r}
 # Load required libraries
 library(ggplot2)
@@ -275,14 +270,8 @@ anim_save("images/sector_group_plot.gif", sector_group_animation)
 
 
 ```
-![](images/total_plot.gif)
-![](images/sector_group_plot.gif)
 
-
-
-
-
-
+![](images/total_plot.gif) ![](images/sector_group_plot.gif)
 
 ### **Discussion :**
 
@@ -505,32 +494,35 @@ fig
 library(plotly)
 library(dplyr)
 
+
+# Aggregate data by sector and method
 agg_data_sum <- agg_data %>%
   group_by(sector, method) %>%
-  summarise(records_lost = sum(records_lost), .groups = 'drop')
+  summarise(records_lost = sum(records_lost)) %>%
+  ungroup() %>%
+  mutate(proportion_lost = records_lost / sum(records_lost))  # Calculate proportion of records lost
 
-fig <- plot_ly(data = agg_data_sum,
-               x = ~sector,
-               y = ~records_lost,
-               type = 'bar',
-               name = ~method,
-               hoverinfo = 'text', 
-               text = ~paste('Method:',
-                             method,
-                             '<br>Records Lost:',
-                             format(records_lost, big.mark = ","))) %>%
+# Create a relative stacked bar chart
+bar_chart <- plot_ly(data = agg_data_sum,
+                     x = ~sector,
+                     y = ~proportion_lost,
+                     type = 'bar',
+                     color = ~method,
+                      colors = 'Dark2',
+                     hoverinfo = 'text',
+                     text = ~paste('Method:', method,
+                                   '<br>Proportion of Records Lost:', scales::percent(proportion_lost))) %>%
   layout(
-    barmode = 'relative',
-    title = 'Breach Severity by Sector/Type of Data',
-    xaxis = list(title = 'Sector/Type',
-                 tickangle = -45,
-                 automargin = TRUE), 
-    yaxis = list(title = 'Records Lost'),
+    barmode = 'stack',
+    title = 'Breach Severity by Sector/Type of Data (Relative Stacked Bar Chart)',
+    xaxis = list(title = 'Sector/Type'),
+    yaxis = list(title = 'Proportion of Records Lost'),
+    margin = list(b = 150),
     showlegend = TRUE
-  )
+  ) %>%
+  config(displayModeBar = TRUE)
 
-fig
-
+bar_chart
 ```
 
 ```{r}
@@ -653,3 +645,29 @@ Imagine checking your home for weak spots before burglars show up. That's what b
 So, by understanding where the weak spots are, balancing security with business needs, staying ahead of evolving threats, and being proactive about protection, businesses can keep their digital doors locked tight and their data safe from prying eyes.
 
 ------------------------------------------------------------------------
+
+```{r}
+library(plotly)
+library(dplyr)
+
+# Assuming agg_data contains data for multiple years
+# and has columns: 'sector', 'method', 'year', 'records_lost'
+
+# Aggregate data by year
+agg_data_year <- agg_data %>%
+  group_by(year) %>%
+  summarise(total_records_lost = sum(records_lost))
+
+# Create a scatter plot
+scatter_plot <- plot_ly(agg_data_year, x = ~year, y = ~total_records_lost, type = "scatter", mode = "markers",
+                        marker = list(color = "red", size = 10),
+                        text = ~paste("Year:", year, "<br>Records Lost:", total_records_lost),
+                        hoverinfo = "text") %>%
+  layout(title = "Total Records Lost Over Time",
+         xaxis = list(title = "Year"),
+         yaxis = list(title = "Total Records Lost"),
+         showlegend = FALSE) %>%
+  config(displayModeBar = TRUE)
+
+scatter_plot
+```
