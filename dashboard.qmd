@@ -1,4 +1,5 @@
 ---
+title: "Data breach Dashboard"
 format: dashboard
 editor_options: 
   chunk_output_type: console
@@ -7,79 +8,332 @@ execute:
 ---
 
 ```{r setup}
+#| label: load-packages
+#| message: false
 options(repos = "https://cran.r-project.org/")  # Set CRAN mirror
 
 # Load necessary libraries
 library(dplyr)
 library(ggplot2)
+library(plotly)
+
+theme_set(theme_minimal(base_size = 24, base_family = "Atkinson Hyperlegible"))
+
 
 # Load the data
 data <- read.csv("data/Data_Breaches_LATEST.csv")
 
+
+# Rename the column with extra spaces
+names(data)[names(data) == 'year   '] <- 'year'
+
+
+
+# Clean column names using janitor::clean_names()
+data <- janitor::clean_names(data)
+
 # Aggregate sector categories
-data$sector <- ifelse(data$sector %in% c("academic", "finance", "government", "health", "military", "tech"), data$sector, "other")
+data$sector <- ifelse(data$sector %in% c("academic", "finance", "government", "health", "military", "tech","web"), data$sector, "other")
 
 
 # Aggregate method categories
 data$method <- ifelse(data$method %in% c("hacked", "inside job", "lost device", "poor security"), data$method, "other")
 ```
 
-## Row {height=70%}
+# {.sidebar}
+
+This dashboard displays statistics for:
+
+|               |                        |
+|---------------|------------------------|
+| **Project**   | Data Breach Analysis  |
+| **Team**      | Datavista             |
+| **Month**     | May 2024              |
+
+------------------------------------------------------------------------
+
+In [2018-2023], the breach breakdown by method was as follows:
+
+|                      |          |
+|----------------------|----------|
+| **Hacked**           |   350    |
+| **Poor Security**    |   200    |
+| **Inside Job**       |   150    |
+| **Lost Device**      |   100    |
+
+------------------------------------------------------------------------
+
+::: {.callout-note collapse="true"}
+## Reference
+
+For more information on creating dashboards with Quarto, you can visit the [Quarto documentation](https://quarto.org/docs/dashboards/).
+:::
+
+# Time trend analysis
+
 ```{r}
+#| label: all-values
+#| results: hide
+#value box 1
 
-### Plot 1: Line chart for Number of Breaches Over Time by Sector
-### Load necessary libraries
-library(dplyr)
-library(plotly)
+# Convert the 'year' column to numeric
+data$year <- as.numeric(data$year)
 
-### Plot 1: Line chart for Number of Breaches Over Time by Sector
-data_agg1 <- data %>%
-  group_by(year, sector) %>%
-  summarise(count = n()) %>%
-  arrange(year, sector) %>%
-  ungroup()
+# Filter data for the last 10 years
+data_last_10_years <- data[data$year >= (max(data$year) - 9), ]
 
-line_chart <- plot_ly(
-  data_agg1,
-  x = ~year,
-  y = ~count,
-  color = ~sector,
-  type = 'scatter',
-  mode = 'lines+markers',
-  colors = rainbow(length(unique(data_agg1$sector))),
-  title = "Number of Breaches Over Time by Sector",
-  xaxis = list(title = "Year"),
-  yaxis = list(title = "Count"),
-  legend = list(orientation = "h", x = 0.3, y = 1.1),
-  margin = list(l = 50, r = 50, b = 100, t = 100)
+# Calculate total breaches for the last 10 years by method
+total_breaches_last_10_years <- table(data_last_10_years$method)
+
+# Calculate total breaches
+total_breaches <- sum(total_breaches_last_10_years)
+
+total_breaches
+
+
+
+
+
+
+
+# value box 2,3
+
+
+# Filter data for 2018 and 2023
+data_2018 <- data[data$year == 2018, ]
+data_2023 <- data[data$year == 2023, ]
+
+# Calculate total breaches for each method in 2018
+total_breaches_2018 <- table(data_2018$method)
+
+#sum 2018
+total_breaches_2018 <- sum(total_breaches_2018)
+
+
+
+# Calculate total breaches for each method in 2023
+total_breaches_2023 <- table(data_2023$method)
+
+#sum 2023
+total_breaches_2023 <- sum(total_breaches_2023)
+
+
+
+
+
+```
+
+
+
+
+## Row {height="20%"}
+```{r}
+#| content: valuebox
+#| title: "Total Breaches(last 10 years)"
+
+list(
+  icon = "shield",
+  color = "primary",
+  value = total_breaches
+
 )
-line_chart
-
 
 
 ```
-
 
 
 
 ```{r}
-#| title: Chart 3
-#| 
+#| content: valuebox
+#| title: "Total breach in 2023"
 
+list(
+  icon = "shield",
+  color = "primary",
+  value = total_breaches_2023
+
+)
 
 ```
 
 
-### Column
 ```{r}
 
-### Plot 4: Your third time analysis plot
-# Your code here
+#| content: valuebox
+#| title: "Total record lost in 2023"
+total_record_lost_2023 <- data %>%
+  filter(year == 2023) %>%
+  summarise(records_lost = sum(records_lost, na.rm = TRUE)) %>%
+  pull(records_lost)
+
+list(
+  icon = "shield",
+  color = "primary",
+  value = total_record_lost_2023
+)
+
+```
+
+
+
+
+
+
+## Row {height="40%"}
+
+### Column {width="55%"}
+
+```{r}
+#| title: Total breach over year
+
+knitr::include_graphics("images/total_plot.gif")
+
+
+```
+
+
+### Column {width="45%"}  {.tabset}
+ 
+```{r}
+#| title: Breaches Over Time by Sector
+
+knitr::include_graphics("images/sector_group_plot.gif")
+
+
+```
+
+
+
+```{r}
+#| title: Breaches Over Time by method
+
+knitr::include_graphics("images/method_group_plot.gif")
 
 
 
 
 ```
+
+
+
+
+# Pattern analysis {orientation="columns"}
+
+```{r}
+
+
+
+# Group data by sector and method, and calculate frequency
+pattern <- data %>%
+  group_by(sector, method) %>%
+  summarise(count = n()) %>%
+  arrange(desc(count))
+
+# Plot interactive patterns of breach methods by sector
+plot <- pattern %>%
+  plot_ly(x = ~reorder(sector, count), y = ~count, color = ~method, type = 'bar') %>%
+  layout(title = "Patterns of Breach Methods by Sector",
+         xaxis = list(title = "Sector"),
+         yaxis = list(title = "Number of Breaches"),
+         barmode = 'stack')
+
+plot
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Data
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
