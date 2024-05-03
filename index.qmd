@@ -561,34 +561,35 @@ fig
 ```
 
 ```{r}
-library(plotly)
-library(dplyr)
+# Load required libraries
+library(ggplot2)
+library(gganimate)
 
+# Load the CSV data
+data <- read.csv("data/Data_Breaches_LATEST.csv")
 
-agg_data_sum <- agg_data %>%
-  group_by(year, method) %>%
-  summarise(breach_count = n(), .groups = 'drop')
+# Filter data for the past decade (2013-2023)
+df_decade <- subset(data, year >= 2013 & year <= 2023)
 
-fig <- plot_ly(data = agg_data_sum,
-               x = ~year,
-               y = ~breach_count,
-               color = ~method,
-               mode = "lines", 
-               line = list(smoothing = 0.6),
-               hoverinfo = "text",
-               text = ~paste("Year: ", 
-                             year, 
-                             "<br>Breach Method: ",
-                             method,
-                             "<br>Breach Count: ",
-                             breach_count)) %>%
-  layout(title = "Breach Frequency Over Time",
-         xaxis = list(title = "Year"),
-         yaxis = list(title = "Breach Count"),
-         showlegend = TRUE) %>%
-  animation_opts(frame = 100, redraw =  TRUE)
+# Clean column names using janitor::clean_names()
+df_decade <- janitor::clean_names(df_decade)
 
-fig
+# Aggregate data by year and sector
+agg_data <- aggregate(records_lost ~ year + sector, data = df_decade, FUN = sum)
+
+# Create ggplot with transition
+p <- ggplot(df_decade, aes(x = year, y = records_lost, group = sector, color = sector)) +
+  geom_line() +
+  labs(title = "Breach Frequency Over Time", x = "Year", y = "Total Records Lost", color = "Sector") +
+  theme_classic() +
+  transition_time(year) +
+  ease_aes('linear')
+
+# Render animation
+animate(p)
+
+#Rendering the animation
+anim_save("images/breach_animation.gif", animate(p) )
 
 ```
 
@@ -646,28 +647,83 @@ So, by understanding where the weak spots are, balancing security with business 
 
 ------------------------------------------------------------------------
 
+# new
+
+bubble plot
+
 ```{r}
 library(plotly)
-library(dplyr)
 
-# Assuming agg_data contains data for multiple years
-# and has columns: 'sector', 'method', 'year', 'records_lost'
+# Create a plotly object
+p <- ggplot(data = df_decade, aes(x = reorder(sector, records_lost), y = year, size = records_lost, color = sector, text = paste("Sector:", sector, "<br>Records Lost:", records_lost, "<br>Organisation:", organisation))) +
+  geom_point() +
+  scale_size_continuous(range = c(5, 25)) +
+  labs(title = "Balloon Race Plot: Records Lost by Sector Over Time",
+       x = "Sectors",
+       y = "Year") +  # Change y-axis label to "Year"
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        axis.title.y = element_blank(),
+        legend.position = "none") +
+  transition_time(year) +
+  enter_fade() +  # Add fade-in animation
+  exit_fade()    # Add fade-out animation
 
-# Aggregate data by year
-agg_data_year <- agg_data %>%
-  group_by(year) %>%
-  summarise(total_records_lost = sum(records_lost))
+# Convert ggplot object to a plotly object
+p_plotly <- ggplotly(p, tooltip = "text")
 
-# Create a scatter plot
-scatter_plot <- plot_ly(agg_data_year, x = ~year, y = ~total_records_lost, type = "scatter", mode = "markers",
-                        marker = list(color = "red", size = 10),
-                        text = ~paste("Year:", year, "<br>Records Lost:", total_records_lost),
-                        hoverinfo = "text") %>%
-  layout(title = "Total Records Lost Over Time",
-         xaxis = list(title = "Year"),
-         yaxis = list(title = "Total Records Lost"),
-         showlegend = FALSE) %>%
-  config(displayModeBar = TRUE)
+# Render the animation
+animate(p, duration = 10) 
 
-scatter_plot
+
+#Rendering the animation
+anim_save("images/ballon_plot.gif", animate(p) )
+
+
+
+```
+
+## top 10 plot sector (raching bar chart)
+
+```{r}
+library(ggplot2)
+library(gganimate)
+
+# Filter the data for the year 2023
+data_2023 <- df_decade[df_decade$year == 2023, ]
+
+# Aggregate records lost by sector
+records_lost_by_sector <- aggregate(records_lost ~ sector, data = data_2023, FUN = sum)
+
+# Order the aggregated data by records lost in descending order
+records_lost_by_sector <- records_lost_by_sector[order(-records_lost_by_sector$records_lost), ]
+
+# Select the top 10 sectors
+top_10_sectors <- head(records_lost_by_sector, 10)
+
+# Create a color palette with different colors for each bar
+color_palette <- rainbow(length(top_10_sectors$sector))
+
+# Plot the top 10 sectors by records lost in 2023
+p <- ggplot(data = top_10_sectors, aes(x = reorder(sector, -records_lost), y = records_lost, fill = sector)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = records_lost), vjust = -0.5, color = "black", size = 3) +  # Add text labels for records lost
+  labs(title = "Top 10 Sectors by Records Lost in 2023",
+       x = "Sector",
+       y = "Records Lost") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  scale_fill_manual(values = color_palette) +  # Assign colors manually
+  coord_flip() +
+  transition_states(states = sector, transition_length = 10, state_length = 5) +
+  enter_fade() +
+  exit_fade()
+
+
+# Render animation
+animate(p)
+
+
+#Rendering the animation
+anim_save("images/Top_10_sectors_record_lost.gif", animate(p) )
+
 ```
