@@ -1,20 +1,27 @@
 ---
-title: "Unveiling Trends in Data Breaches and Data Hacks"
+ 
+  title: "Unveiling Trends in Data Breaches and Data Hacks"
 subtitle: "INFO 526 - Project Final"
-author: "**Datavista**"
+author: "**Datavista**: <br> Akash Srinivasan, Abhishek Kumar, Divya Dhole, Noureen Mithaigar, Gowtham Theeda, Lakshmi Neharika Anchula" 
 title-slide-attributes:
   data-background-image: images/dataGettyImages.jpeg
   data-background-size: stretch
   data-background-opacity: "0.7"
   data-slide-number: none
-format:
-  revealjs:
-    theme: sky
-    transition: slide
-    background-transition: fade
-editor: visual
-execute:
-  echo: false
+  format:
+    revealjs:
+      theme: league
+      transition: slide
+      background-transition: fade
+header-includes:
+  - |
+    ```{css}
+    .plot-container {
+      width: 800px; /* Adjust width as needed */
+      height: 600px; /* Adjust height as needed */
+    }
+    ```
+
 ---
 
 ```{r, GETTING THE LIBRARIES}
@@ -74,13 +81,14 @@ knitr::opts_chunk$set(
 ## Project Approach
 
 ::: incremental
--Data Collection: Obtain "World's Biggest Data Breaches & Hacks" dataset from informationisbeautiful.net (2003-2023) with variables: organization, records lost, year, date, sector, method, and data sensitivity.
+-   Data Collection: Obtain "World's Biggest Data Breaches & Hacks" dataset from informationisbeautiful.net (2003-2023) with variables: organization, records lost, year, date, sector, method, and data sensitivity.
 
--Data Cleaning: Ensure integrity by handling missing values, standardizing formats, and removing duplicates.
+-   Data Cleaning: Ensure integrity by handling missing values, standardizing formats, and removing duplicates.
 
--Exploratory Data Analysis (EDA): Uncover breach patterns and trends using statistical methods and visualizations.
+-   Exploratory Data Analysis (EDA): Uncover breach patterns and trends using statistical methods and visualizations.
 
--Model Development: Create ML models (classification/regression) to predict breaches or assess severity with key data features.
+-   Model Development: Create ML models (classification/regression) to predict breaches or assess severity with key data features.
+
 :::
 
 ## Question 1
@@ -88,11 +96,11 @@ knitr::opts_chunk$set(
 ::: incremental
 Visualizing Information Breaches: A Multifaceted Approach (2013-2023)
 
--Utilizing diverse visualizations: Employing 3D scatter plots, time series analysis, and animations.
+-   Utilizing diverse visualizations: Employing 3D scatter plots, time series analysis, and animations.
 
--3D Scatter Plot: Detailed visualization using Plotly.
+-   3D Scatter Plot: Detailed visualization using Plotly.
 
--Time Series Analysis: Utilizing ggplot2 for temporal trends.
+-   Time Series Analysis: Utilizing ggplot2 for temporal trends.
 :::
 
 ## Information Breaches Over the Past Decade (3D visulazation)
@@ -135,25 +143,13 @@ plot_ly(agg_data, x = ~year, y = ~sector, z = ~records_lost, color = ~method,
 
 ## Total Breaches Over Time plot
 
-::: {style="display: flex; flex-direction: row;"}
-::: {style="flex: 1; margin-right: 10px;"}
-```         
-![](images/total_plot.gif)
-```
-:::
 
-::: {style="flex: 1;"}
-```         
-![](images/sector_group_plot.gif)
-```
-:::
-:::
 
 ## Question 2
 
 ::: incremental
 
--Vulnerability Assessment
+-  Vulnerability Assessment
 
 ```{r}
 library(plotly)
@@ -348,7 +344,6 @@ fig
 ## Conclusion
 
 ::: incremental
-
 -Identifying Sector Weaknesses: We pinpointed industries most vulnerable to cyberattacks, like healthcare and finance. These sectors require immediate security upgrades.
 
 -Prioritizing Breach Severity: We distinguished between minor leaks and data floods. Focusing on breaches with the most sensitive or critical data is crucial.
@@ -356,3 +351,4 @@ fig
 -Balancing Security & Privacy: We explored the delicate balance between robust security and customer access. Businesses must find the sweet spot to avoid hindering operations.
 
 -Adapting to Evolving Threats: We visualized how hacker tactics change. Businesses need to continuously refine their defenses to stay ahead of cybercriminals.
+:::
