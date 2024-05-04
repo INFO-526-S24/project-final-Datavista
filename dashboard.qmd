@@ -16,7 +16,19 @@ options(repos = "https://cran.r-project.org/")  # Set CRAN mirror
 library(dplyr)
 library(ggplot2)
 library(plotly)
+library(dplyr)
+library(ggplot2)
+library(plotly)
+library(shiny)
+# Load the required library
+library(knitr)
+# Load the required library
+library(knitr)
+library(DT)
 
+
+
+theme_set(theme_minimal(base_size = 24, base_family = "Atkinson Hyperlegible"))
 theme_set(theme_minimal(base_size = 24, base_family = "Atkinson Hyperlegible"))
 
 
@@ -46,9 +58,9 @@ This dashboard displays statistics for:
 
 |               |                        |
 |---------------|------------------------|
-| **Project**   | Data Breach Analysis  |
-| **Team**      | Datavista             |
-| **Month**     | May 2024              |
+| **Project**   | Data Breach Analysis   |
+| **Team**      | Datavista              |
+| **Month**     | May 2024               |
 
 ------------------------------------------------------------------------
 
@@ -118,7 +130,18 @@ total_breaches_2023 <- table(data_2023$method)
 total_breaches_2023 <- sum(total_breaches_2023)
 
 
+names(data)[names(data) == 'year   '] <- 'year'
 
+# Filter data for the past decade (2013-2023)
+df_decade <- data[data$year >= 2013 & data$year <= 2023, ]
+
+# Clean column names using janitor::clean_names()
+df_decade <- janitor::clean_names(df_decade)
+
+# Calculate the total records lost in 2023
+total_record_lost_2023 <- df_decade %>%
+  filter(year == 2023) %>%
+  summarise(total_records_lost = sum(records_lost, na.rm = TRUE))
 
 
 ```
@@ -160,17 +183,18 @@ list(
 ```{r}
 
 #| content: valuebox
-#| title: "Total record lost in 2023"
-total_record_lost_2023 <- data %>%
-  filter(year == 2023) %>%
-  summarise(records_lost = sum(records_lost, na.rm = TRUE)) %>%
-  pull(records_lost)
+#| title: "Total data lost  in 2023"
 
+
+# Create a value box with the total records lost in 2023
 list(
   icon = "shield",
   color = "primary",
-  value = total_record_lost_2023
+  value =  total_record_lost_2023
+
 )
+
+
 
 ```
 
@@ -207,7 +231,6 @@ knitr::include_graphics("images/sector_group_plot.gif")
 ```{r}
 #| title: Breaches Over Time by method
 
-knitr::include_graphics("images/method_group_plot.gif")
 
 
 
@@ -217,7 +240,7 @@ knitr::include_graphics("images/method_group_plot.gif")
 
 
 
-# Pattern analysis {orientation="columns"}
+# PATTERN ANALYSIS {orientation="columns"}
 
 ```{r}
 
@@ -251,19 +274,54 @@ plot
 
 
 
+```{r}
+
+knitr::include_graphics("images/ballon_plot.gif")
+
+```
+
+# DATA BREACH STORY
+**FOR LAST DECADE "STORY" OF TOP 10 BREACH BY DATA LOST**
+```{r,message=FALSE}
+
+
+df <- read.csv("data/Data_Breaches_LATEST.csv")
+
+# Arrange the data by descending records_lost and select the top 10
+top_records_lost <- data_last_10_years %>%
+  arrange(desc(records_lost)) %>%
+  head(10) %>%
+  select(organisation, year, story, records_lost)
+
+# Create a DT DataTable with interactivity
+datatable(top_records_lost, 
+          options = list(
+            dom = 't',
+            paging = FALSE,
+            searching = FALSE,
+            ordering = FALSE,
+            info = FALSE,
+            columnDefs = list(list(className = 'dt-center', targets = '_all'))
+          )) %>%
+  formatStyle(
+    names(top_records_lost),
+    background = styleInterval(c(0, max(top_records_lost$records_lost)), c("lightblue", "lightgreen", "yellow"))
+  )
+
+```
 
 
 
 
 
 
+`
 
 
 
 
 
 
-# Data
 
 
 

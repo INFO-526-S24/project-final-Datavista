@@ -109,7 +109,7 @@ Visualizing Information Breaches: A Multifaceted Approach (2013-2023)
 
 ## Information Breaches Over the Past Decade (3D visulazation)
 
-```{r fig.width = 16, fig.asp = 0.618 }
+```{r fig.width = 4, fig.asp = 0.5 }
 
 suppressWarnings({
 # Load required libraries
