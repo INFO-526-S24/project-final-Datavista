@@ -311,57 +311,53 @@ Having this knowledge is like having a superhero's insight into cybersecurity. I
 
 ### **Unveiling Sector Vulnerabilities: A Multidimensional Exploration of Cybersecurity Breaches**
 
-**1. Understanding the Landscape:**
+**1. Understanding Breach Methods:**
 
-Our investigation delves into the ever-evolving landscape of cybersecurity breaches. We begin by gathering comprehensive data on these incidents, meticulously sorting them based on the impacted sectors or data types and the methods employed by attackers. This meticulous approach allows us to pinpoint which areas are most susceptible to various attack vectors.
+-   Analyze the stacked bar chart (**Breach Methods by Sector/Type of Data**) to identify the most prevalent breach methods within each sector. This helps prioritize your security efforts towards the methods posing the biggest threat.
 
-**2.Visualizing Vulnerability :**
+**2. Tracking Breach Trends:**
 
-To gain a clear understanding of the most vulnerable sectors and data types, we'll create a captivating grouped bar chart. This chart will showcase the number of breaches experienced by different sectors or data types, categorized by the methods used in the attacks. Colors will be strategically employed to highlight the impact of breaches on both businesses (financial losses, operational disruptions) and individuals (identity theft, privacy violations). This color-coding scheme will ensure the data is readily interpretable at a glance.
+-   Use the animated line chart (**Breach Frequency Over Time**) to see if there are any overall trends in the number of breaches over time. Are breaches becoming more frequent?
 
-**3.Interactive Exploration :**
+-   Look for specific sector trends within the animated scatter plot (**Balloon Race Plot**) and the interactive line chart (**Breach Methods by Sector/Type of Data Over Time**). Are there particular sectors experiencing a rise in breaches?
 
-We believe in empowering users to delve deeper into the data. Our interactive visualization will be equipped with informative tooltips that appear when hovering over specific data points. These tooltips will provide detailed information on the number of breaches, the sectors or data types affected, and the methods used. Additionally, we'll incorporate customizable filters, allowing users to focus on specific sectors, data types, or breach methods for a more targeted analysis.
+**3. Identifying Vulnerable Sectors:**
 
-**Explaining the Data :**
+-   The top 10 sectors chart (**Top 10 Sectors by Records Lost in 2023**) highlights sectors with the highest number of records lost in a specific year (2023 in this case). You can analyze this along with the animated scatter plot to identify sectors consistently experiencing high breach volumes.
 
-Alongside the captivating visualizations, we'll provide a clear and concise explanation of the data's key takeaways. This explanation will delve into the importance of vulnerability assessments for robust cybersecurity. Vulnerability assessments act as a proactive measure, identifying weaknesses in a system's defenses before attackers exploit them. We'll emphasize the real-world consequences of breaches, ranging from significant financial losses for businesses to devastating privacy concerns for individuals impacted by identity theft or data leaks.
+**4. Prioritizing Security Measures:**
 
-**Tracking Trends Over Time :**
+Based on the identified vulnerabilities and trends, you can prioritize security measures:
 
-Our exploration doesn't end with a static snapshot. To unveil potential temporal trends, we'll present a dynamic visualization showcasing the frequency of breaches over time. This visualization will utilize a stacked bar chart, offering a clear visual representation of breach occurrences across different sectors or data types within a chosen time period. To enhance user engagement, we'll incorporate a visually appealing 3D effect, making the trends even more readily apparent.
+-   **Focus on High-Risk Sectors:** Implement stricter security protocols, increase employee training, and consider additional security audits for sectors with a high number of breaches.
 
-By combining these multifaceted visualizations, interactive elements, and insightful explanations, we aim to empower users with a comprehensive understanding of cybersecurity breach patterns and vulnerabilities. This knowledge can serve as a valuable tool for businesses and individuals alike in fortifying their defenses and mitigating the risks associated with cyberattacks.
+-   **Address Specific Breach Methods:** Target security measures based on the most common breach methods used in specific sectors. For example, if phishing attacks are prevalent, provide more phishing awareness training to employees.
+
+-   **Monitor Trends:** Regularly review these visualizations to track changes in breach trends and adapt your security strategies accordingly.
 
 ------------------------------------------------------------------------
 
 ### **Analysis :**
 
-1.  **Breach Methods by Sector/Type of Data (Stacked Bar Chart)**: This chart breaks down breaches by sector or type of data and shows which methods attackers use most. By hovering over each section, you can see details like the method used and how many records were lost. This helps us see which sectors or types of data are most at risk from specific attack methods.
+1.  **Breach Methods by Sector/Type of Data (Stacked Bar Chart):**
 
-2.  **Breach Methods by Sector/Type of Data (Animated Stacked Bar Chart)**: This one's like a moving version of the first chart. It shows how breach patterns change over time within each sector or type of data. By watching the animation year by year, we can spot trends and see if certain attack methods are becoming more common in specific sectors.
+This code (using plotly) creates a stacked bar chart visualizing the total records lost for different breach methods within each sector. Hovering over a bar displays details like the specific method and the number of records lost. The chart allows for interactive exploration by using the range slider on the x-axis to focus on specific sectors.
 
-3.  **Breach Severity by Sector/Type of Data (Relative Stacked Bar Chart)**: This chart compares the severity of breaches across different sectors or types of data. It focuses on the proportion of data lost within each category rather than the total number of breaches. This helps us understand which sectors or types of data face the biggest potential losses.
+**2.** **Breach Methods by Sector/Type of Data Over Time (Interactive Line Chart):**
 
-4.  **Records Lost by Sector/Method (Stacked Bar Chart)**: Here, we see the total number of records lost in breaches, grouped by sector and breach method. It complements the first chart by highlighting which sectors suffer the most significant data losses due to specific breach methods.
+This code (using plotly) creates an interactive line chart with multiple lines. Each line represents a year, showcasing how records lost through different breach methods vary across years within each sector. The chart includes a legend and allows users to select a specific year to focus on through dropdown menus.
 
-5.  **Breach Frequency Over Time (Line Chart)**: This animated chart shows how often breaches occur over the years, categorized by the methods used. It helps us track changes in cybercrime activity over time and spot any new trends or emerging threats.
+**3. Top 10 Sectors by Records Lost in 2023 (Animated Bar Chart):**
 
-By putting all these insights together, we can:
+This code (using ggplot2 and gganimate) creates an animated bar chart showcasing the top 10 sectors with the most records lost in 2023 (filtered data). Each bar is colored differently, and labels display the number of records lost. The chart uses a transition effect to highlight the bars sequentially.
 
--   **Identify vulnerable sectors and data types**: Knowing which areas are most at risk allows businesses to focus their efforts where they're needed most.
+**4. Balloon Race Plot: Records Lost by Sector Over Time (Animated Scatter Plot):**
 
--   **Understand the severity of breaches**: By comparing data losses across different sectors, we can prioritize security measures and allocate resources accordingly.
+This code (using ggplot2 and plotly) creates an animated scatter plot with point size representing the number of records lost. Points are colored by sector and positioned based on the year of the breach. The animation allows users to see how records lost by sector evolve over time.
 
--   **Stay ahead of evolving threats**: Tracking temporal trends helps us anticipate changes in attacker tactics and adjust our defenses proactively.
+5.  **Breach Frequency Over Time (Animated Line Chart):**
 
-Ultimately, this knowledge helps businesses:
-
--   **Focus on the most critical vulnerabilities**: By targeting specific sectors, data types, and breach methods, they can strengthen their defenses where it matters most.
-
--   **Implement tailored security measures**: Armed with insights into the most prevalent threats, businesses can deploy security controls that address their unique risks.
-
--   **Regularly assess and improve their defenses**: By staying vigilant and adapting to changing threats, businesses can minimize the impact of cyberattacks and protect their data and stakeholders effectively.
+This code (using ggplot2 and gganimate) creates an animated line chart displaying the total number of records lost per year across all sectors present in the data. Each line represents a different sector, allowing for comparison of breach trends across sectors over time.
 
 ------------------------------------------------------------------------
 
@@ -491,71 +487,76 @@ fig
 ```
 
 ```{r}
-library(plotly)
-library(dplyr)
+library(ggplot2)
+library(gganimate)
+
+# Filter the data for the year 2023
+data_2023 <- df_decade[df_decade$year == 2023, ]
+
+# Aggregate records lost by sector
+records_lost_by_sector <- aggregate(records_lost ~ sector, data = data_2023, FUN = sum)
+
+# Order the aggregated data by records lost in descending order
+records_lost_by_sector <- records_lost_by_sector[order(-records_lost_by_sector$records_lost), ]
+
+# Select the top 10 sectors
+top_10_sectors <- head(records_lost_by_sector, 10)
+
+# Create a color palette with different colors for each bar
+color_palette <- rainbow(length(top_10_sectors$sector))
+
+# Plot the top 10 sectors by records lost in 2023
+p <- ggplot(data = top_10_sectors, aes(x = reorder(sector, -records_lost), y = records_lost, fill = sector)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = records_lost), vjust = -0.5, color = "black", size = 3) +  # Add text labels for records lost
+  labs(title = "Top 10 Sectors by Records Lost in 2023",
+       x = "Sector",
+       y = "Records Lost") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  scale_fill_manual(values = color_palette) +  # Assign colors manually
+  coord_flip() +
+  transition_states(states = sector, transition_length = 10, state_length = 5) +
+  enter_fade() +
+  exit_fade()
 
 
-# Aggregate data by sector and method
-agg_data_sum <- agg_data %>%
-  group_by(sector, method) %>%
-  summarise(records_lost = sum(records_lost)) %>%
-  ungroup() %>%
-  mutate(proportion_lost = records_lost / sum(records_lost))  # Calculate proportion of records lost
+# Render animation
+animate(p)
 
-# Create a relative stacked bar chart
-bar_chart <- plot_ly(data = agg_data_sum,
-                     x = ~sector,
-                     y = ~proportion_lost,
-                     type = 'bar',
-                     color = ~method,
-                      colors = 'Dark2',
-                     hoverinfo = 'text',
-                     text = ~paste('Method:', method,
-                                   '<br>Proportion of Records Lost:', scales::percent(proportion_lost))) %>%
-  layout(
-    barmode = 'stack',
-    title = 'Breach Severity by Sector/Type of Data (Relative Stacked Bar Chart)',
-    xaxis = list(title = 'Sector/Type'),
-    yaxis = list(title = 'Proportion of Records Lost'),
-    margin = list(b = 150),
-    showlegend = TRUE
-  ) %>%
-  config(displayModeBar = TRUE)
 
-bar_chart
+#Rendering the animation
+anim_save("images/Top_10_sectors_record_lost.gif", animate(p) )
+
 ```
 
 ```{r}
 library(plotly)
-library(dplyr)
 
-agg_data_sum <- agg_data %>%
-  group_by(sector, method) %>%
-  summarise(records_lost = sum(records_lost), .groups = 'drop')
+# Create a plotly object
+p <- ggplot(data = df_decade, aes(x = reorder(sector, records_lost), y = year, size = records_lost, color = sector, text = paste("Sector:", sector, "<br>Records Lost:", records_lost, "<br>Organisation:", organisation))) +
+  geom_point() +
+  scale_size_continuous(range = c(5, 25)) +
+  labs(title = "Balloon Race Plot: Records Lost by Sector Over Time",
+       x = "Sectors",
+       y = "Year") +  # Change y-axis label to "Year"
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        axis.title.y = element_blank(),
+        legend.position = "none") +
+  transition_time(year) +
+  enter_fade() +  # Add fade-in animation
+  exit_fade()    # Add fade-out animation
 
-fig <- plot_ly(data = agg_data_sum,
-               x = ~sector,
-               y = ~records_lost,
-               type = 'bar', 
-               name = ~method,
-               hoverinfo = 'text',
-               text = ~paste('Sector:',
-                             sector,
-                             '<br>Method:',
-                             method, 
-                             '<br>Records Lost:',
-                             records_lost)) %>%
-  layout(
-    barmode = 'stack',
-    title = 'Records Lost by Sector/Method',
-    xaxis = list(title = 'Sector',
-                 tickangle = -45,
-                 automargin = TRUE),
-    yaxis = list(title = 'Records Lost'),
-    showlegend = TRUE
-  )
+# Convert ggplot object to a plotly object
+p_plotly <- ggplotly(p, tooltip = "text")
 
-fig
+# Render the animation
+animate(p, duration = 10) 
+
+
+#Rendering the animation
+anim_save("images/ballon_plot.gif", animate(p) )
+
 
 
 ```
@@ -646,84 +647,3 @@ Imagine checking your home for weak spots before burglars show up. That's what b
 So, by understanding where the weak spots are, balancing security with business needs, staying ahead of evolving threats, and being proactive about protection, businesses can keep their digital doors locked tight and their data safe from prying eyes.
 
 ------------------------------------------------------------------------
-
-# new
-
-bubble plot
-
-```{r}
-library(plotly)
-
-# Create a plotly object
-p <- ggplot(data = df_decade, aes(x = reorder(sector, records_lost), y = year, size = records_lost, color = sector, text = paste("Sector:", sector, "<br>Records Lost:", records_lost, "<br>Organisation:", organisation))) +
-  geom_point() +
-  scale_size_continuous(range = c(5, 25)) +
-  labs(title = "Balloon Race Plot: Records Lost by Sector Over Time",
-       x = "Sectors",
-       y = "Year") +  # Change y-axis label to "Year"
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1),
-        axis.title.y = element_blank(),
-        legend.position = "none") +
-  transition_time(year) +
-  enter_fade() +  # Add fade-in animation
-  exit_fade()    # Add fade-out animation
-
-# Convert ggplot object to a plotly object
-p_plotly <- ggplotly(p, tooltip = "text")
-
-# Render the animation
-animate(p, duration = 10) 
-
-
-#Rendering the animation
-anim_save("images/ballon_plot.gif", animate(p) )
-
-
-
-```
-
-## top 10 plot sector (raching bar chart)
-
-```{r}
-library(ggplot2)
-library(gganimate)
-
-# Filter the data for the year 2023
-data_2023 <- df_decade[df_decade$year == 2023, ]
-
-# Aggregate records lost by sector
-records_lost_by_sector <- aggregate(records_lost ~ sector, data = data_2023, FUN = sum)
-
-# Order the aggregated data by records lost in descending order
-records_lost_by_sector <- records_lost_by_sector[order(-records_lost_by_sector$records_lost), ]
-
-# Select the top 10 sectors
-top_10_sectors <- head(records_lost_by_sector, 10)
-
-# Create a color palette with different colors for each bar
-color_palette <- rainbow(length(top_10_sectors$sector))
-
-# Plot the top 10 sectors by records lost in 2023
-p <- ggplot(data = top_10_sectors, aes(x = reorder(sector, -records_lost), y = records_lost, fill = sector)) +
-  geom_bar(stat = "identity") +
-  geom_text(aes(label = records_lost), vjust = -0.5, color = "black", size = 3) +  # Add text labels for records lost
-  labs(title = "Top 10 Sectors by Records Lost in 2023",
-       x = "Sector",
-       y = "Records Lost") +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  scale_fill_manual(values = color_palette) +  # Assign colors manually
-  coord_flip() +
-  transition_states(states = sector, transition_length = 10, state_length = 5) +
-  enter_fade() +
-  exit_fade()
-
-
-# Render animation
-animate(p)
-
-
-#Rendering the animation
-anim_save("images/Top_10_sectors_record_lost.gif", animate(p) )
-
-```
