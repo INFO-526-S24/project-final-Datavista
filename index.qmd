@@ -18,6 +18,12 @@ execute:
 ---
 
 ```{r, GETTING THE LIBRARIES}
+#| label: Library
+#| echo: false
+#| warning: false
+
+
+
 if (!require(pacman))
   install.packages(pacman)
 
@@ -33,6 +39,14 @@ pacman::p_load(tidyverse,
                ggimage,
                ggtext,magick,
                animation)
+
+# Load required libraries
+library(ggplot2)
+library(dplyr)
+library(gganimate)
+library(plotly)
+library(janitor)
+library(magrittr)
 
 pacman::p_load_gh("BlakeRMills/MoMAColors")
   message = FALSE
@@ -71,7 +85,6 @@ By uncovering these insights, we hope to empower cybersecurity professionals to 
 
 ------------------------------------------------------------------------
 
-## **Visualizations**
 
 ### **Question 1: General Assessment: How have information breaches advanced over past decade(2013-2023), and what are the patterns with respect to their recurrence, seriousness, and affect over distinctive businesses?**
 
@@ -124,27 +137,49 @@ This multifaceted visual exploration empowers stakeholders to make informed deci
 ## **Data** Preprocessing
 
 ```{r}
-# Load required libraries
-library(plotly)
-library(janitor)
-library(magrittr)  # Load magrittr for pipe operator
+#| label: Preprocessing
+#| echo: false
+#| warning: false
 
-# Load the CSV data
+
+
+
+# Loading the CSV data
 data <- read.csv("data/Data_Breaches_LATEST.csv")
 
-# Rename the column with extra spaces
+# Renaming the column with extra spaces
 names(data)[names(data) == 'year   '] <- 'year'
 
-# Filter data for the past decade (2013-2023)
+# Filtering data for the past decade (2013-2023)
 df_decade <- data[data$year >= 2013 & data$year <= 2023, ]
 
-# Clean column names using janitor::clean_names()
+# Cleaning column names using janitor::clean_names()
 df_decade <- janitor::clean_names(df_decade)
 
-# Aggregate data by year, sector, and method
+# Aggregating sector categories
+df_decade$sector <- ifelse(df_decade$sector %in% c("academic", "finance", "government", "health", "military", "tech","web","technology"), df_decade$sector, "other")
+
+
+# Aggregating method categories
+df_decade$method <- ifelse(df_decade$method %in% c("hacked", "inside job", "lost device", "poor security"), df_decade$method, "other")
+
+# Aggregating data by year, sector, and method
 agg_data <- aggregate(records_lost ~ year + sector + method, data = df_decade, FUN = sum)
 
-# Create a 3D plot
+```
+
+
+
+
+## **Visualizations**
+
+```{r}
+#| label: 3D PLOT
+#| echo: false
+#| warning: false
+
+
+# Creating a 3D plot
 plot_ly(agg_data, x = ~year, y = ~sector, z = ~records_lost, color = ~method,
         type = "scatter3d", mode = "markers", sizes = 10) %>%
   layout(title = "Information Breaches Over the Past Decade",
@@ -154,123 +189,25 @@ plot_ly(agg_data, x = ~year, y = ~sector, z = ~records_lost, color = ~method,
 
 ```
 
+
+
+
+
+
+
+
+
+
 ```{r}
-# Load required libraries
-library(ggplot2)
-library(dplyr)
-library(gganimate)
-
-# Clean 'health ' to 'health'
-data$sector <- gsub("health ",
-                    "health",
-                    data$sector)
-
-# Function to categorize sectors
-categorize_sector <- function(sector) {
-  if (sector %in% c("government",
-                    "government, health",
-                    "government, military")) {
-    return("Government")
-  } else if (sector %in% c("health",
-                            "tech, health", 
-                            "misc, health",
-                            "military, health")) {
-    return("Healthcare")
-  } else if (sector %in% c("tech", 
-                            "telecoms", 
-                            "web",
-                            "retail",
-                            "web ",
-                            "NGO",
-                            "misc", 
-                            "legal", 
-                            "app", "tech, app",
-                            "academic",
-                            "tech, web", 
-                            "web, tech", 
-                            "tech, retail", 
-                            "web, military", 
-                            "military", 
-                            "web, gaming")) {
-    return("Technology")
-  } else {
-    return("Other")
-  }
-}
-
-# Apply categorize_sector function to create a new column 'sector_group'
-data$sector_group <- sapply(data$sector,
-                            categorize_sector)
-
-# Aggregate total breaches by year
-total_by_year <- data %>%
-  group_by(year) %>%
-  summarise(total_breaches = n())
-
-# Aggregate total breaches by sector group
-total_by_sector_group <- data %>%
-  group_by(year, 
-           sector_group) %>%
-  summarise(total_breaches = n())
-
-# Plot total breaches over the years
-total_plot <- ggplot(total_by_year,
-                     aes(x = year, 
-                         y = total_breaches,
-                         group = 1)) +   # Group by 1 for a continuous line
-  geom_point(color = "black", size = 3) +  # Add points
-  geom_line(color = "black", size = 1) +  # Add line
-  labs(x = "Year", 
-       y = "Total Breaches", 
-       title = "Total Breaches Over Time") +  # Set axis and title labels
-  theme_minimal() +  # Apply minimal theme
-  theme(  # Customize theme
-    panel.grid.major = element_blank(),  # Remove major grid lines
-    panel.grid.minor = element_blank(),  # Remove minor grid lines
-    axis.line = element_line(color = "black"),  # Set axis line color
-    axis.text = element_text(size = 12),  # Set axis text size
-    axis.title = element_text(size = 14),  # Set axis title size
-    plot.title = element_text(size = 16, hjust = 0.5)  # Set plot title size and position
-  ) +
-  transition_reveal(year)  # Transition reveal animation
-
-# Plot breaches by sector group
-sector_group_plot <- ggplot(total_by_sector_group,
-                            aes(x = year, 
-                                y = total_breaches,
-                                color = sector_group, 
-                                group = sector_group)) +  # Group by sector_group for separate lines
-  geom_point(size = 3) +  # Add points
-  geom_line(size = 1) +  # Add line
-  labs(x = "Year",
-       y = "Total Breaches",
-       title = "Breaches Over Time by Sector Group") +  # Set axis and title labels
-  theme_minimal() +  # Apply minimal theme
-  theme(  # Customize theme
-    panel.grid.major = element_blank(),  # Remove major grid lines
-    panel.grid.minor = element_blank(),  # Remove minor grid lines
-    axis.line = element_line(color = "black"),  # Set axis line color
-    axis.text = element_text(size = 12),  # Set axis text size
-    axis.title = element_text(size = 14),  # Set axis title size
-    plot.title = element_text(size = 16, hjust = 0.5)  # Set plot title size and position
-  ) +
-  transition_reveal(year)  # Transition reveal animation
-
-# Create animations
-total_animation <- animate(total_plot)  # Animate total_plot
-sector_group_animation <- animate(sector_group_plot)  # Animate sector_group_plot
-
-#Rendering the animation
-anim_save("images/total_plot.gif", total_animation)
-anim_save("images/sector_group_plot.gif", sector_group_animation)
-
-
-
-
+#| label: Total breaches
+#| echo: false
+#| warning: false
+knitr::include_graphics("images/total_plot.gif")
+knitr::include_graphics("images/sector_group_plot.gif")
 
 ```
 
-![](images/total_plot.gif) ![](images/sector_group_plot.gif)
+
 
 ### **Discussion :**
 
@@ -363,6 +300,10 @@ This code (using ggplot2 and gganimate) creates an animated line chart displayin
 ### **Visualizations :**
 
 ```{r}
+#| label: Q2plot1(Breach method by sector)
+#| echo: false
+#| warning: false
+
 library(plotly)
 library(dplyr)
 
@@ -420,7 +361,15 @@ fig
 
 ```
 
+
+
 ```{r}
+
+#| label:  Q2plot2(Breach method by sector by year) 
+#| echo: false
+#| warning: false
+
+
 library(plotly)
 library(dplyr)
 
@@ -485,51 +434,22 @@ fig
 
 ```
 
+
 ```{r}
-library(ggplot2)
-library(gganimate)
-
-# Filter the data for the year 2023
-data_2023 <- df_decade[df_decade$year == 2023, ]
-
-# Aggregate records lost by sector
-records_lost_by_sector <- aggregate(records_lost ~ sector, data = data_2023, FUN = sum)
-
-# Order the aggregated data by records lost in descending order
-records_lost_by_sector <- records_lost_by_sector[order(-records_lost_by_sector$records_lost), ]
-
-# Select the top 10 sectors
-top_10_sectors <- head(records_lost_by_sector, 10)
-
-# Create a color palette with different colors for each bar
-color_palette <- rainbow(length(top_10_sectors$sector))
-
-# Plot the top 10 sectors by records lost in 2023
-p <- ggplot(data = top_10_sectors, aes(x = reorder(sector, -records_lost), y = records_lost, fill = sector)) +
-  geom_bar(stat = "identity") +
-  geom_text(aes(label = records_lost), vjust = -0.5, color = "black", size = 3) +  # Add text labels for records lost
-  labs(title = "Top 10 Sectors by Records Lost in 2023",
-       x = "Sector",
-       y = "Records Lost") +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  scale_fill_manual(values = color_palette) +  # Assign colors manually
-  coord_flip() +
-  transition_states(states = sector, transition_length = 10, state_length = 5) +
-  enter_fade() +
-  exit_fade()
-
-
-# Render animation
-animate(p)
-
-
-#Rendering the animation
-anim_save("images/Top_10_sectors_record_lost.gif", animate(p) )
+#| label: Bar_plot_display
+#| echo: false
+#| warning: false
+knitr::include_graphics("images/bar_plot.gif")
 
 ```
 
+
+
+
 ```{r}
-library(plotly)
+#| label: Ballon plot
+#| echo: false
+#| warning: false
 
 # Create a plotly object
 p <- ggplot(data = df_decade, aes(x = reorder(sector, records_lost), y = year, size = records_lost, color = sector, text = paste("Sector:", sector, "<br>Records Lost:", records_lost, "<br>Organisation:", organisation))) +
@@ -537,61 +457,41 @@ p <- ggplot(data = df_decade, aes(x = reorder(sector, records_lost), y = year, s
   scale_size_continuous(range = c(5, 25)) +
   labs(title = "Balloon Race Plot: Records Lost by Sector Over Time",
        x = "Sectors",
-       y = "Year") +  # Change y-axis label to "Year"
+       y = "Year") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1),
         axis.title.y = element_blank(),
         legend.position = "none") +
   transition_time(year) +
-  enter_fade() +  # Add fade-in animation
-  exit_fade()    # Add fade-out animation
+  enter_fade() +
+  exit_fade()
 
 # Convert ggplot object to a plotly object
 p_plotly <- ggplotly(p, tooltip = "text")
 
-# Render the animation
-animate(p, duration = 10) 
-
-
-#Rendering the animation
-anim_save("images/ballon_plot.gif", animate(p) )
+# Adjust y-axis to show integer years
+p_plotly <- layout(p_plotly, yaxis = list(tickmode = "linear", tickformat = "d")) 
 
 
 
 ```
+
+
+
 
 ```{r}
-# Load required libraries
-library(ggplot2)
-library(gganimate)
 
-# Load the CSV data
-data <- read.csv("data/Data_Breaches_LATEST.csv")
-
-# Filter data for the past decade (2013-2023)
-df_decade <- subset(data, year >= 2013 & year <= 2023)
-
-# Clean column names using janitor::clean_names()
-df_decade <- janitor::clean_names(df_decade)
-
-# Aggregate data by year and sector
-agg_data <- aggregate(records_lost ~ year + sector, data = df_decade, FUN = sum)
-
-# Create ggplot with transition
-p <- ggplot(df_decade, aes(x = year, y = records_lost, group = sector, color = sector)) +
-  geom_line() +
-  labs(title = "Breach Frequency Over Time", x = "Year", y = "Total Records Lost", color = "Sector") +
-  theme_classic() +
-  transition_time(year) +
-  ease_aes('linear')
-
-# Render animation
-animate(p)
-
-#Rendering the animation
-anim_save("images/breach_animation.gif", animate(p) )
+knitr::include_graphics("images/ballon_plot.gif")
 
 ```
+```
+
+
+
+
+
+
+
 
 ### **Discussion :**
 

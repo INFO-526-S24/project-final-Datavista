@@ -280,8 +280,11 @@ knitr::include_graphics("images/ballon_plot.gif")
 
 ```
 
-# DATA BREACH STORY
-**FOR LAST DECADE "STORY" OF TOP 10 BREACH BY DATA LOST**
+
+
+
+# DATA BREACH STORY {height="100"}
+
 ```{r,message=FALSE}
 
 
@@ -316,6 +319,7 @@ datatable(top_records_lost,
 
 
 `
+
 
 
 
