@@ -5,7 +5,7 @@ author: "**Datavista**: <br> Akash Srinivasan, Abhishek Kumar, Divya Dhole, Nour
 title-slide-attributes:
   data-background-image: images/dataGettyImages.jpeg
   data-background-size: stretch
-  data-background-opacity: "0.7"
+  data-background-opacity: "0.5"
   data-slide-number: none
 format:
   revealjs:
@@ -83,19 +83,26 @@ knitr::opts_chunk$set(
 
 -   Exploratory Data Analysis (EDA): Uncover breach patterns and trends using statistical methods and visualizations.
 
--   Model Development: Create ML models (classification/regression) to predict breaches or assess severity with key data features.
+  
 
-## Question 1
+
+# Question 1
+
+
+- Question 1: How have information breaches advanced over past decade(2013-2023), and what are the patterns with respect to their recurrence, seriousness, and affect over distinctive businesses?
+
+---
+
 
 ::: panel-tabset
-#### Information Breaches Over the Past Decade (3D visulazation)
+####  3D Visualization
 
-```{r fig.width = 4, fig.asp = 0.5 }
+```{r fig.width = 2, fig.asp = 0.5 }
 
 
 #| echo: false
 #| warning: false
-
+#
 
 # Loading the CSV data
 data <- read.csv("data/Data_Breaches_LATEST.csv")
@@ -130,6 +137,9 @@ plot_ly(agg_data, x = ~year, y = ~sector, z = ~records_lost, color = ~method,
 
 ```
 
+
+#### Insights
+
 Visualizing Information Breaches: A Multifaceted Approach (2013-2023)
 
 -   Utilizing diverse visualizations: Employing 3D scatter plots, time series analysis, and animations.
@@ -139,14 +149,13 @@ Visualizing Information Breaches: A Multifaceted Approach (2013-2023)
 -   Time Series Analysis: Utilizing ggplot2 for temporal trends.
 :::
 
-## Question 1
 
-### Total Breaches Over Time plot
+---
 
 ::: panel-tabset
-#### plot A
+#### Time Trend
 
-```{r}
+```{r fig.width = 2 ,fig.asp = 0.5}
 #| label: Total breaches
 #| echo: false
 #| warning: false
@@ -154,9 +163,9 @@ knitr::include_graphics("images/total_plot.gif")
 
 ```
 
-#### plot B
+#### Sector Trend
 
-```{r}
+```{r fig.width = 4, fig.asp = 1.4 }
 #| label: Breaches by sector
 #| echo: false
 #| warning: false
@@ -172,14 +181,18 @@ knitr::include_graphics("images/sector_group_plot.gif")
 -   **Overall Security Landscape:** The overall trend in total breaches can indicate a broader improvement or decline in data security practices over time.
 :::
 
-## Question 2
+
+
+# Question 2
+(Vulnerability Assessment)
+
+  - Which sectors or types of data (e.g., personal, financial) are particularly susceptible to different breach methods like hacking or insider jobs, and what are the consequential impacts on both businesses and individuals?
+---
 
 ::: panel-tabset
 #### Plot A
 
--   Vulnerability Assessment
-
-```{r fig.width = 16, fig.asp = 0.618}
+```{r fig.width = 4, fig.asp = .7 }
 
 #| warning: false
 
@@ -246,12 +259,13 @@ fig
 -   Vulnerability Across Sectors: By comparing the total heights of stacked bars across different sectors, you can see which sectors experienced the most significant data loss overall, potentially suggesting higher vulnerability.
 :::
 
-## Question 2
+---
+
 
 ::: panel-tabset
 #### Plot B
 
-```{r}
+```{r fig.width = 2, fig.asp = 0.5 }
 #| echo: false
 #| warning: false
 
@@ -326,12 +340,11 @@ fig
 -   Evolving Trends: You can see if specific methods become more or less prominent over time within a sector, potentially indicating a shift in attacker tactics or changing vulnerabilities.
 :::
 
-## Question 2
-
+---
 ::: panel-tabset
-#### plot C
+#### Plot C
 
-```{r fig.width = 16, fig.asp = 0.618}
+```{r fig.width = 2, fig.asp = 0.618}
 
 #| label: Bar_plot_display
 #| echo: false
@@ -342,16 +355,15 @@ knitr::include_graphics("images/bar_plot.gif")
 
 #### Insights
 
--   Focus: It highlights the sectors that suffered the biggest data breaches in 2023 based on the total number of records lost.
--   Animation: The animation allows you to see how the ranking of sectors by records lost might change over time (assuming you have data for multiple years).
+- Focus: It highlights the sectors that suffered the biggest data breaches in 2023 based on the total number of records lost.
+- Animation: The animation allows you to see how the ranking of sectors by records lost might change over time (assuming you have data for multiple years).
 :::
 
-## Question 2
 
 ::: panel-tabset
 #### Plot D
 
-```{r fig.width = 16, fig.asp = 0.618}
+```{r fig.width = 2, fig.asp = 0.618}
 
 #| label: Bar_plot_display
 #| echo: false
@@ -362,19 +374,21 @@ knitr::include_graphics("images/ballon_plot.gif")
 
 #### Insights
 
--   Vulnerable Sectors: Sectors consistently appearing with larger points over time might be more susceptible to breaches.
--   Year-to-Year Fluctuations: You can see if specific sectors experience a surge or decline in breach activity over the years. Combined Insights: By considering both sector position and size changes over time, you can identify periods where certain sectors were disproportionately impacted by breaches.
+- Vulnerable Sectors: Sectors consistently appearing with larger points over time might be more susceptible to breaches.
+- Year-to-Year Fluctuations: You can see if specific sectors experience a surge or decline in breach activity over the years. Combined Insights: By considering both sector position and size changes over time, you can identify periods where certain sectors were disproportionately impacted by breaches.
 :::
+
+
 
 ## Conclusion
 
--   Identifying Sector Weaknesses: We pinpointed industries most vulnerable to cyberattacks, like healthcare and finance. These sectors require immediate security upgrades.
+- Identifying Sector Weaknesses: We pinpointed industries most vulnerable to cyberattacks, like healthcare and finance. These sectors require immediate security upgrades.
 
--   Prioritizing Breach Severity: We distinguished between minor leaks and data floods. Focusing on breaches with the most sensitive or critical data is crucial.
+- Prioritizing Breach Severity: We distinguished between minor leaks and data floods. Focusing on breaches with the most sensitive or critical data is crucial.
 
--   Balancing Security & Privacy: We explored the delicate balance between robust security and customer access. Businesses must find the sweet spot to avoid hindering operations.
+- Balancing Security & Privacy: We explored the delicate balance between robust security and customer access. Businesses must find the sweet spot to avoid hindering operations.
 
--   Adapting to Evolving Threats: We visualized how hacker tactics change. Businesses need to continuously refine their defenses to stay ahead of cybercriminals.
+- Adapting to Evolving Threats: We visualized how hacker tactics change. Businesses need to continuously refine their defenses to stay ahead of cybercriminals.
 
 ## References
 
