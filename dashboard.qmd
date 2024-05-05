@@ -81,7 +81,7 @@ In [2018-2023], the breach breakdown by method was as follows:
 For more information on creating dashboards with Quarto, you can visit the [Quarto documentation](https://quarto.org/docs/dashboards/).
 :::
 
-# Time trend analysis
+# TIME ANALYSIS
 
 ```{r}
 #| label: all-values
@@ -267,13 +267,6 @@ plot
 
 
 
-
-
-
-
-
-
-
 ```{r}
 
 knitr::include_graphics("images/ballon_plot.gif")
@@ -312,91 +305,6 @@ datatable(top_records_lost,
   )
 
 ```
-
-
-
-
-
-
-`
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

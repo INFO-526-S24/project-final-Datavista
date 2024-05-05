@@ -124,7 +124,7 @@ The provided code offers a range of visualizations to delve into information bre
 2.  **Sector-Specific Breaches:\
     **The subsequent animation (sector_group_animation) zooms in on breaches categorized by sector groups such as Government, Healthcare, Technology, and Others. By analyzing the lines in the animation, we can compare breach trends across different sectors. Sectors exhibiting consistently high or rising breach lines may necessitate more targeted and robust security measures tailored to their specific vulnerabilities.
 
-3.  **Interactive Exploration (Optional):\
+3.  **Interactive Exploration :\
     **Additionally, the code provides static visualizations (total_plot and sector_group_plot) for a detailed examination. These plots offer an interactive experience, enabling users to hover over specific data points and obtain precise information on the number of breaches for a particular year and sector group. This interactivity facilitates the identification of sectors experiencing a surge in breaches during specific years, aiding in the pinpointing of critical areas requiring immediate attention.
 
 4.  **Combining Insights:\
@@ -485,6 +485,7 @@ p_plotly <- layout(p_plotly, yaxis = list(tickmode = "linear", tickformat = "d")
 
 
 
+# Ballon Race Plot: record lost by sector over time
 ```{r}
 
 knitr::include_graphics("images/ballon_plot.gif")
