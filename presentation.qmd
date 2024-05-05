@@ -168,7 +168,7 @@ knitr::include_graphics("images/total_plot.gif")
 
 #### Sector Trend
 
-```{r fig.width = 0.001, fig.asp = .618}
+```{r fig.width = 3, fig.asp = .618}
 #| label: Breaches by sector
 #| echo: false
 #| warning: false
