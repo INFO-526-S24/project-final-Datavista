@@ -1,7 +1,7 @@
 ---
 title: "Unveiling Trends in Data Breaches and Data Hacks"
 subtitle: "INFO 526 - Project Final"
-author: "**Datavista**: <br> Akash Srinivasan, Abhishek Kumar, Divya Dhole, Noureen Mithaigar, Gowtham Theeda, Lakshmi Neharika Anchula" 
+author:"**Datavista**: <br> Akash Srinivasan, Abhishek Kumar, Divya Dhole, Noureen Mithaigar, Gowtham Theeda, Lakshmi Neharika Anchula" 
 title-slide-attributes:
   data-background-image: images/dataGettyImages.jpeg
   data-background-size: stretch
@@ -15,11 +15,12 @@ format:
 ---
 
 ```{css}
-    .plot-container {
-      width: 800px; /* Adjust width as needed */
-      height: 600px; /* Adjust height as needed */
-    }
-```
+.plot-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%; 
+}
 
 ------------------------------------------------------------------------
 
@@ -90,7 +91,7 @@ knitr::opts_chunk$set(
 ::: panel-tabset
 #### Information Breaches Over the Past Decade (3D visulazation)
 
-```{r fig.width = 4, fig.asp = 0.5 }
+```{r fig.width = 10, fig.asp = 0.4 }
 
 
 #| echo: false
@@ -156,7 +157,7 @@ knitr::include_graphics("images/total_plot.gif")
 
 #### plot B
 
-```{r}
+```{r fig.width =10  fig.asp=.4}
 #| label: Breaches by sector
 #| echo: false
 #| warning: false
@@ -179,7 +180,7 @@ knitr::include_graphics("images/sector_group_plot.gif")
 
 -   Vulnerability Assessment
 
-```{r fig.width = 16, fig.asp = 0.618}
+```{r fig.width = 1o, fig.asp = 0.4}
 
 #| warning: false
 
@@ -251,7 +252,7 @@ fig
 ::: panel-tabset
 #### Plot B
 
-```{r}
+```{r fig.width =10  fig.asp=.4}
 #| echo: false
 #| warning: false
 
@@ -331,7 +332,7 @@ fig
 ::: panel-tabset
 #### plot C
 
-```{r fig.width = 16, fig.asp = 0.618}
+```{r fig.width = 10, fig.asp = 0.4}
 
 #| label: Bar_plot_display
 #| echo: false
@@ -351,7 +352,7 @@ knitr::include_graphics("images/bar_plot.gif")
 ::: panel-tabset
 #### Plot D
 
-```{r fig.width = 16, fig.asp = 0.618}
+```{r fig.width = 10, fig.asp = 0.4}
 
 #| label: Bar_plot_display
 #| echo: false
