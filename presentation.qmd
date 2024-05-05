@@ -12,7 +12,6 @@ format:
     theme: [white, 'data/customtheming.scss']
     transition: slide
     background-transition: fade
-    header-includes:| 
 ---
 
 ```{css}
