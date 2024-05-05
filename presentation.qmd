@@ -87,9 +87,10 @@ knitr::opts_chunk$set(
 
 
 # Question 1
+(General Assessment)
 
 
-- Question 1: How have information breaches advanced over past decade(2013-2023), and what are the patterns with respect to their recurrence, seriousness, and affect over distinctive businesses?
+- How have information breaches advanced over past decade(2013-2023), and what are the patterns with respect to their recurrence, seriousness, and affect over distinctive businesses?
 
 ---
 
@@ -97,7 +98,7 @@ knitr::opts_chunk$set(
 ::: panel-tabset
 ####  3D Visualization
 
-```{r fig.width = 2, fig.asp = 0.5 }
+```{r fig.width = 4, fig.asp = 0.5 }
 
 
 #| echo: false
@@ -155,7 +156,7 @@ Visualizing Information Breaches: A Multifaceted Approach (2013-2023)
 ::: panel-tabset
 #### Time Trend
 
-```{r fig.width = 2 ,fig.asp = 0.5}
+```{r fig.width = 5,fig.asp = 1}
 #| label: Total breaches
 #| echo: false
 #| warning: false
@@ -165,7 +166,7 @@ knitr::include_graphics("images/total_plot.gif")
 
 #### Sector Trend
 
-```{r fig.width = 4, fig.asp = 1.4 }
+```{r fig.width = 0.001, fig.asp = .618}
 #| label: Breaches by sector
 #| echo: false
 #| warning: false
@@ -192,7 +193,7 @@ knitr::include_graphics("images/sector_group_plot.gif")
 ::: panel-tabset
 #### Plot A
 
-```{r fig.width = 4, fig.asp = .7 }
+```{r fig.width = 2, fig.asp = .618 }
 
 #| warning: false
 
@@ -265,7 +266,7 @@ fig
 ::: panel-tabset
 #### Plot B
 
-```{r fig.width = 2, fig.asp = 0.5 }
+```{r fig.width = 3, fig.asp = 0.618 }
 #| echo: false
 #| warning: false
 
@@ -344,7 +345,7 @@ fig
 ::: panel-tabset
 #### Plot C
 
-```{r fig.width = 2, fig.asp = 0.618}
+```{r fig.width = .5, fig.asp = 0.1}
 
 #| label: Bar_plot_display
 #| echo: false
