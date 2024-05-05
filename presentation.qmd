@@ -195,7 +195,7 @@ knitr::include_graphics("images/sector_group_plot.gif")
 ::: panel-tabset
 #### Plot A
 
-```{r fig.width = 2, fig.asp = .618 }
+```{r fig.width = 3.5, fig.asp = .618 }
 
 #| warning: false
 
@@ -268,7 +268,7 @@ fig
 ::: panel-tabset
 #### Plot B
 
-```{r fig.width = 3, fig.asp = 0.618 }
+```{r fig.width = 3.5, fig.asp = 0.618 }
 #| echo: false
 #| warning: false
 
@@ -347,7 +347,7 @@ fig
 ::: panel-tabset
 #### Plot C
 
-```{r fig.width = .5, fig.asp = 0.1}
+```{r fig.width = 2, fig.asp = 0.618}
 
 #| label: Bar_plot_display
 #| echo: false
