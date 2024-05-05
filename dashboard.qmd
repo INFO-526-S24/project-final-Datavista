@@ -205,7 +205,7 @@ list(
 
 ## Row {height="40%"}
 
-### Column {width="55%"}
+### Column {width="40%"}
 
 ```{r}
 #| title: Total breach over year
@@ -216,7 +216,7 @@ knitr::include_graphics("images/total_plot.gif")
 ```
 
 
-### Column {width="45%"}  {.tabset}
+### Column {width="60%"}  {.tabset}
  
 ```{r}
 #| title: Breaches Over Time by Sector
