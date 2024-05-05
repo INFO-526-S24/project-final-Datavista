@@ -376,7 +376,30 @@ knitr::include_graphics("images/ballon_plot.gif")
 -   Adapting to Evolving Threats: We visualized how hacker tactics change. Businesses need to continuously refine their defenses to stay ahead of cybercriminals.
 :::
 
-## 
+## References
 
 ::: incremental
+-   Research Articles/Reports:
+
+Verizon Data Breach Investigations Report (Annual Report)
+
+```         
+-   A comprehensive report analyzing data breaches and cybersecurity incidents from various industries worldwide
+```
+
+-   Industry Reports/White Papers:
+
+Data Breach Trends and Predictions (Annual Report) by Experian
+
+```         
+-   Provides insights into data breach trends and predictions based on analysis of real-world incidents.
+```
+
+-   Academic/Journal Articles:
+
+Leukfeldt, E. R., & Holt, T. J. (2020). Cybercrime by cash, corporations or nation-states: An overview of the digital underground market economy. Criminology and Criminal Justice, 20(5), 505-524.
+
+```         
+-   Discusses the digital underground market economy and its role in facilitating cybercrime, including data breaches.
+```
 :::
