@@ -97,6 +97,28 @@ knitr::opts_chunk$set(
 #| warning: false
 
 
+# Loading the CSV data
+data <- read.csv("data/Data_Breaches_LATEST.csv")
+
+# Renaming the column with extra spaces
+names(data)[names(data) == 'year   '] <- 'year'
+
+# Filtering data for the past decade (2013-2023)
+df_decade <- data[data$year >= 2013 & data$year <= 2023, ]
+
+# Cleaning column names using janitor::clean_names()
+df_decade <- janitor::clean_names(df_decade)
+
+# Aggregating sector categories
+df_decade$sector <- ifelse(df_decade$sector %in% c("academic", "finance", "government", "health", "military", "tech","web","technology"), df_decade$sector, "other")
+
+
+# Aggregating method categories
+df_decade$method <- ifelse(df_decade$method %in% c("hacked", "inside job", "lost device", "poor security"), df_decade$method, "other")
+
+# Aggregating data by year, sector, and method
+agg_data <- aggregate(records_lost ~ year + sector + method, data = df_decade, FUN = sum)
+
 # Creating a 3D plot
 plot_ly(agg_data, x = ~year, y = ~sector, z = ~records_lost, color = ~method,
         type = "scatter3d", mode = "markers", sizes = 10) %>%
