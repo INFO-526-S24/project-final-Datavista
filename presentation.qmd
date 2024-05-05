@@ -10,7 +10,7 @@ title-slide-attributes:
 format:
   revealjs:
     theme: league
-    transition: slide
+    transition: sky
     background-transition: fade
     header-includes: |
       <style>
@@ -18,15 +18,14 @@ format:
       </style>
 ---
 
-
 ```{css}
     .plot-container {
       width: 800px; /* Adjust width as needed */
       height: 600px; /* Adjust height as needed */
     }
-    ```
+```
 
----
+------------------------------------------------------------------------
 
 ```{r, GETTING THE LIBRARIES}
 if (!require(pacman))
@@ -67,7 +66,7 @@ knitr::opts_chunk$set(
   )
 ```
 
-## Introduction {.smaller}
+## Introduction
 
 ::: incremental
 -   Introduction to Data Breaches Definition: A data breach refers to the unauthorized access, disclosure, or acquisition of sensitive or confidential information. It occurs when cybercriminals gain access to a system or network and extract valuable data without authorization.
@@ -92,10 +91,31 @@ knitr::opts_chunk$set(
 -   Exploratory Data Analysis (EDA): Uncover breach patterns and trends using statistical methods and visualizations.
 
 -   Model Development: Create ML models (classification/regression) to predict breaches or assess severity with key data features.
-
 :::
 
 ## Question 1
+
+::: panel-tabset
+#### Information Breaches Over the Past Decade (3D visulazation)
+
+```{r fig.width = 4, fig.asp = 0.5 }
+
+
+#| label: 3D PLOT
+#| echo: false
+#| warning: false
+
+
+# Creating a 3D plot
+plot_ly(agg_data, x = ~year, y = ~sector, z = ~records_lost, color = ~method,
+        type = "scatter3d", mode = "markers", sizes = 10) %>%
+  layout(title = "Information Breaches Over the Past Decade",
+         scene = list(xaxis = list(title = "Year"),
+                      yaxis = list(title = "Sector"),
+                      zaxis = list(title = "Records Lost")))
+
+
+```
 
 ::: incremental
 Visualizing Information Breaches: A Multifaceted Approach (2013-2023)
@@ -106,56 +126,56 @@ Visualizing Information Breaches: A Multifaceted Approach (2013-2023)
 
 -   Time Series Analysis: Utilizing ggplot2 for temporal trends.
 :::
+:::
 
-## Information Breaches Over the Past Decade (3D visulazation)
+## Question 1
 
-```{r fig.width = 4, fig.asp = 0.5 }
+### Total Breaches Over Time plot
 
-suppressWarnings({
-# Load required libraries
-library(plotly)
-library(janitor)
-library(magrittr)  # Load magrittr for pipe operator
+::: panel-tabset
+#### plot A
 
-# Load the CSV data
-data <- read.csv("data/Data_Breaches_LATEST.csv")
-
-# Rename the column with extra spaces
-names(data)[names(data) == 'year   '] <- 'year'
-
-# Filter data for the past decade (2013-2023)
-df_decade <- data[data$year >= 2013 & data$year <= 2023, ]
-
-# Clean column names using janitor::clean_names()
-df_decade <- janitor::clean_names(df_decade)
-
-# Aggregate data by year, sector, and method
-agg_data <- aggregate(records_lost ~ year + sector + method, data = df_decade, FUN = sum)
-
-# Create a 3D plot
-plot_ly(agg_data, x = ~year, y = ~sector, z = ~records_lost, color = ~method,
-        type = "scatter3d", mode = "markers", sizes = 10) %>%
-  layout(title = "Information Breaches Over the Past Decade",
-         scene = list(xaxis = list(title = "Year"),
-                      yaxis = list(title = "Sector"),
-                      zaxis = list(title = "Records Lost")))
-
-
-})
+```{r}
+#| label: Total breaches
+#| echo: false
+#| warning: false
+knitr::include_graphics("images/total_plot.gif")
 
 ```
 
-## Total Breaches Over Time plot
+#### plot B
 
+```{r}
+#| label: Breaches by sector
+#| echo: false
+#| warning: false
+knitr::include_graphics("images/sector_group_plot.gif")
+```
 
+::: incremental
+#### Insights
+
+-   **Vulnerable Sectors:** Sectors with consistently higher breach lines or sudden spikes in the facet plot might be more susceptible and require additional security measures.
+
+-   **Year-to-Year Fluctuations:** Identifying sectors with significant year-to-year variations in breaches can help focus resources on those sectors during periods of heightened risk.
+
+-   **Overall Security Landscape:** The overall trend in total breaches can indicate a broader improvement or decline in data security practices over time.
+:::
+:::
 
 ## Question 2
 
-::: incremental
+::: panel-tabset
+#### Plot A
 
--  Vulnerability Assessment
+-   Vulnerability Assessment
 
 ```{r fig.width = 16, fig.asp = 0.618}
+
+#| label: Q2plot1(Breach method by sector)
+#| echo: false
+#| warning: false
+
 library(plotly)
 library(dplyr)
 
@@ -210,11 +230,28 @@ fig <- fig %>% layout(
 )
 
 fig
+
 ```
 
-## 
+::: incremental
+#### Insights
 
-```{r fig.width = 16, fig.asp = 0.618}
+-   Dominant Breach Methods: By observing the height of each stacked bar segment within a sector, you can identify the methods responsible for the most significant data loss in that sector.
+-   Vulnerability Across Sectors: By comparing the total heights of stacked bars across different sectors, you can see which sectors experienced the most significant data loss overall, potentially suggesting higher vulnerability.
+:::
+:::
+
+## Question 2
+
+::: panel-tabset
+#### Plot B
+
+```{r}
+#| label:  Q2plot2(Breach method by sector by year)
+#| echo: false
+#| warning: false
+
+
 library(plotly)
 library(dplyr)
 
@@ -276,83 +313,74 @@ fig <- fig %>% layout(
 
 fig
 
+
 ```
 
-#### Plot C
+::: incremental
+#### Insights
+
+-   Year-to-Year Comparison: By observing the lines for each year, you can identify sectors where breach methods and the number of records lost fluctuate significantly.
+-   Evolving Trends: You can see if specific methods become more or less prominent over time within a sector, potentially indicating a shift in attacker tactics or changing vulnerabilities.
+:::
+:::
+
+## Question 2
+
+::: panel-tabset
+#### plot C
 
 ```{r fig.width = 16, fig.asp = 0.618}
-library(plotly)
-library(dplyr)
 
-agg_data_sum <- agg_data %>%
-  group_by(sector, method) %>%
-  summarise(records_lost = sum(records_lost), .groups = 'drop')
-
-fig <- plot_ly(data = agg_data_sum,
-               x = ~sector,
-               y = ~records_lost,
-               type = 'bar',
-               name = ~method,
-               hoverinfo = 'text', 
-               text = ~paste('Method:',
-                             method,
-                             '<br>Records Lost:',
-                             format(records_lost, big.mark = ","))) %>%
-  layout(
-    barmode = 'relative',
-    title = 'Breach Severity by Sector/Type of Data',
-    xaxis = list(title = 'Sector/Type',
-                 tickangle = -45,
-                 automargin = TRUE), 
-    yaxis = list(title = 'Records Lost'),
-    showlegend = TRUE
-  )
-
-fig
+#| label: Bar_plot_display
+#| echo: false
+#| warning: false
+knitr::include_graphics("images/bar_plot.gif")
 
 ```
 
+::: incremental
+#### Insights
+
+-   Focus: It highlights the sectors that suffered the biggest data breaches in 2023 based on the total number of records lost.
+-   Animation: The animation allows you to see how the ranking of sectors by records lost might change over time (assuming you have data for multiple years).
+:::
+:::
+
+## Question 2
+
+::: panel-tabset
 #### Plot D
 
 ```{r fig.width = 16, fig.asp = 0.618}
-library(plotly)
-library(dplyr)
 
+#| label: Bar_plot_display
+#| echo: false
+#| warning: false
+knitr::include_graphics("images/ballon_plot.gif")
 
-agg_data_sum <- agg_data %>%
-  group_by(year, method) %>%
-  summarise(breach_count = n(), .groups = 'drop')
-
-fig <- plot_ly(data = agg_data_sum,
-               x = ~year,
-               y = ~breach_count,
-               color = ~method,
-               mode = "lines", 
-               line = list(smoothing = 0.6),
-               hoverinfo = "text",
-               text = ~paste("Year: ", 
-                             year, 
-                             "<br>Breach Method: ",
-                             method,
-                             "<br>Breach Count: ",
-                             breach_count)) %>%
-  layout(title = "Breach Frequency Over Time",
-         xaxis = list(title = "Year"),
-         yaxis = list(title = "Breach Count"),
-         showlegend = TRUE) %>%
-  animation_opts(frame = 100, redraw =  TRUE)
-
-fig
 ```
+
+::: incremental
+#### Insights
+
+-   Vulnerable Sectors: Sectors consistently appearing with larger points over time might be more susceptible to breaches.
+-   Year-to-Year Fluctuations: You can see if specific sectors experience a surge or decline in breach activity over the years. Combined Insights: By considering both sector position and size changes over time, you can identify periods where certain sectors were disproportionately impacted by breaches.
+:::
+:::
 
 ## Conclusion
 
 ::: incremental
--  Identifying Sector Weaknesses: We pinpointed industries most vulnerable to cyberattacks, like healthcare and finance. These sectors require immediate security upgrades.
+-   Identifying Sector Weaknesses: We pinpointed industries most vulnerable to cyberattacks, like healthcare and finance. These sectors require immediate security upgrades.
 
--  Prioritizing Breach Severity: We distinguished between minor leaks and data floods. Focusing on breaches with the most sensitive or critical data is crucial.
+-   Prioritizing Breach Severity: We distinguished between minor leaks and data floods. Focusing on breaches with the most sensitive or critical data is crucial.
 
--  Balancing Security & Privacy: We explored the delicate balance between robust security and customer access. Businesses must find the sweet spot to avoid hindering operations.
+-   Balancing Security & Privacy: We explored the delicate balance between robust security and customer access. Businesses must find the sweet spot to avoid hindering operations.
 
--  Adapting to Evolving Threats: We visualized how hacker tactics change. Businesses need to continuously refine their defenses to stay ahead of cybercriminals.
+-   Adapting to Evolving Threats: We visualized how hacker tactics change. Businesses need to continuously refine their defenses to stay ahead of cybercriminals.
+:::
+
+## 
+
+::: incremental
 :::
