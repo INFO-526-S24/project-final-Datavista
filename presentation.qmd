@@ -9,13 +9,10 @@ title-slide-attributes:
   data-slide-number: none
 format:
   revealjs:
-    theme: league
-    transition: sky
+    theme: [white, 'data/customtheming.scss']
+    transition: slide
     background-transition: fade
-    header-includes: |
-      <style>
-        /* any custom styles go here */
-      </style>
+    header-includes:| 
 ---
 
 ```{css}
