@@ -229,11 +229,45 @@ knitr::include_graphics("images/sector_group_plot.gif")
 
 
 ```{r}
-#| title: Breaches Over Time by method
+#| title: Breaches by method
+# Load necessary libraries
+# Load necessary libraries
+library(dplyr)
+library(plotly)
 
+# Clean 'health ' to 'health'
+data$sector <- gsub("health ", "health", data$sector)
 
+# Function to categorize methods
+categorize_method <- function(method) {
+  if (method %in% c("hacked", "inside job", "lost device", "poor security")) {
+    return(method)
+  } else {
+    return("other")
+  }
+}
 
+# Apply categorize_method function to create a new column 'method_group'
+data$method_group <- sapply(data$method, categorize_method)
 
+# Aggregate total breaches by method group and year
+total_by_method_group <- data %>%
+  group_by(year, method_group) %>%
+  summarise(total_breaches = n(), .groups = "drop")  # Drop grouping after summarizing
+
+# Ensure there are sufficient data points for time series visualization
+total_by_method_group <- total_by_method_group %>%
+  arrange(year, method_group)
+
+# Plot breaches by method group
+method_group_plot <- plot_ly(total_by_method_group, x = ~year, y = ~total_breaches, color = ~method_group, type = "scatter", mode = "lines+markers",
+                             text = ~paste("Year: ", year, "<br>Total Breaches: ", total_breaches, "<br>Method: ", method_group)) %>%
+  layout(title = "Breaches Over Time by Method",
+         xaxis = list(title = "Year"),
+         yaxis = list(title = "Total Breaches"))
+
+# Display the plot
+method_group_plot
 
 ```
 
