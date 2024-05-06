@@ -158,7 +158,7 @@ plot_ly(agg_data, x = ~year, y = ~sector, z = ~records_lost, color = ~method,
 #| label: Total breaches
 #| echo: false
 #| warning: false
-knitr::opts_chunk$set(fig.width=6, fig.height=4) 
+knitr::opts_chunk$set(fig.width=6, fig.height=3) 
 knitr::include_graphics("images/total_plot.gif")
 
 ```
@@ -169,7 +169,7 @@ knitr::include_graphics("images/total_plot.gif")
 #| label: Breaches by sector
 #| echo: false
 #| warning: false
-knitr::opts_chunk$set(fig.width=6, fig.height=4) 
+knitr::opts_chunk$set(fig.width=6, fig.height=3) 
 knitr::include_graphics("images/sector_group_plot.gif")
 ```
 
