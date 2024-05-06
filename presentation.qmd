@@ -186,9 +186,7 @@ knitr::include_graphics("images/sector_group_plot.gif")
 
 (Vulnerability Assessment)
 
--   
-
-    ## Which sectors or types of data (e.g., personal, financial) are particularly susceptible to different breach methods like hacking or insider jobs, and what are the consequential impacts on both businesses and individuals?
+ Which sectors or types of data (e.g., personal, financial) are particularly susceptible to different breach methods like hacking or insider jobs, and what are the consequential impacts on both businesses and individuals?
 
 ::: panel-tabset
 #### Plot A
@@ -351,7 +349,7 @@ fig
 #| echo: false
 #| warning: false
 
-knitr::opts_chunk$set(fig.width=6, fig.height=4) 
+knitr::opts_chunk$set(fig.width=6, fig.height=3) 
 knitr::include_graphics("images/bar_plot.gif")
 ```
 
@@ -370,7 +368,6 @@ knitr::include_graphics("images/bar_plot.gif")
 
 -   Balancing Security & Privacy: We explored the delicate balance between robust security and customer access. Businesses must find the sweet spot to avoid hindering operations.
 
--   Adapting to Evolving Threats: We visualized how hacker tactics change. Businesses need to continuously refine their defenses to stay ahead of cybercriminals.
 :::
 
 ## References
@@ -379,6 +376,5 @@ knitr::include_graphics("images/bar_plot.gif")
 
 -   Industry Reports/White Papers: Data Breach Trends and Predictions (Annual Report) by Experian Provides insights into data breach trends and predictions based on analysis of real-world incidents.
 
--   Academic/Journal Articles: Leukfeldt, E. R., & Holt, T. J. (2020). Cybercrime by cash, corporations or nation-states: An overview of the digital underground market economy. Criminology and Criminal Justice, 20(5), 505-524.
-
+-   Academic/Journal Articles: Leukfeldt, E. R., & Holt, T. J. (2020). Cybercrime by cash, corporations or nation-states
 ## 
