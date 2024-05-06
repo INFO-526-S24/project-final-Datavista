@@ -74,13 +74,13 @@ knitr::opts_chunk$set(
 
 ::: incremental
 -   **Data_Breaches_LATEST.CSV** The "World's Biggest Data Breaches & Hacks" dataset from **informationisbeautiful.net** spans from 2003 to 2023, providing key details such as year, date, sector, method, and data sensitivity for analyzing breach trends and impacts across sectors.
--   Examples of key variables in this data set are: **-Organisation -Records Lost. -Year -Date -Sector -Method -Data Sensitivity**
+-   **Examples of key variables** in this data set are: -Organisation -Records Lost. -Year -Date -Sector -Method -Data Sensitivity
 :::
 
 ## Project Approach
 
 ::: incremental
--   Data Collection: Obtain "World's Biggest Data Breaches & Hacks" dataset from **informationisbeautiful.net (2003-2023)** with variables: organization, records lost, year, date, sector, method, and data sensitivity.
+-   **Data Collection:** Obtain "World's Biggest Data Breaches & Hacks" dataset from **informationisbeautiful.net (2003-2023)** with variables: organization, records lost, year, date, sector, method, and data sensitivity.
 
 -   **Data Cleaning:** Ensure integrity by handling missing values, standardizing formats, and removing duplicates.
 
@@ -190,7 +190,7 @@ Which sectors or types of data (e.g., personal, financial) are particularly susc
 
 ------------------------------------------------------------------------
 
-## Question 2
+## 
 
 ::: panel-tabset
 #### Plot A
@@ -264,7 +264,7 @@ fig
 
 ------------------------------------------------------------------------
 
-## Question 2
+## 
 
 ::: panel-tabset
 #### Plot B
@@ -346,7 +346,7 @@ fig
 
 ------------------------------------------------------------------------
 
-## Question 2
+## 
 
 ::: panel-tabset
 #### Plot C
