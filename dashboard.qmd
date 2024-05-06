@@ -144,7 +144,25 @@ total_record_lost_2023 <- df_decade %>%
   summarise(total_records_lost = sum(records_lost, na.rm = TRUE))
 
 
+#value box 3
+
+data <- read.csv("data/Data_Breaches_LATEST.csv")
+names(data)[names(data) == 'year   '] <- 'year'
+
+unique_years <- unique(data$year)
+print(unique_years)
+data_2023 <- data[data$year == 2023, ]
+data_2023
+records_lost_2023 <- sum(data_2023$records.lost, na.rm = TRUE)
+records_lost_2023
+
+
 ```
+
+
+
+
+
 
 
 
@@ -180,21 +198,23 @@ list(
 ```
 
 
+
+
 ```{r}
-
 #| content: valuebox
-#| title: "Total data lost  in 2023"
+#| title: "Total record lost in 2023"
+# Load the data
 
 
-# Create a value box with the total records lost in 2023
+
+
 list(
   icon = "shield",
   color = "primary",
-  value =  total_record_lost_2023
+  value = records_lost_2023
+
 
 )
-
-
 
 ```
 
@@ -216,7 +236,7 @@ knitr::include_graphics("images/total_plot.gif")
 ```
 
 
-### Column {width="60%"}  {.tabset}
+### Column {width="50%"}  {.tabset}
  
 ```{r}
 #| title: Breaches Over Time by Sector
@@ -229,7 +249,7 @@ knitr::include_graphics("images/sector_group_plot.gif")
 
 
 ```{r}
-#| title: Breaches by method
+#| title: Breaches over Time by  method
 # Load necessary libraries
 # Load necessary libraries
 library(dplyr)
@@ -278,7 +298,12 @@ method_group_plot
 
 ```{r}
 
+# Aggregate sector categories
+data$sector <- ifelse(data$sector %in% c("academic", "finance", "government", "health", "military", "tech","web"), data$sector, "other")
 
+
+# Aggregate method categories
+data$method <- ifelse(data$method %in% c("hacked", "inside job", "lost device", "poor security"), data$method, "other")
 
 # Group data by sector and method, and calculate frequency
 pattern <- data %>%

@@ -713,3 +713,66 @@ anim_save("images/bar_plot_n.gif", bar_plot_animation)
 ```
 
 
+```{r}
+#| label: Bar_plot_display
+#| echo: false
+#| warning: false
+library(ggplot2)
+library(gganimate)
+library(scales)
+
+
+# Filter the data for the year 2023
+data_2023 <- df_decade[df_decade$year == 2023, ]
+
+# Aggregate records lost by sector
+records_lost_by_sector <- aggregate(records_lost ~ sector, data = data_2023, FUN = sum)
+
+# Order the aggregated data by records lost in descending order
+records_lost_by_sector <- records_lost_by_sector[order(-records_lost_by_sector$records_lost), ]
+
+# Select the top 10 sectors
+top_10_sectors <- head(records_lost_by_sector, 10)
+
+# Create a color palette with different colors for each bar
+color_palette <- rainbow(length(top_10_sectors$sector))
+
+# Reorder the factor levels of sector based on records lost
+top_10_sectors$sector <- factor(top_10_sectors$sector, levels = top_10_sectors$sector[order(-top_10_sectors$records_lost)])
+
+# Plot the top 10 sectors by records lost in 2023
+p <- ggplot(data = top_10_sectors, aes(x = reorder(sector, -records_lost), y = records_lost, fill = sector)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = scales::comma(records_lost)), vjust = -0.5, color = "black", size = 3) +  # Add text labels for records lost
+  labs(title = "Top 5 Sectors by Records Lost in 2023",
+       x = "Sector",
+       y = "Records Lost") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        axis.text.y = element_text(size = 10),  # Increase font size of y-axis text
+        plot.title = element_text(size = 20)) +  # Increase font size of plot title
+  scale_fill_manual(values = color_palette) +# Assign colors manually
+  scale_y_continuous(labels = scales::comma) +
+  coord_flip() +
+  transition_states(states = sector, transition_length = 10, state_length = 5) +
+  enter_fade() +
+  exit_fade()
+
+
+
+# Creating animations
+bar_plot_animation <- animate(p)  
+
+#Rendering the animation
+anim_save("images/bar_plot_n.gif", bar_plot_animation)
+```
+
+
+
+
+
+
+
+
+
+
+
