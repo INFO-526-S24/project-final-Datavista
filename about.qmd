@@ -10,4 +10,8 @@ This project was developed by **\[Datavista\]** For [INFO 526 - Data Analysis an
 
 -   Abhishek Kumar: 1st Year, MS Data Science, Researcher, VIP project:RoadSafety
 
+-   Divya liladhar Dhole : 1st Year, MS in Data science
 
+-   Noureen Mithaigar : 1st Year, MS in information science
+
+-   Gowtham Theeda : 1st year , MS in Data Science
