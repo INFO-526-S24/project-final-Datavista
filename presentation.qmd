@@ -87,7 +87,7 @@ knitr::opts_chunk$set(
 -   **Exploratory Data Analysis (EDA):** Uncover breach patterns and trends using statistical methods and visualizations.
 :::
 
-# Question 1
+## Question 1
 
 **(General Assessment)**
 
@@ -182,14 +182,16 @@ knitr::include_graphics("images/sector_group_plot.gif")
 -   **Overall Security Landscape:** The overall trend in total breaches can indicate a broader improvement or decline in data security practices over time.
 :::
 
-# Question 2
+## Question 2
 
 (Vulnerability Assessment)
 
 Which sectors or types of data (e.g., personal, financial) are particularly susceptible to different breach methods like hacking or insider jobs, and what are the consequential impacts on both businesses and individuals?
 
 ------------------------------------------------------------------------
+
 ## Question 2
+
 ::: panel-tabset
 #### Plot A
 
@@ -261,7 +263,9 @@ fig
 :::
 
 ------------------------------------------------------------------------
+
 ## Question 2
+
 ::: panel-tabset
 #### Plot B
 
@@ -341,7 +345,9 @@ fig
 :::
 
 ------------------------------------------------------------------------
+
 ## Question 2
+
 ::: panel-tabset
 #### Plot C
 
@@ -368,7 +374,7 @@ knitr::include_graphics("images/bar_plot.gif")
 
 -   Prioritizing Breach Severity: We distinguished between minor leaks and data floods. Focusing on breaches with the most sensitive or critical data is crucial.
 
--   Balancing Security & Privacy: We explored the delicate balance between robust security and customer access. Businesses must find the sweet spot to avoid hindering operations.
+-   Balancing Security & Privacy: We explored the delicate balance between robust security and customer access.
 :::
 
 ## References
