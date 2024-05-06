@@ -158,7 +158,7 @@ plot_ly(agg_data, x = ~year, y = ~sector, z = ~records_lost, color = ~method,
 #| label: Total breaches
 #| echo: false
 #| warning: false
-knitr::opts_chunk$set(fig.width=6, fig.height=3) 
+knitr::opts_chunk$set(fig.width=6, fig.height=2) 
 knitr::include_graphics("images/total_plot.gif")
 
 ```
@@ -169,7 +169,7 @@ knitr::include_graphics("images/total_plot.gif")
 #| label: Breaches by sector
 #| echo: false
 #| warning: false
-knitr::opts_chunk$set(fig.width=6, fig.height=3) 
+knitr::opts_chunk$set(fig.width=6, fig.height=2) 
 knitr::include_graphics("images/sector_group_plot.gif")
 ```
 
@@ -186,8 +186,10 @@ knitr::include_graphics("images/sector_group_plot.gif")
 
 (Vulnerability Assessment)
 
- Which sectors or types of data (e.g., personal, financial) are particularly susceptible to different breach methods like hacking or insider jobs, and what are the consequential impacts on both businesses and individuals?
+Which sectors or types of data (e.g., personal, financial) are particularly susceptible to different breach methods like hacking or insider jobs, and what are the consequential impacts on both businesses and individuals?
 
+------------------------------------------------------------------------
+## Question 2
 ::: panel-tabset
 #### Plot A
 
@@ -259,7 +261,7 @@ fig
 :::
 
 ------------------------------------------------------------------------
-
+## Question 2
 ::: panel-tabset
 #### Plot B
 
@@ -339,7 +341,7 @@ fig
 :::
 
 ------------------------------------------------------------------------
-
+## Question 2
 ::: panel-tabset
 #### Plot C
 
@@ -349,7 +351,7 @@ fig
 #| echo: false
 #| warning: false
 
-knitr::opts_chunk$set(fig.width=6, fig.height=3) 
+knitr::opts_chunk$set(fig.width=6, fig.height=2) 
 knitr::include_graphics("images/bar_plot.gif")
 ```
 
@@ -367,7 +369,6 @@ knitr::include_graphics("images/bar_plot.gif")
 -   Prioritizing Breach Severity: We distinguished between minor leaks and data floods. Focusing on breaches with the most sensitive or critical data is crucial.
 
 -   Balancing Security & Privacy: We explored the delicate balance between robust security and customer access. Businesses must find the sweet spot to avoid hindering operations.
-
 :::
 
 ## References
@@ -377,4 +378,7 @@ knitr::include_graphics("images/bar_plot.gif")
 -   Industry Reports/White Papers: Data Breach Trends and Predictions (Annual Report) by Experian Provides insights into data breach trends and predictions based on analysis of real-world incidents.
 
 -   Academic/Journal Articles: Leukfeldt, E. R., & Holt, T. J. (2020). Cybercrime by cash, corporations or nation-states
+
 ## 
+
+![](images/thank_you.jpeg){fig-align="center"}
