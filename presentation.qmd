@@ -17,7 +17,7 @@ format:
 ```{css}
     .plot-container {
       width: 800px; /* Adjust width as needed */
-      height: 600px; /* Adjust height as needed */
+      height:300px; /* Adjust height as needed */
     }
 ```
 
@@ -46,6 +46,9 @@ pacman::p_load_gh("BlakeRMills/MoMAColors")
 
 ```
 
+
+
+
 ```{r}
 #| label: setup
 #| include: false
@@ -55,9 +58,9 @@ ggplot2::theme_set(ggplot2::theme_minimal(base_size = 11))
 
 # For better figure resolution
 knitr::opts_chunk$set(
-  fig.retina = 3, 
-  dpi = 300, 
-  fig.width = 6, 
+  fig.retina = 3,
+  dpi = 300,
+  fig.width = 5, 
   fig.asp = 0.618 
   )
 ```
@@ -65,22 +68,23 @@ knitr::opts_chunk$set(
 ## Introduction
 
 ::: incremental
--   Introduction to Data Breaches Definition: A data breach refers to the unauthorized access, disclosure, or acquisition of sensitive or confidential information. It occurs when cybercriminals gain access to a system or network and extract valuable data without authorization.
+-   **Data Breaches Definition**: A data breach refers to the unauthorized access, disclosure, or acquisition of sensitive or confidential information. It occurs when cybercriminals gain access to a system or network and extract valuable data without authorization.
 
--   Impact: Data breaches lead to financial losses, reputational damage, legal issues, and privacy breaches for individuals, businesses, and organizations. They also erode trust among stakeholders, leading to long-term consequences.
+-   **Impact**: Data breaches lead to financial losses, reputational damage, legal issues, and privacy breaches for individuals, businesses, and organizations. They also erode trust among stakeholders, leading to long-term consequences.
 :::
 
 ## Data set
 
 ::: incremental
--   **Data_Breaches_LATEST.CSV** The "World's Biggest Data Breaches & Hacks" dataset from **informationisbeautiful.net** spans from 2003 to 2023, providing key details such as year, date, sector, method, and data sensitivity for analyzing breach trends and impacts across sectors.
+-   **Data_Breaches_LATEST.CSV** The "World's Biggest Data Breaches & Hacks" dataset from *informationisbeautiful.net*
+ spans from 2003 to 2023, providing key details such as year, date, sector, method, and data sensitivity for analyzing breach trends and impacts across sectors.
 -   **Examples of key variables** in this data set are: -Organisation -Records Lost. -Year -Date -Sector -Method -Data Sensitivity
 :::
 
 ## Project Approach
 
 ::: incremental
--   **Data Collection:** Obtain "World's Biggest Data Breaches & Hacks" dataset from **informationisbeautiful.net (2003-2023)** with variables: organization, records lost, year, date, sector, method, and data sensitivity.
+-   **Data Collection:** Obtain "World's Biggest Data Breaches & Hacks" dataset from *informationisbeautiful.net (2003-2023)* with variables: organization, records lost, year, date, sector, method, and data sensitivity.
 
 -   **Data Cleaning:** Ensure integrity by handling missing values, standardizing formats, and removing duplicates.
 
@@ -98,7 +102,7 @@ knitr::opts_chunk$set(
 ::: panel-tabset
 #### 3D Visualization
 
-```{r fig.width = 4, fig.asp = 0.5 }
+```{r fig.width = 4, fig.asp = 0.5,out.width="80%" }
 
 
 #| echo: false
@@ -153,25 +157,31 @@ plot_ly(agg_data, x = ~year, y = ~sector, z = ~records_lost, color = ~method,
 
 ::: panel-tabset
 #### Time Trend
+```{r, echo=FALSE, out.width="80%"}
 
-```{r fig.width = 5,fig.asp = 1}
 #| label: Total breaches
 #| echo: false
 #| warning: false
-knitr::opts_chunk$set(fig.width=6, fig.height=2) 
 knitr::include_graphics("images/total_plot.gif")
 
 ```
 
+
+
 #### Sector Trend
 
-```{r fig.width = 3, fig.asp = .618}
-#| label: Breaches by sector
+```{r, echo=FALSE, out.width="80%"}
+
+#| label: Total breaches
 #| echo: false
 #| warning: false
-knitr::opts_chunk$set(fig.width=6, fig.height=2) 
 knitr::include_graphics("images/sector_group_plot.gif")
+
 ```
+
+
+
+
 
 #### Insights
 
@@ -184,7 +194,7 @@ knitr::include_graphics("images/sector_group_plot.gif")
 
 ## Question 2
 
-(Vulnerability Assessment)
+(**Vulnerability Assessment**)
 
 Which sectors or types of data (e.g., personal, financial) are particularly susceptible to different breach methods like hacking or insider jobs, and what are the consequential impacts on both businesses and individuals?
 
@@ -351,14 +361,13 @@ fig
 ::: panel-tabset
 #### Plot C
 
-```{r}
+```{r, echo=FALSE, out.width="65%"}
 
 #| label: Bar_plot_display
 #| echo: false
 #| warning: false
 
-knitr::opts_chunk$set(fig.width=3, fig.height=2) 
-knitr::include_graphics("images/bar_plot.gif")
+knitr::include_graphics("images/bar_plot_n.gif") 
 ```
 
 #### Insights

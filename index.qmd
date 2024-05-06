@@ -85,7 +85,6 @@ By uncovering these insights, we hope to empower cybersecurity professionals to 
 
 ------------------------------------------------------------------------
 
-
 ### **Question 1: General Assessment: How have information breaches advanced over past decade(2013-2023), and what are the patterns with respect to their recurrence, seriousness, and affect over distinctive businesses?**
 
 ------------------------------------------------------------------------
@@ -168,9 +167,6 @@ agg_data <- aggregate(records_lost ~ year + sector + method, data = df_decade, F
 
 ```
 
-
-
-
 ## **Visualizations**
 
 ```{r}
@@ -189,15 +185,6 @@ plot_ly(agg_data, x = ~year, y = ~sector, z = ~records_lost, color = ~method,
 
 ```
 
-
-
-
-
-
-
-
-
-
 ```{r}
 #| label: Total breaches
 #| echo: false
@@ -205,6 +192,7 @@ plot_ly(agg_data, x = ~year, y = ~sector, z = ~records_lost, color = ~method,
 knitr::include_graphics("images/total_plot.gif")
 
 ```
+
 ```{r}
 #| label: Breaches by sector
 #| echo: false
@@ -212,8 +200,6 @@ knitr::include_graphics("images/total_plot.gif")
 knitr::include_graphics("images/sector_group_plot.gif")
 
 ```
-
-
 
 ### **Discussion :**
 
@@ -367,8 +353,6 @@ fig
 
 ```
 
-
-
 ```{r}
 
 #| label:  Q2plot2(Breach method by sector by year) 
@@ -440,7 +424,6 @@ fig
 
 ```
 
-
 ```{r}
 #| label: Bar_plot_display
 #| echo: false
@@ -448,9 +431,6 @@ fig
 knitr::include_graphics("images/bar_plot.gif")
 
 ```
-
-
-
 
 ```{r}
 #| label: Ballon plot
@@ -482,23 +462,15 @@ p_plotly <- layout(p_plotly, yaxis = list(tickmode = "linear", tickformat = "d")
 
 ```
 
-
-
-
 # Ballon Race Plot: record lost by sector over time
+
 ```{r}
 
 knitr::include_graphics("images/ballon_plot.gif")
 
 ```
-```
 
-
-
-
-
-
-
+\`\`\`
 
 ### **Discussion :**
 
