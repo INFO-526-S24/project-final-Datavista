@@ -357,7 +357,7 @@ fig
 #| echo: false
 #| warning: false
 
-knitr::opts_chunk$set(fig.width=6, fig.height=2) 
+knitr::opts_chunk$set(fig.width=3, fig.height=2) 
 knitr::include_graphics("images/bar_plot.gif")
 ```
 
