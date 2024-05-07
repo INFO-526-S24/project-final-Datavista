@@ -15,3 +15,5 @@ This project was developed by **\[Datavista\]** For [INFO 526 - Data Analysis an
 -   Noureen Mithaigar : 1st Year, MS in information science
 
 -   Gowtham Theeda : 1st year , MS in Data Science
+
+-   Lakshmi Neharika Anchula: 1st year Ms in Data Science
