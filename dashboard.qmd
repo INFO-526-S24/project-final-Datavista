@@ -16,19 +16,11 @@ options(repos = "https://cran.r-project.org/")  # Set CRAN mirror
 library(dplyr)
 library(ggplot2)
 library(plotly)
-library(dplyr)
-library(ggplot2)
-library(plotly)
 library(shiny)
-# Load the required library
-library(knitr)
-# Load the required library
 library(knitr)
 library(DT)
 
 
-
-theme_set(theme_minimal(base_size = 24, base_family = "Atkinson Hyperlegible"))
 theme_set(theme_minimal(base_size = 24, base_family = "Atkinson Hyperlegible"))
 
 
@@ -36,12 +28,12 @@ theme_set(theme_minimal(base_size = 24, base_family = "Atkinson Hyperlegible"))
 data <- read.csv("data/Data_Breaches_LATEST.csv")
 
 
-# Rename the column with extra spaces
+# Renaming the column with extra spaces
 names(data)[names(data) == 'year   '] <- 'year'
 
 
 
-# Clean column names using janitor::clean_names()
+# Cleaning column names using janitor::clean_names()
 data <- janitor::clean_names(data)
 
 # Aggregate sector categories
@@ -68,10 +60,10 @@ In [2018-2023], the breach breakdown by method was as follows:
 
 |                      |          |
 |----------------------|----------|
-| **Hacked**           |   350    |
-| **Poor Security**    |   200    |
-| **Inside Job**       |   150    |
-| **Lost Device**      |   100    |
+| **Hacked**           |   75    |
+| **Poor Security**    |   45    |
+| **Inside Job**       |   15    |
+| **Lost Device**      |   10    |
 
 ------------------------------------------------------------------------
 
@@ -115,7 +107,8 @@ total_breaches
 data_2018 <- data[data$year == 2018, ]
 data_2023 <- data[data$year == 2023, ]
 
-# Calculate total breaches for each method in 2018
+
+# Calculating total breaches for each method in 2018
 total_breaches_2018 <- table(data_2018$method)
 
 #sum 2018
@@ -123,7 +116,7 @@ total_breaches_2018 <- sum(total_breaches_2018)
 
 
 
-# Calculate total breaches for each method in 2023
+# Calculating total breaches for each method in 2023
 total_breaches_2023 <- table(data_2023$method)
 
 #sum 2023
@@ -132,7 +125,8 @@ total_breaches_2023 <- sum(total_breaches_2023)
 
 names(data)[names(data) == 'year   '] <- 'year'
 
-# Filter data for the past decade (2013-2023)
+
+# Filtering data for the past decade (2013-2023)
 df_decade <- data[data$year >= 2013 & data$year <= 2023, ]
 
 # Clean column names using janitor::clean_names()

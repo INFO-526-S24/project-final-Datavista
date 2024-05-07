@@ -2,7 +2,7 @@
 title: "Unveiling Trends in Data Breaches and Data Hacks"
 subtitle: "INFO 526 - Project Final"
 author: 
-  - name: "Team member - Akash Srinivasan, Abhishek Kumar, Divya Dhole, Noureen Mithaigar, Gowtham Theeda, Lakshmi Neharika Anchula"
+  - name: "<b>Datavista</b> -Abhishek kumar, Srinivasan Akash, Gowtham Theeda,<br>Divya Dhole, Lakshmi Neharika Anchula, Noureen Mithaigar"
     affiliations:
       - name: "School of Information, University of Arizona"
 description: "This project analyzes cyberattacks from 2003 to present day to uncover evolving trends. By pinpointing the most prevalent attack methods and targeted industries, we hope to empower proactive security measures and stay a step ahead of cybercriminals, ultimately creating a safer digital landscape."
@@ -133,7 +133,7 @@ This multifaceted visual exploration empowers stakeholders to make informed deci
 
 ------------------------------------------------------------------------
 
-## **Data** Preprocessing
+## 
 
 ```{r}
 #| label: Preprocessing
@@ -265,9 +265,9 @@ Based on the identified vulnerabilities and trends, you can prioritize security 
 
 ------------------------------------------------------------------------
 
-### **Analysis :**
+### **Analysis :** 
 
-1.  **Breach Methods by Sector/Type of Data (Stacked Bar Chart):**
+**1.** **Breach Methods by Sector/Type of Data (Stacked Bar Chart):**
 
 This code (using plotly) creates a stacked bar chart visualizing the total records lost for different breach methods within each sector. Hovering over a bar displays details like the specific method and the number of records lost. The chart allows for interactive exploration by using the range slider on the x-axis to focus on specific sectors.
 
@@ -283,7 +283,7 @@ This code (using ggplot2 and gganimate) creates an animated bar chart showcasing
 
 This code (using ggplot2 and plotly) creates an animated scatter plot with point size representing the number of records lost. Points are colored by sector and positioned based on the year of the breach. The animation allows users to see how records lost by sector evolve over time.
 
-5.  **Breach Frequency Over Time (Animated Line Chart):**
+**5.Breach Frequency Over Time (Animated Line Chart):**
 
 This code (using ggplot2 and gganimate) creates an animated line chart displaying the total number of records lost per year across all sectors present in the data. Each line represents a different sector, allowing for comparison of breach trends across sectors over time.
 
@@ -425,14 +425,6 @@ fig
 ```
 
 ```{r}
-#| label: Bar_plot_display
-#| echo: false
-#| warning: false
-knitr::include_graphics("images/bar_plot.gif")
-
-```
-
-```{r}
 #| label: Ballon plot
 #| echo: false
 #| warning: false
@@ -470,7 +462,7 @@ knitr::include_graphics("images/ballon_plot.gif")
 
 ```
 
-\`\`\`
+
 
 ### **Discussion :**
 
