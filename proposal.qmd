@@ -427,43 +427,43 @@ The following folders comprise the project repository
 </tr>
 <tr>
 <td>Peer Evaluation</td>
-<td>In Progress</td>
-<td>Everyone</td>
+<td>Completed</td>
+<td>Noureen,Gowtham</td>
 <td>April 8th</td>
 <td>High</td>
-<td>Discuss Feedback and make required changes.</td>
+<td>Discuss Feedback and made required changes.</td>
 </tr>
 <tr>
-<td>Shiny Package</td>
-<td>---</td>
-<td>Everyone</td>
+<td>Index.qmd</td>
+<td>Completed</td>
+<td>Divya,Akash</td>
 <td>April 15th</td>
 <td>Medium</td>
-<td>Working on data visualization, plot Q1</td>
+<td>Worked on data visualization, plot Q1</td>
 </tr>
 <tr>
 <td>Dashboard</td>
-<td>---</td>
-<td>Everyone</td>
+<td>Completed</td>
+<td>Abhishek</td>
 <td>April 22nd</td>
 <td>Medium</td>
-<td>Working on data visualization, plot Q2</td>
+<td>Worked on data visualization, plot Q2</td>
 </tr>
 <tr>
 <td>Write-up, Project</td>
-<td>---</td>
-<td>Everyone</td>
+<td>Completed</td>
+<td>Divya,laxmi</td>
 <td>April 29th</td>
 <td>High</td>
-<td>Working on index.qmd, write-up</td>
+<td>Worked on Project,write-up</td>
 </tr>
 <tr>
 <td>Working in PPT</td>
-<td>---</td>
-<td>Everyone</td>
+<td>Completed</td>
+<td>Divya,Abhishek</td>
 <td>May 05</td>
 <td>High</td>
-<td>Completing entire project</td>
+<td>Completed entire project</td>
 </tr>
 </tbody>
 </table>
